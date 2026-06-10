@@ -103,5 +103,5 @@ conda activate quad_controller
 
 - [external_algorithms/README.md](./external_algorithms/README.md)：开发模式外部算法接入说明
 - `lcm-types/`：查看控制协议和消息字段
-- [scripts/monitor_lcm.py](./scripts/monitor_lcm.py)：抓消息、看频率、排查通道配置
+- [scripts/monitor_lcm.py](./scripts/launch_lcm_spy.sh)：抓消息、看频率、排查通道配置
 - [yobotics_sdk_e15_sdk_260408/SDK使用说明.md](./yobotics_sdk_e15_sdk_260408/SDK使用说明.md)：客户侧集成 SDK 的说明
