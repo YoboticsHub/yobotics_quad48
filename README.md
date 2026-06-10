@@ -2,7 +2,7 @@
 
 > 四足机器人（quad48/Yobotics Quad）RL 控制仿真部署包，支持 MuJoCo 仿真模式实时运行。（运行环境：Ubuntu20.04以上x86架构系统）
 
-版本信息见 [VERSION.txt](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/VERSION.txt)。当前仓库面向 `quad48 / Yobotics Quad` 控制包交付与二次开发，包含主控制器二进制与依赖库、MuJoCo 仿真、LCM 消息类型、WebRTC 服务、外部算法框架，以及 `E15` SDK 示例。
+版本信息见 [VERSION.txt](./VERSION.txt)。当前仓库面向 `quad48 / Yobotics Quad` 控制包交付与二次开发，包含主控制器二进制与依赖库、MuJoCo 仿真、LCM 消息类型、WebRTC 服务、外部算法框架，以及 `E15` SDK 示例。
 
 ## 能力概览
 
@@ -16,10 +16,10 @@
 
 主要有两种运行方式：
 
-1. MuJoCo 仿真：使用 [config_sim.yaml](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/config_sim.yaml) 和 [scripts/start_mujoco.sh](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/scripts/start_mujoco.sh)
-2. 真机控制：使用 [config.yaml](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/config.yaml) 和 `./run_human_debug.sh ../bin/ybt_ctrl`
+1. MuJoCo 仿真：使用 [config_sim.yaml](./config_sim.yaml) 和 [scripts/start_mujoco.sh](./scripts/start_mujoco.sh)
+2. 真机控制：使用 [config.yaml](./config.yaml) 和 `./run_human_debug.sh ../bin/ybt_ctrl`
 
-外部算法只在 `DEVELOPMENT` 模式下通过 LCM 接入，相关说明见 [external_algorithms/README.md](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/external_algorithms/README.md)。
+外部算法只在 `DEVELOPMENT` 模式下通过 LCM 接入，相关说明见 [external_algorithms/README.md](./external_algorithms/README.md)。
 
 ## 快速开始
 
@@ -87,7 +87,7 @@ conda activate quad_controller
 | `RL_RUN` | RL 跑步控制 |
 | `DEVELOPMENT` | 外部算法开发模式（通过 LCM 接口） |
 
-## W## 配置文件
+### 配置文件
 
 所有配置集中在 `config.yaml`，关键配置项：
 
@@ -101,8 +101,7 @@ conda activate quad_controller
 
 如果要做二次开发，通常从下面几个位置开始：
 
-- [external_algorithms/README.md](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/external_algorithms/README.md)：开发模式外部算法接入说明
+- [external_algorithms/README.md](./external_algorithms/README.md)：开发模式外部算法接入说明
 - `lcm-types/`：查看控制协议和消息字段
-- [scripts/monitor_lcm.py](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/scripts/monitor_lcm.py)：抓消息、看频率、排查通道配置
-- [yobotics_sdk_e15_sdk_260408/README.md](/home/user/文档/code%20bag/20260602四足开源资料/yobotics_quad48/yobotics_sdk_e15_sdk_260408/README.md)：客户侧集成 SDK 的说明
-
+- [scripts/monitor_lcm.py](./scripts/monitor_lcm.py)：抓消息、看频率、排查通道配置
+- [yobotics_sdk_e15_sdk_260408/SDK使用说明.md](./yobotics_sdk_e15_sdk_260408/SDK使用说明.md)：客户侧集成 SDK 的说明
