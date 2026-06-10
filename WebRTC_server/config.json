@@ -1,0 +1,24 @@
+{
+  "use_camera": true,
+  "camera": {
+    "device_index": 4,
+    "width": 640,
+    "height": 360,
+    "fps": 15
+  },
+  "lcm": {
+    "url": "udpm://239.255.76.67:7667?ttl=255",
+    "control_channel": "QUAD_ROBOT_CONTROL",
+    "state_channel": "QUAD_ROBOT_STATE"
+  },
+  "signaling": {
+    "server": "ws://localhost:8765"
+  },
+  "webrtc": {
+    "low_latency": true,
+    "max_fps": 15,
+    "min_bitrate_kbps": 300,
+    "start_bitrate_kbps": 500,
+    "max_bitrate_kbps": 900
+  }
+}

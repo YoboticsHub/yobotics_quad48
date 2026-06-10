@@ -1,0 +1,58 @@
+
+========== Log Session Started: 2026-06-03 15:20:39 ==========
+[37m[LogSaver] Logging enabled, saving to: /home/user/文档/code bag/20260602四足开源资料/Quad48_Controller/log/robot_log.txt[0m
+[37m[Yobotics Quad Y15] Starting in MuJoCo simulation mode[0m
+[37m[MuJoCo] Initialized | dt=0.002s | decimation=1[0m
+[37m[SimulationBridge] Config | dt=0.002s | RC=ON | Cheater=OFF[0m
+[37m[RC Interface] Read device_type from config: lcm[0m
+[37m[RC Interface] Final state: g_use_gamepad_driver=0, g_gamepad_driver_initialized=1[0m
+[37m[SimulationBridge] RC interface initialized: using_gamepad=0[0m
+[37m[SimulationBridge] Initializing LCM...[0m
+[37m[SimulationBridge] Started gamepad controller task[0m
+[37m[SimulationBridge] Running...
+[0m
+[37m[RobotRunner] Using LCM communication[0m
+[37m[RobotRunner] LCM channels - State: QUAD_JOINT_STATE | Command: QUAD_JOINT_COMMAND[0m
+
+[History wrapper] : obs sizes = 45
+[History wrapper] : obs history sizes = 900
+[History wrapper] : Matrix depth = 1
+-------------------------------------------
+
+[33m[RL_Run] Config | Model: quadTSnet.onnx | Mode: Sim | dt=0.02s | decimation=10[0m
+[37m[LCM Control] LCM control started on URL: udpm://239.255.76.67:7667?ttl=255 | channel: QUAD_ROBOT_CONTROL[0m
+
+[History wrapper] : obs sizes = 48
+[History wrapper] : obs history sizes = 960
+[History wrapper] : Matrix depth = 1
+-------------------------------------------
+
+[33m[RL_Walk] Config | Model: quadTSnet.onnx | Mode: Sim | dt=0.02s | decimation=10[0m
+[33m[RL_Walk] Self-check thresholds: roll=0.3 rad, pitch=0.3 rad[0m
+[37m[RL_Walk][NAV] Subscribed to NAV_CONTROL[0m
+
+[History wrapper] : obs sizes = 48
+[History wrapper] : obs history sizes = 960
+[History wrapper] : Matrix depth = 1
+-------------------------------------------
+
+[35m[Development] Config | Model: quadTSnet.onnx | Mode: Sim | dt=0.02s | decimation=10[0m
+[35m[Development] Robot ID: Y15[0m
+[35m[Development] State Channel: Y15_development_state[0m
+[35m[Development] Command Channel: Y15_development_command[0m
+[35m[Development] Self-check thresholds - Roll: 1 rad, Pitch: 1 rad[0m
+[92m[SafetyChecker] Checks | Ori:ON Torque:ON Vel:ON Pos:ON LegVel:ON HwLoss:OFF HwLossPrint:ON[0m
+[92m[SafetyChecker] Loaded 12 joints from URDF (margin=0.9)[0m
+[91m[SafetyChecker] Hardware LOST: IMU [2026-06-03 15:20:53][0m
+[94m[2026-06-03 15:20:53] [FSM] Exiting state: PASSIVE[0m
+[90m[2026-06-03 15:20:53] [FSM] Entering state: DAMP[0m
+[90m[2026-06-03 15:20:59] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-03 15:20:59] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [-0.126362   -3.1203   2.69759]
+  Leg 1: [0.126405 -3.10344  2.69754]
+  Leg 2: [-0.126191  -3.11327   2.69757]
+  Leg 3: [0.126239 -3.10852  2.69755]
+[93m[RecoveryStand] Ignoring RL_WALK request until stand-up is complete[0m
+[95m[2026-06-03 15:21:02] [FSM] Exiting state: RECOVERY_STAND[0m
+[33m[2026-06-03 15:21:02] [FSM] Entering state: RL_WALK[0m

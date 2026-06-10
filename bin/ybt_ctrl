@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+REAL_BIN="${SCRIPT_DIR}/ybt_ctrl.bin"
+
+if [ ! -x "${REAL_BIN}" ]; then
+    echo "错误: 找不到控制器二进制: ${REAL_BIN}"
+    exit 1
+fi
+
+export LD_LIBRARY_PATH="${PROJECT_ROOT}/lib:${LD_LIBRARY_PATH:-}"
+export PYTHONPATH="${PROJECT_ROOT}:${PROJECT_ROOT}/lcm-types/python:${PYTHONPATH:-}"
+
+exec "${REAL_BIN}" "$@"

@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libyobotics_sdk.a CMakeFiles/yobotics_sdk.dir/include/robot/E15/sport/sport_client.cpp.o CMakeFiles/yobotics_sdk.dir/include/robot/E15/nav/nav_client.cpp.o CMakeFiles/yobotics_sdk.dir/include/robot/channel/channel_all.cpp.o
+/usr/bin/ranlib ../lib/libyobotics_sdk.a

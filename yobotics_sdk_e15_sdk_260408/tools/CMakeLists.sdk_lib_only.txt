@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(yobotics_sdk_static_only C CXX)
+
+if(NOT DEFINED SDK_SRC_ROOT)
+    message(FATAL_ERROR "SDK_SRC_ROOT is required. Example: -DSDK_SRC_ROOT=/abs/path/to/sdk_lib_generate")
+endif()
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
+
+include_directories(
+    ${SDK_SRC_ROOT}/include
+    ${SDK_SRC_ROOT}/include/common
+    ${SDK_SRC_ROOT}/include/robot
+    ${SDK_SRC_ROOT}/include/robot/channel
+)
+
+add_library(yobotics_sdk STATIC
+    ${SDK_SRC_ROOT}/include/robot/E15/sport/sport_client.cpp
+    ${SDK_SRC_ROOT}/include/robot/channel/channel_all.cpp
+)
+
+set_target_properties(yobotics_sdk PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+)
