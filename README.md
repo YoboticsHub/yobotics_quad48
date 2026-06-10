@@ -34,6 +34,9 @@
 若一键配置遇环境依赖问题需手动安装：
 
 ```bash
+# 创建conda环境
+conda create -n quad_controller python=3.8
+
 # 系统依赖
 sudo apt-get install -y liblcm-dev libeigen3-dev
 

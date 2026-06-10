@@ -1,6 +1,6 @@
 
-========== Log Session Started: 2026-06-03 15:20:39 ==========
-[37m[LogSaver] Logging enabled, saving to: /home/user/文档/code bag/20260602四足开源资料/Quad48_Controller/log/robot_log.txt[0m
+========== Log Session Started: 2026-06-10 15:16:49 ==========
+[37m[LogSaver] Logging enabled, saving to: /home/user/文档/code bag/20260602四足开源资料/yobotics_quad48/log/robot_log.txt[0m
 [37m[Yobotics Quad Y15] Starting in MuJoCo simulation mode[0m
 [37m[MuJoCo] Initialized | dt=0.002s | decimation=1[0m
 [37m[SimulationBridge] Config | dt=0.002s | RC=ON | Cheater=OFF[0m
@@ -43,16 +43,293 @@
 [35m[Development] Self-check thresholds - Roll: 1 rad, Pitch: 1 rad[0m
 [92m[SafetyChecker] Checks | Ori:ON Torque:ON Vel:ON Pos:ON LegVel:ON HwLoss:OFF HwLossPrint:ON[0m
 [92m[SafetyChecker] Loaded 12 joints from URDF (margin=0.9)[0m
-[91m[SafetyChecker] Hardware LOST: IMU [2026-06-03 15:20:53][0m
-[94m[2026-06-03 15:20:53] [FSM] Exiting state: PASSIVE[0m
-[90m[2026-06-03 15:20:53] [FSM] Entering state: DAMP[0m
-[90m[2026-06-03 15:20:59] [FSM] Exiting state: DAMP[0m
-[95m[2026-06-03 15:20:59] [FSM] Entering state: RECOVERY_STAND[0m
+[91m[SafetyChecker] Hardware LOST: IMU [2026-06-10 15:16:50][0m
+[94m[2026-06-10 15:16:50] [FSM] Exiting state: PASSIVE[0m
+[95m[2026-06-10 15:16:50] [FSM] Entering state: RECOVERY_STAND[0m
 Initial joint positions (rad):
-  Leg 0: [-0.126362   -3.1203   2.69759]
-  Leg 1: [0.126405 -3.10344  2.69754]
-  Leg 2: [-0.126191  -3.11327   2.69757]
-  Leg 3: [0.126239 -3.10852  2.69755]
+  Leg 0: [-0.00398595   -0.798249     1.60117]
+  Leg 1: [0.00394983  -0.800369    1.60552]
+  Leg 2: [0.0486188  -0.73136   1.72178]
+  Leg 3: [-0.0471035  -0.727487    1.72515]
 [93m[RecoveryStand] Ignoring RL_WALK request until stand-up is complete[0m
-[95m[2026-06-03 15:21:02] [FSM] Exiting state: RECOVERY_STAND[0m
-[33m[2026-06-03 15:21:02] [FSM] Entering state: RL_WALK[0m
+[95m[2026-06-10 15:16:51] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:51] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:53] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:16:53] [FSM] Entering state: RL_WALK[0m
+[91m[checkJointPositions] Joint position exceeded: leg 0 joint 2 = 2.73159 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 1 joint 2 = 2.73225 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 2 joint 2 = 2.71745 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 3 joint 2 = 2.71819 rad (range [0.824668, 2.42688])[0m
+[91m[SafetyChecker] Joint torque exceeded: leg 2 joint 2 = -39.2276 Nm (max 34.2)[0m
+[91m[SafetyChecker] Joint torque exceeded: leg 3 joint 2 = -37.48 Nm (max 34.2)[0m
+[91m[checkJointPositions] Joint position exceeded: leg 0 joint 2 = 2.73065 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 1 joint 2 = 2.73129 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 2 joint 2 = 2.71661 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 3 joint 2 = 2.7176 rad (range [0.824668, 2.42688])[0m
+[33m[2026-06-10 15:16:53] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:16:53] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:53] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:16:53] [FSM] Entering state: RL_WALK[0m
+[91m[checkJointPositions] Joint position exceeded: leg 0 joint 2 = 2.7285 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 1 joint 2 = 2.72957 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 2 joint 2 = 2.71529 rad (range [0.824668, 2.42688])[0m
+[91m[checkJointPositions] Joint position exceeded: leg 3 joint 2 = 2.71773 rad (range [0.824668, 2.42688])[0m
+[91m[ControlFSM] Safety Check FAILED - Entering ESTOP[0m
+[94m[2026-06-10 15:16:53] [FSM] Entering state: PASSIVE[0m
+[93m[ControlFSM] ESTOP cleared, entering DAMP[0m
+[94m[2026-06-10 15:16:54] [FSM] Exiting state: PASSIVE[0m
+[90m[2026-06-10 15:16:54] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:56] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:16:56] [FSM] Entering state: RL_WALK[0m
+[91m[ControlFSM] Safety Check FAILED - Entering ESTOP[0m
+[94m[2026-06-10 15:16:56] [FSM] Entering state: PASSIVE[0m
+[93m[ControlFSM] ESTOP cleared, entering DAMP[0m
+[94m[2026-06-10 15:16:57] [FSM] Exiting state: PASSIVE[0m
+[90m[2026-06-10 15:16:57] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:57] [FSM] Exiting state: DAMP[0m
+[37m[2026-06-10 15:16:57] [FSM] Entering state: STAND_DOWN[0m
+[37m[2026-06-10 15:16:58] [FSM] Exiting state: STAND_DOWN[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.535523 -1.16897  2.71577]
+  Leg 1: [ -0.5355 -1.16897  2.71576]
+  Leg 2: [0.535706 -1.16894   2.7159]
+  Leg 3: [-0.535682  -1.16894    2.7159]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.490578 -1.10408  2.65723]
+  Leg 1: [-0.490096  -1.10412   2.65613]
+  Leg 2: [0.519058 -1.10306  2.68761]
+  Leg 3: [-0.518472  -1.10314   2.68658]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.521787 -1.09964  2.68934]
+  Leg 1: [-0.523614  -1.10007    2.6887]
+  Leg 2: [0.549788  -1.1091  2.70804]
+  Leg 3: [-0.550505  -1.10865     2.708]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [  0.5398 -1.09438  2.71102]
+  Leg 1: [-0.540854   -1.0944   2.71099]
+  Leg 2: [ 0.54444 -1.10411  2.70743]
+  Leg 3: [-0.545071  -1.10369   2.70763]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [ 0.53798 -1.09291  2.70944]
+  Leg 1: [-0.538533  -1.09273    2.7092]
+  Leg 2: [0.541653 -1.09931   2.7071]
+  Leg 3: [-0.541933   -1.0989   2.70702]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [  0.5378 -1.09214  2.70859]
+  Leg 1: [-0.538213  -1.09189   2.70831]
+  Leg 2: [ 0.53974 -1.09434  2.70742]
+  Leg 3: [-0.53985  -1.0939  2.70732]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.538143 -1.09163   2.7081]
+  Leg 1: [-0.538492  -1.09136   2.70784]
+  Leg 2: [0.538921 -1.09139  2.70759]
+  Leg 3: [-0.539123  -1.09132   2.70746]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.538574 -1.09127  2.70786]
+  Leg 1: [-0.538885  -1.09102   2.70764]
+  Leg 2: [0.539225 -1.09093  2.70749]
+  Leg 3: [-0.539368  -1.09083   2.70737]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.538973 -1.09096  2.70763]
+  Leg 1: [-0.539251  -1.09072   2.70742]
+  Leg 2: [0.539538 -1.09061  2.70729]
+  Leg 3: [-0.539652  -1.09051    2.7072]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.539317  -1.0907  2.70742]
+  Leg 1: [-0.539575  -1.09048   2.70722]
+  Leg 2: [ 0.53983 -1.09036  2.70712]
+  Leg 3: [-0.539923  -1.09027   2.70703]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.539628 -1.09044  2.70717]
+  Leg 1: [-0.539864  -1.09024     2.707]
+  Leg 2: [0.540098 -1.09013   2.7069]
+  Leg 3: [-0.540177  -1.09005   2.70682]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.539925 -1.09021  2.70697]
+  Leg 1: [-0.540139  -1.09003   2.70681]
+  Leg 2: [0.540357 -1.08992  2.70672]
+  Leg 3: [-0.540426  -1.08985   2.70665]
+[95m[2026-06-10 15:16:58] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:58] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:58] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:58] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.540207 -1.09001   2.7068]
+  Leg 1: [ -0.5404 -1.08984  2.70665]
+  Leg 2: [0.540604 -1.08974  2.70657]
+  Leg 3: [-0.540663  -1.08967   2.70651]
+[95m[2026-06-10 15:16:59] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:59] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:59] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:59] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.540462 -1.08979  2.70658]
+  Leg 1: [-0.540638  -1.08963   2.70644]
+  Leg 2: [0.540829 -1.08954  2.70636]
+  Leg 3: [-0.540878  -1.08948   2.70631]
+[95m[2026-06-10 15:16:59] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:59] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:59] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:59] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.540706 -1.08961  2.70644]
+  Leg 1: [-0.540865  -1.08947   2.70631]
+  Leg 2: [0.541045 -1.08939  2.70624]
+  Leg 3: [-0.541087  -1.08933   2.70619]
+[95m[2026-06-10 15:16:59] [FSM] Exiting state: RECOVERY_STAND[0m
+[90m[2026-06-10 15:16:59] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:16:59] [FSM] Exiting state: DAMP[0m
+[95m[2026-06-10 15:16:59] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.540925 -1.08945  2.70631]
+  Leg 1: [-0.541067  -1.08932    2.7062]
+  Leg 2: [0.541237 -1.08925  2.70613]
+  Leg 3: [-0.541272   -1.0892   2.70609]
+[93m[RecoveryStand] Ignoring RL_WALK request until stand-up is complete[0m
+[95m[2026-06-10 15:17:02] [FSM] Exiting state: RECOVERY_STAND[0m
+[33m[2026-06-10 15:17:02] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:12] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:12] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:12] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:12] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
+[33m[2026-06-10 15:17:13] [FSM] Exiting state: RL_WALK[0m
+[90m[2026-06-10 15:17:13] [FSM] Entering state: DAMP[0m
+[90m[2026-06-10 15:17:13] [FSM] Exiting state: DAMP[0m
+[33m[2026-06-10 15:17:13] [FSM] Entering state: RL_WALK[0m
