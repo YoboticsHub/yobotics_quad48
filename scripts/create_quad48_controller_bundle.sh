@@ -13,7 +13,15 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+SCRIPT_PARENT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+if [ -d "${SCRIPT_PARENT}/third-party" ] && [ -d "${SCRIPT_PARENT}/build" ]; then
+    PROJECT_ROOT="${SCRIPT_PARENT}"
+elif [ -d "${SCRIPT_PARENT}/../third-party" ] && [ -d "${SCRIPT_PARENT}/../build" ]; then
+    PROJECT_ROOT="$(cd "${SCRIPT_PARENT}/.." && pwd)"
+else
+    PROJECT_ROOT="${SCRIPT_PARENT}"
+fi
 OUTPUT_DIR="${1:-${PROJECT_ROOT}/build/Quad48_Controller}"
 BUILD_OUTPUT_DIR="${PROJECT_ROOT}/build/robot-software/build"
 REFERENCE_DIR="${PROJECT_ROOT%/quad48-rl-control-framework-rk3588_0602}/Quad48_Controller"
@@ -66,9 +74,23 @@ copy_file_if_exists() {
 
 copy_onnxruntime_libs() {
     local arch
+    local binary_info
     local onnx_lib_dir=""
 
-    arch="$(uname -m)"
+    binary_info="$(file "${BUILD_OUTPUT_DIR}/ybt_ctrl" 2>/dev/null || true)"
+    case "${binary_info}" in
+        *"x86-64"*)
+            arch="x86_64"
+            ;;
+        *"ARM aarch64"*|*"ARM64"*|*"aarch64"*)
+            arch="aarch64"
+            ;;
+        *)
+            arch="$(uname -m)"
+            echo -e "${YELLOW}警告: 无法从 ybt_ctrl 识别架构，退回使用当前运行环境: ${arch}${NC}"
+            ;;
+    esac
+
     case "${arch}" in
         x86_64|amd64)
             onnx_lib_dir="${PROJECT_ROOT}/third-party/onnx_x64/lib"
@@ -87,20 +109,22 @@ copy_onnxruntime_libs() {
         return 0
     fi
 
-    find "${onnx_lib_dir}" -maxdepth 1 \( -type f -o -type l \) -name 'libonnxruntime*.so*' \
-        -exec cp -a {} "${OUTPUT_DIR}/lib/" \;
+    rm -f "${OUTPUT_DIR}/lib"/libonnxruntime*.so*
+
+    find "${onnx_lib_dir}" -maxdepth 1 -type f -name 'libonnxruntime*.so*' \
+        -exec cp -f {} "${OUTPUT_DIR}/lib/" \;
 
     if [ ! -e "${OUTPUT_DIR}/lib/libonnxruntime.so.1" ]; then
         local main_lib
         main_lib="$(find "${OUTPUT_DIR}/lib" -maxdepth 1 -type f -name 'libonnxruntime.so.1.*' \
             -printf '%f\n' | sort -V | tail -n 1)"
         if [ -n "${main_lib}" ]; then
-            ln -sfn "${main_lib}" "${OUTPUT_DIR}/lib/libonnxruntime.so.1"
+            cp -f "${OUTPUT_DIR}/lib/${main_lib}" "${OUTPUT_DIR}/lib/libonnxruntime.so.1"
         fi
     fi
 
     if [ ! -e "${OUTPUT_DIR}/lib/libonnxruntime.so" ] && [ -e "${OUTPUT_DIR}/lib/libonnxruntime.so.1" ]; then
-        ln -sfn libonnxruntime.so.1 "${OUTPUT_DIR}/lib/libonnxruntime.so"
+        cp -f "${OUTPUT_DIR}/lib/libonnxruntime.so.1" "${OUTPUT_DIR}/lib/libonnxruntime.so"
     fi
 
     if [ -e "${OUTPUT_DIR}/lib/libonnxruntime.so.1" ]; then

@@ -84,6 +84,38 @@ if [ -d "${PROJECT_ROOT}/bin" ] && [ -d "${PROJECT_ROOT}/lib" ] && [ -f "${PROJE
     IS_DISTRIBUTION=true
     CONTROLLER_EXE="${PROJECT_ROOT}/bin/ybt_ctrl"
     LD_LIBRARY_PATHS="${PROJECT_ROOT}/lib"
+
+    # 分发包内如果缺少 ONNX Runtime，则按控制器二进制架构从源码树补充库路径
+    CONTROLLER_BIN="${PROJECT_ROOT}/bin/ybt_ctrl.bin"
+    if [ ! -f "${PROJECT_ROOT}/lib/libonnxruntime.so.1" ] && [ -f "${CONTROLLER_BIN}" ]; then
+        CONTROLLER_INFO="$(file "${CONTROLLER_BIN}" 2>/dev/null || true)"
+        case "${CONTROLLER_INFO}" in
+            *"x86-64"*)
+                ONNX_ARCH_DIR="${PROJECT_ROOT}/../third-party/onnx_x64/lib"
+                ;;
+            *"ARM aarch64"*|*"ARM64"*|*"aarch64"*)
+                ONNX_ARCH_DIR="${PROJECT_ROOT}/../third-party/onnx_arm/lib"
+                ;;
+            *)
+                case "$(uname -m)" in
+                    x86_64|amd64)
+                        ONNX_ARCH_DIR="${PROJECT_ROOT}/../third-party/onnx_x64/lib"
+                        ;;
+                    aarch64|arm64|arm*)
+                        ONNX_ARCH_DIR="${PROJECT_ROOT}/../third-party/onnx_arm/lib"
+                        ;;
+                    *)
+                        ONNX_ARCH_DIR=""
+                        ;;
+                esac
+                ;;
+        esac
+
+        if [ -n "${ONNX_ARCH_DIR}" ] && [ -d "${ONNX_ARCH_DIR}" ]; then
+            LD_LIBRARY_PATHS="${LD_LIBRARY_PATHS}:${ONNX_ARCH_DIR}"
+        fi
+    fi
+
     echo "检测到分发包环境"
 else
     # 开发环境：尝试多个可能的构建目录
@@ -95,18 +127,42 @@ else
     for BUILD_DIR in "${BUILD_DIRS[@]}"; do
         if [ -f "${BUILD_DIR}/user/YBT_Controller/ybt_ctrl" ]; then
             CONTROLLER_EXE="${BUILD_DIR}/user/YBT_Controller/ybt_ctrl"
-            LD_LIBRARY_PATHS="${BUILD_DIR}/common:${BUILD_DIR}/robot:${BUILD_DIR}/third-party/ParamHandler:${BUILD_DIR}/third-party/lord_imu:${BUILD_DIR}/third-party/SOEM:${BUILD_DIR}/third-party/vectornav"
+            LD_LIBRARY_PATHS="${BUILD_DIR}/common:${BUILD_DIR}/robot:${BUILD_DIR}/third-party/ParamHandler:${BUILD_DIR}/third-party/lord_imu:${BUILD_DIR}/third-party/hipnuc_imu:${BUILD_DIR}/third-party/SOEM:${BUILD_DIR}/third-party/vectornav"
             
-            # 添加 ONNX Runtime 库路径
+            # 根据控制器二进制架构选择 ONNX Runtime 库路径，避免 x86/ARM 混用
+            CONTROLLER_INFO="$(file "${CONTROLLER_EXE}" 2>/dev/null || true)"
+            case "${CONTROLLER_INFO}" in
+                *"x86-64"*)
+                    ONNX_ARCH_DIR="${PROJECT_ROOT}/third-party/onnx_x64/lib"
+                    ;;
+                *"ARM aarch64"*|*"ARM64"*|*"aarch64"*)
+                    ONNX_ARCH_DIR="${PROJECT_ROOT}/third-party/onnx_arm/lib"
+                    ;;
+                *)
+                    case "$(uname -m)" in
+                        x86_64|amd64)
+                            ONNX_ARCH_DIR="${PROJECT_ROOT}/third-party/onnx_x64/lib"
+                            ;;
+                        aarch64|arm64|arm*)
+                            ONNX_ARCH_DIR="${PROJECT_ROOT}/third-party/onnx_arm/lib"
+                            ;;
+                        *)
+                            ONNX_ARCH_DIR=""
+                            ;;
+                    esac
+                    ;;
+            esac
+
             ONNX_PATHS=(
-                "${PROJECT_ROOT}/third-party/onnx/lib"
+                "${ONNX_ARCH_DIR}"
                 "/usr/lib/onnxruntime-linux-x64-1.20.1/lib"
                 "/usr/lib/onnxruntime-linux-x64-1.19.2/lib"
                 "/usr/local/lib"
             )
             
             for ONNX_PATH in "${ONNX_PATHS[@]}"; do
-                if [ -d "$ONNX_PATH" ]; then
+                if [ -n "$ONNX_PATH" ] && [ -d "$ONNX_PATH" ] && \
+                   { [ -f "${ONNX_PATH}/libonnxruntime.so.1" ] || [ -f "${ONNX_PATH}/libonnxruntime.so" ]; }; then
                     LD_LIBRARY_PATHS="${LD_LIBRARY_PATHS}:${ONNX_PATH}"
                     break
                 fi
