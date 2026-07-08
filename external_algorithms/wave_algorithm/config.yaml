@@ -1,0 +1,46 @@
+# 躯干波动算法配置文件
+algorithm_name: "wave_algorithm"
+
+policy:
+  type: "none"
+  path: ""
+  read_metadata: false
+  warmup_count: 0
+  action_threshold: 200.0
+
+model_params:
+  num_actions: 12
+  num_obs: 45
+  default_joint_pos: [0.0, -0.8, 1.6, 0.0, -0.8, 1.6, 0.0, -0.8, 1.6, 0.0, -0.8, 1.6]
+  joint_stiffness: [400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400]
+  joint_damping: [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+  action_scale: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+lcm:
+  url: ""
+  state_channel: "Y15_development_state"
+  command_channel: "Y15_development_command"
+  robot_id: "Y15"
+
+execution:
+  frequency: 100.0
+  lcm_send_frequency: 500.0
+  auto_start: true
+  auto_end: true
+  max_execution_time: 0.0
+
+motion:
+  frequency: 1.0
+  amplitude: 0.35
+
+rl_mode:
+  is_rl_mode: false
+
+joint_mapping:
+  model_joint_order: []
+  robot_joint_order: []
+  enabled: false
+
+debug:
+  print_config: true
+  print_metadata: false
