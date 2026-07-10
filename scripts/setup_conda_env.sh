@@ -44,7 +44,7 @@ else
     echo ""
     
     # 创建 conda 环境（Python 3.8，兼容性较好）
-    conda create -n "$ENV_NAME" python=3.8 -y
+    conda create -n "$ENV_NAME" python=3.8 pip eigen=3.4.0 -c conda-forge -y
     
     # 激活环境
     echo "正在激活环境..."
@@ -86,13 +86,13 @@ echo "=========================================="
 echo ""
 
 # 安装 Eigen；LCM 的系统库已通过 apt-get 安装，Python 绑定在后续单独处理
-echo "正在安装 Eigen 库..."
-if conda install -c conda-forge eigen -y; then
-    echo "Eigen 安装成功"
-else
-    echo "警告: conda 安装 Eigen 失败"
-    echo "将继续执行；如果后续编译报缺少 Eigen，请检查 conda-forge 配置"
-fi
+#echo "正在安装 Eigen 库..."
+#if conda install -c conda-forge eigen -y; then
+#    echo "Eigen 安装成功"
+#else
+#    echo "警告: conda 安装 Eigen 失败"
+#    echo "将继续执行；如果后续编译报缺少 Eigen，请检查 conda-forge 配置"
+#fi
 
 echo "Conda 依赖包安装阶段完成"
 
@@ -163,7 +163,7 @@ cat > "$ACTIVATE_SCRIPT" << EOF
 # 自动设置库路径
 export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$LIB_PATH
 # 设置 pkg-config 和 CMake 查找路径
-export PKG_CONFIG_PATH=\$PKG_CONFIG_PATH:\$CONDA_PREFIX/lib/pkgconfig
+export PKG_CONFIG_PATH=\$CONDA_PREFIX/lib/pkgconfig:\$CONDA_PREFIX/share/pkgconfig:\$PKG_CONFIG_PATH
 export CMAKE_PREFIX_PATH=\$CMAKE_PREFIX_PATH:\$CONDA_PREFIX
 EOF
 
