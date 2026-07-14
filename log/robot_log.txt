@@ -1,5 +1,5 @@
 
-========== Log Session Started: 2026-07-10 18:45:29 ==========
+========== Log Session Started: 2026-07-14 09:38:54 ==========
 [37m[LogSaver] Logging enabled, saving to: /home/user/桌面/yobotics_quad48/log/robot_log.txt[0m
 [37m[Yobotics Quad Y15] Starting in MuJoCo simulation mode[0m
 [37m[MuJoCo] Initialized | dt=0.002s | decimation=1[0m
@@ -27,7 +27,7 @@
 [History wrapper] : Matrix depth = 1
 -------------------------------------------
 
-[33m[2026-07-10 18:45:29] [FSM_State_RL_walk] Config | Model: quadTSnet.onnx | Mode: Sim | nav_mode: false | dt=0.02s | decimation=10[0m
+[33m[2026-07-14 09:38:54] [FSM_State_RL_walk] Config | Model: quadTSnet.onnx | Mode: Sim | nav_mode: false | dt=0.02s | decimation=10[0m
 [33m[RL_Walk] Self-check thresholds: roll=0.3 rad, pitch=0.3 rad[0m
 
 [History wrapper] : obs sizes = 48
@@ -40,15 +40,741 @@
 [35m[Development] State Channel: Y15_development_state[0m
 [35m[Development] Command Channel: Y15_development_command[0m
 [35m[Development] Self-check thresholds - Roll: 1 rad, Pitch: 1 rad[0m
-[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
 
 [History wrapper] : obs sizes = 48
 [History wrapper] : obs history sizes = 960
 [History wrapper] : Matrix depth = 1
 -------------------------------------------
 
-[33m[2026-07-10 18:45:29] [FSM_State_RL_walk] Config | Model: quadTSnet.onnx | Mode: Sim | nav_mode: true | dt=0.02s | decimation=10[0m
+[33m[2026-07-14 09:38:54] [FSM_State_RL_walk] Config | Model: quadTSnet.onnx | Mode: Sim | nav_mode: true | dt=0.02s | decimation=10[0m
 [33m[RL_Walk] Self-check thresholds: roll=0.3 rad, pitch=0.3 rad[0m
 [37m[RL_Walk][NAV] Subscribed to NAV_CONTROL[0m
 [92m[SafetyChecker] Checks | Ori:ON Torque:ON Vel:ON Pos:ON LegVel:ON HwLoss:OFF HwLossPrint:ON[0m
 [92m[SafetyChecker] Loaded 12 joints from URDF (margin=0.9)[0m
+[91m[SafetyChecker] Hardware LOST: IMU [2026-07-14 09:39:09][0m
+[94m[2026-07-14 09:39:09] [FSM] Exiting state: PASSIVE[0m
+[90m[2026-07-14 09:39:09] [FSM] Entering state: DAMP[0m
+[90m[2026-07-14 09:39:11] [FSM] Exiting state: DAMP[0m
+[95m[2026-07-14 09:39:11] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [-0.125982    -2.658   2.54554]
+  Leg 1: [0.126023 -2.65816  2.54637]
+  Leg 2: [-0.125875  -2.65745   2.54275]
+  Leg 3: [0.125921 -2.65827  2.54695]
+[93m[RecoveryStand] Ignoring DEVELOPMENT request until stand-up is complete[0m
+[93m[RecoveryStand] Ignoring DEVELOPMENT request until stand-up is complete[0m
+[95m[2026-07-14 09:39:14] [FSM] Exiting state: RECOVERY_STAND[0m
+[35m[2026-07-14 09:39:14] [FSM] Entering state: DEVELOPMENT[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Command timeout (52 ms > 50 ms), auto-ending development mode...[0m
+[91m[Development] Self-check FAILED, clearing all commands[0m
+[91m  - Roll: current=3.135896 rad, threshold=1.000000 rad, exceed=2.135896 rad[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Command timeout (51 ms > 50 ms), auto-ending development mode...[0m
+[35m[Development] Self-check PASSED, switching to walk control[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Command timeout (52 ms > 50 ms), auto-ending development mode...[0m
+[91m[Development] Self-check FAILED, clearing all commands[0m
+[91m  - Roll: current=2.777520 rad, threshold=1.000000 rad, exceed=1.777520 rad[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Received command: enable_development_mode=FALSE, current_active=TRUE[0m
+[35m[Development] Development mode ENDED, performing self-check...[0m
+[35m[Development] Self-check PASSED, switching to walk control[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Command timeout (51 ms > 50 ms), auto-ending development mode...[0m
+[91m[Development] Self-check FAILED, clearing all commands[0m
+[91m  - Roll: current=3.136000 rad, threshold=1.000000 rad, exceed=2.136000 rad[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[2026-07-14 09:47:07] [FSM] Exiting state: DEVELOPMENT[0m
+[90m[2026-07-14 09:47:07] [FSM] Entering state: DAMP[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[90m[2026-07-14 09:47:12] [FSM] Exiting state: DAMP[0m
+[35m[2026-07-14 09:47:12] [FSM] Entering state: DEVELOPMENT[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Received command: enable_development_mode=FALSE, current_active=TRUE[0m
+[35m[Development] Development mode ENDED, performing self-check...[0m
+[35m[Development] Self-check PASSED, switching to walk control[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Received command: enable_development_mode=FALSE, current_active=TRUE[0m
+[35m[Development] Development mode ENDED, performing self-check...[0m
+[35m[Development] Self-check PASSED, switching to walk control[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[Development] Received command: enable_development_mode=FALSE, current_active=TRUE[0m
+[35m[Development] Development mode ENDED, performing self-check...[0m
+[35m[Development] Self-check PASSED, switching to walk control[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[2026-07-14 09:48:18] [FSM] Exiting state: DEVELOPMENT[0m
+[90m[2026-07-14 09:48:18] [FSM] Entering state: DAMP[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[93m[CONTROL FSM] Blocked unsafe request: cannot transition directly from DAMP to RL. Use RECOVERY_STAND or STAND_DOWN first.[0m
+[90m[2026-07-14 09:48:20] [FSM] Exiting state: DAMP[0m
+[95m[2026-07-14 09:48:20] [FSM] Entering state: RECOVERY_STAND[0m
+Initial joint positions (rad):
+  Leg 0: [0.512022 -1.05873  2.72019]
+  Leg 1: [-0.51199 -1.05877  2.72018]
+  Leg 2: [0.515246 -1.05678  2.71815]
+  Leg 3: [-0.513556  -1.05791   2.71928]
+[93m[RecoveryStand] Ignoring RL_WALK request until stand-up is complete[0m
+[93m[RecoveryStand] Ignoring RL_WALK request until stand-up is complete[0m
+[95m[2026-07-14 09:48:23] [FSM] Exiting state: RECOVERY_STAND[0m
+[33m[2026-07-14 09:48:23] [FSM] Entering state: RL[0m
+[33m[2026-07-14 09:48:32] [FSM] Exiting state: RL_WALK[0m
+[35m[2026-07-14 09:48:32] [FSM] Entering state: DEVELOPMENT[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[35m[2026-07-14 09:48:52] [FSM] Exiting state: DEVELOPMENT[0m
+[33m[2026-07-14 09:48:52] [FSM] Entering state: RL[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
+[33m[2026-07-14 09:48:55] [FSM] Exiting state: RL_WALK[0m
+[35m[2026-07-14 09:48:55] [FSM] Entering state: DEVELOPMENT[0m
+[35m[Development] Received command: enable_development_mode=TRUE, current_active=FALSE[0m
