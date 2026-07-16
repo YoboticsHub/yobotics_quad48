@@ -185,11 +185,11 @@ safety_checker:
   # 单独检查使能标志 - 独立控制每种安全检查类型
   # 如果enable_safety_check为False，所有检查都将被禁用，无论这些标志如何设置
   # 如果enable_safety_check为True，每个检查可以单独启用/禁用
-  enable_orientation_check: True  # 是否启用姿态检查
-  enable_joint_torque_check: True  # 是否启用关节扭矩检查
-  enable_joint_velocity_check: True  # 是否启用关节速度检查
-  enable_joint_position_check: True  # 是否启用关节位置检查
-  enable_leg_cartesian_velocity_check: True  # 是否启用腿部笛卡尔速度检查
+  enable_orientation_check: false  # 是否启用姿态检查
+  enable_joint_torque_check: false  # 是否启用关节扭矩检查
+  enable_joint_velocity_check: false  # 是否启用关节速度检查
+  enable_joint_position_check: false  # 是否启用关节位置检查
+  enable_leg_cartesian_velocity_check: false  # 是否启用腿部笛卡尔速度检查
   enable_hardware_loss_check: false  # 是否启用硬件丢失保护（触发ESTOP）
   enable_hardware_loss_print: True  # 是否启用硬件丢失打印（独立于保护功能）
 
