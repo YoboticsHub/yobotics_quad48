@@ -24,7 +24,235 @@ from tkinter import ttk, filedialog, messagebox
 from typing import Dict, List, Optional, Tuple
 import re
 import random
+import platform
+import shutil
+import subprocess
 from collections import defaultdict
+
+CHINESE_FONT_CANDIDATES = [
+    'Noto Sans CJK SC',
+    'Noto Sans CJK JP',
+    'Noto Serif CJK SC',
+    'Noto Serif CJK JP',
+    'WenQuanYi Micro Hei',
+    'WenQuanYi Zen Hei',
+    'Source Han Sans CN',
+    'AR PL UMing CN',
+    'AR PL UKai CN',
+    'Microsoft YaHei',
+    'SimHei',
+    'PingFang SC',
+    'DejaVu Sans',
+    'Liberation Sans',
+    'Ubuntu',
+    'FreeSans',
+    'Sans',
+]
+
+FONTCONFIG_SC_FONT_CANDIDATES = [
+    'Noto Sans CJK SC',
+    'Noto Sans CJK JP',
+    'Noto Serif CJK SC',
+    'Noto Serif CJK JP',
+    'Source Han Sans CN',
+    'WenQuanYi Micro Hei',
+    'WenQuanYi Zen Hei',
+    'AR PL UMing CN',
+    'AR PL UKai CN',
+]
+
+TK_CHINESE_FONT_CANDIDATES = [
+    # These are the family names Tk actually reports on this X11 setup.
+    'song ti',
+    'fangsong ti',
+    'gothic',
+    'mincho',
+    'clearlyu',
+    'fixed',
+    # Keep fontconfig names as fallbacks for other machines where Tk sees them.
+    'Microsoft YaHei',
+    'SimHei',
+    'PingFang SC',
+    'Noto Sans CJK SC',
+    'Noto Sans CJK JP',
+    'Noto Serif CJK SC',
+    'Noto Serif CJK JP',
+    'Droid Sans Fallback',
+    'AR PL UMing CN',
+    'AR PL UKai CN',
+]
+
+EMOJI_FONT_CANDIDATES = [
+    'Noto Color Emoji',
+    'Noto Emoji',
+    'Symbola',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+]
+
+FONT_AUTO_INSTALL_ENV = 'MOTOR_TRACE_AUTO_INSTALL_FONTS'
+TK_FONT_ENV = 'MOTOR_TRACE_TK_FONT'
+
+
+def _fontconfig_families() -> List[str]:
+    if not shutil.which('fc-list'):
+        return []
+    try:
+        result = subprocess.run(
+            ['fc-list', ':', 'family'],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+            timeout=5,
+        )
+    except Exception:
+        return []
+    if result.returncode != 0:
+        return []
+
+    families = []
+    for line in result.stdout.splitlines():
+        for family in line.split(','):
+            family = family.strip()
+            if family:
+                families.append(family)
+    return families
+
+
+def _has_font_family(candidates: List[str]) -> bool:
+    families_lower = [family.lower() for family in _fontconfig_families()]
+    for candidate in candidates:
+        candidate_lower = candidate.lower()
+        if any(candidate_lower in family for family in families_lower):
+            return True
+    return False
+
+
+def _fontconfig_match(candidates: List[str]) -> Tuple[Optional[str], Optional[str]]:
+    """Return a fontconfig-matched family/file pair for preferred fonts."""
+    if not shutil.which('fc-match'):
+        return (None, None)
+
+    for candidate in candidates:
+        try:
+            result = subprocess.run(
+                ['fc-match', candidate, '-f', '%{family}\n%{file}\n'],
+                check=False,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL,
+                text=True,
+                timeout=5,
+            )
+        except Exception:
+            continue
+
+        if result.returncode != 0:
+            continue
+
+        lines = [line.strip() for line in result.stdout.splitlines() if line.strip()]
+        family = lines[0].split(',')[0].strip() if lines else ''
+        font_file = lines[1].strip() if len(lines) > 1 else ''
+        family_lower = family.lower()
+
+        # Avoid JP/TC/HK/KR variants for Simplified Chinese UI text.
+        if any(tag in family_lower for tag in (' cjk jp', ' cjk tc', ' cjk hk', ' cjk kr')):
+            continue
+
+        if font_file and os.path.exists(font_file):
+            return (candidate, font_file)
+        if family:
+            return (candidate, None)
+
+    return (None, None)
+
+
+def _fontconfig_family_candidates(candidates: List[str]) -> List[str]:
+    """Return requested and fontconfig-resolved family names in preference order."""
+    families = []
+    for candidate in candidates:
+        families.append(candidate)
+
+    if shutil.which('fc-match'):
+        for candidate in candidates:
+            try:
+                result = subprocess.run(
+                    ['fc-match', candidate, '-f', '%{family}\n'],
+                    check=False,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.DEVNULL,
+                    text=True,
+                    timeout=5,
+                )
+            except Exception:
+                continue
+
+            if result.returncode != 0:
+                continue
+
+            for family in result.stdout.split(','):
+                family = family.strip()
+                if family:
+                    families.append(family)
+
+    return list(dict.fromkeys(families))
+
+
+def _print_font_install_hint(packages: List[str]):
+    if not packages:
+        return
+    print("[字体配置] 自动安装字体失败或未启用，可手动执行：")
+    print(f"  sudo apt-get update && sudo apt-get install -y {' '.join(packages)}")
+    print(f"  或禁用自动安装: {FONT_AUTO_INSTALL_ENV}=0 python scripts/motor_trace_viewer.py")
+
+
+def ensure_runtime_fonts():
+    """Install common CJK/emoji fonts on Linux when they are missing."""
+    if platform.system() != 'Linux':
+        return
+
+    packages = []
+    if not _has_font_family(FONTCONFIG_SC_FONT_CANDIDATES):
+        packages.append('fonts-noto-cjk')
+    if not _has_font_family(EMOJI_FONT_CANDIDATES):
+        packages.append('fonts-noto-color-emoji')
+    if not packages:
+        return
+
+    auto_install = os.environ.get(FONT_AUTO_INSTALL_ENV, '1').lower()
+    if auto_install in ('0', 'false', 'no', 'off'):
+        _print_font_install_hint(packages)
+        return
+
+    apt_get = shutil.which('apt-get')
+    if not apt_get:
+        _print_font_install_hint(packages)
+        return
+
+    if os.geteuid() == 0:
+        prefix = []
+    elif shutil.which('sudo') and sys.stdin.isatty():
+        prefix = ['sudo']
+    else:
+        _print_font_install_hint(packages)
+        return
+
+    try:
+        print(f"[字体配置] 缺少字体，尝试自动安装: {' '.join(packages)}")
+        subprocess.run(prefix + [apt_get, 'update'], check=True)
+        subprocess.run(prefix + [apt_get, 'install', '-y'] + packages, check=True)
+        if shutil.which('fc-cache'):
+            subprocess.run(['fc-cache', '-f'], check=False)
+    except Exception as exc:
+        print(f"[字体配置] 自动安装字体失败: {exc}")
+        _print_font_install_hint(packages)
+
+
+ensure_runtime_fonts()
+EMOJI_AVAILABLE = _has_font_family(EMOJI_FONT_CANDIDATES)
+os.environ.setdefault('MPLCONFIGDIR', os.path.join('/tmp', f'motor_trace_matplotlib_{os.getuid()}'))
+os.makedirs(os.environ['MPLCONFIGDIR'], exist_ok=True)
 
 # 尝试导入matplotlib用于绘图
 try:
@@ -35,10 +263,60 @@ try:
     from matplotlib import pyplot as plt
     import numpy as np
 
+    class TextNavigationToolbar2Tk(NavigationToolbar2Tk):
+        """Text-only toolbar to avoid unreadable icon glyphs on some Linux Tk setups."""
+        toolitems = (
+            ('Home', 'Reset original view', 'home', 'home'),
+            ('Back', 'Back to previous view', 'back', 'back'),
+            ('Forward', 'Forward to next view', 'forward', 'forward'),
+            (None, None, None, None),
+            ('Pan', 'Left button pans, right button zooms', 'move', 'pan'),
+            ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
+            ('Subplots', 'Configure subplots', 'subplots', 'configure_subplots'),
+            (None, None, None, None),
+            ('Save', 'Save the figure', 'filesave', 'save_figure'),
+        )
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            try:
+                default_font = tkfont.nametofont('TkDefaultFont')
+                family = default_font.actual('family')
+                self._label_font.configure(family=family, size=10)
+                for child in self.winfo_children():
+                    try:
+                        child.configure(font=self._label_font)
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+
+        def _Button(self, text, image_file, toggle, command):
+            try:
+                button_font = tkfont.nametofont('TkDefaultFont')
+            except Exception:
+                button_font = ('Sans', 10)
+            if not toggle:
+                button = tk.Button(
+                    master=self, text=text, command=command,
+                    font=button_font, relief='flat', overrelief='groove',
+                    borderwidth=1, padx=6, pady=2,
+                )
+            else:
+                var = tk.IntVar(master=self)
+                button = tk.Checkbutton(
+                    master=self, text=text, command=command,
+                    font=button_font, indicatoron=False, variable=var,
+                    offrelief='flat', overrelief='groove', borderwidth=1,
+                    padx=6, pady=2,
+                )
+                button.var = var
+            button.pack(side=tk.LEFT)
+            return button
+
     # 配置中文字体
     try:
         from matplotlib import font_manager
-        import platform
 
         system = platform.system()
 
@@ -49,27 +327,60 @@ try:
             font_candidates = ['Arial Unicode MS', 'STHeiti', 'STSong',
                               'PingFang SC', 'Hiragino Sans GB']
         else:
-            font_candidates = ['Noto Sans CJK SC', 'Noto Sans CJK',
-                              'WenQuanYi Micro Hei', 'WenQuanYi Zen Hei',
-                              'Source Han Sans CN', 'Droid Sans Fallback',
-                              'AR PL UMing CN', 'AR PL UKai CN']
+            font_candidates = CHINESE_FONT_CANDIDATES
+
+        selected_font, selected_font_file = _fontconfig_match(FONTCONFIG_SC_FONT_CANDIDATES)
+        if selected_font_file:
+            try:
+                related_font_files = [selected_font_file]
+                font_dir = os.path.dirname(selected_font_file)
+                for font_file_name in (
+                    'NotoSansCJK-Regular.ttc',
+                    'NotoSansCJK-Bold.ttc',
+                    'NotoSerifCJK-Regular.ttc',
+                    'NotoSerifCJK-Bold.ttc',
+                ):
+                    font_file = os.path.join(font_dir, font_file_name)
+                    if os.path.exists(font_file):
+                        related_font_files.append(font_file)
+                for font_file in dict.fromkeys(related_font_files):
+                    font_manager.fontManager.addfont(font_file)
+                selected_font = font_manager.FontProperties(fname=selected_font_file).get_name()
+            except Exception:
+                pass
 
         available_font_names = [f.name for f in font_manager.fontManager.ttflist]
-        selected_font = None
 
-        for font_candidate in font_candidates:
-            if font_candidate in available_font_names:
-                selected_font = font_candidate
-                break
-            for avail_font in available_font_names:
-                if font_candidate.lower() in avail_font.lower():
-                    selected_font = avail_font
+        if not selected_font:
+            for font_candidate in font_candidates:
+                if font_candidate in available_font_names:
+                    selected_font = font_candidate
                     break
-            if selected_font:
-                break
+                for avail_font in available_font_names:
+                    avail_lower = avail_font.lower()
+                    if font_candidate.lower() in avail_lower:
+                        if any(tag in avail_lower for tag in (' cjk jp', ' cjk tc', ' cjk hk', ' cjk kr')):
+                            continue
+                        selected_font = avail_font
+                        break
+                if selected_font:
+                    break
 
         if selected_font:
-            plt.rcParams['font.sans-serif'] = [selected_font] + font_candidates + ['DejaVu Sans', 'sans-serif']
+            matplotlib_fonts = [
+                selected_font,
+                'Noto Sans CJK SC',
+                'Noto Serif CJK SC',
+                'Source Han Sans CN',
+                'WenQuanYi Micro Hei',
+                'WenQuanYi Zen Hei',
+                'Noto Sans CJK JP',
+                'Noto Serif CJK JP',
+                'DejaVu Sans',
+                'sans-serif',
+            ]
+            plt.rcParams['font.sans-serif'] = list(dict.fromkeys(matplotlib_fonts))
+            plt.rcParams['font.family'] = 'sans-serif'
             print(f"[字体配置] 使用字体: {selected_font}")
         else:
             if font_candidates:
@@ -86,14 +397,13 @@ try:
 
     except Exception as e:
         try:
-            import platform
             system = platform.system()
             if system == 'Windows':
                 plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'sans-serif']
             elif system == 'Darwin':
                 plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'STHeiti', 'sans-serif']
             else:
-                plt.rcParams['font.sans-serif'] = ['Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'DejaVu Sans', 'sans-serif']
+                plt.rcParams['font.sans-serif'] = CHINESE_FONT_CANDIDATES
             plt.rcParams['axes.unicode_minus'] = False
             plt.rcParams['font.family'] = 'sans-serif'
         except:
@@ -150,17 +460,19 @@ JOINT_NAMES = {
 VARIABLE_TYPE_NAMES = {
     'q_des': '期望角度 q_des',
     'q': '实际角度 q',
-    'tau_des': '期望扭矩 τ_des',
-    'tau': '实际扭矩 τ',
+    'tau_des': '期望扭矩 tau_des',
+    'tau': '实际扭矩 tau',
 }
 
 # 变量类型简称
 VARIABLE_TYPE_SHORT = {
     'q_des': 'q_des',
     'q': 'q',
-    'tau_des': 'τ_des',
-    'tau': 'τ',
+    'tau_des': 'tau_des',
+    'tau': 'tau',
 }
+
+PIN_PREFIX = '[固定] '
 
 # 变量类型分组（用于对比期望vs实际）
 VARIABLE_PAIRS = {
@@ -254,6 +566,9 @@ class MotorTraceViewer:
 
         self.selected_variables: List[str] = []
         self.pinned_variables: set = set()
+        self.plot_lines: List[Dict] = []
+        self.click_annotation = None
+        self.click_marker = None
         self.use_multiple_y_axes = tk.BooleanVar(value=False)
         self.use_smart_y_scales = tk.BooleanVar(value=False)
 
@@ -269,7 +584,7 @@ class MotorTraceViewer:
         if hasattr(self, 'encouraging_messages') and self.encouraging_messages:
             emoji, message = random.choice(self.encouraging_messages)
             if hasattr(self, 'encouragement_icon_label'):
-                self.encouragement_icon_label.config(text=emoji)
+                self.encouragement_icon_label.config(text=emoji if self.use_emoji else "")
             if hasattr(self, 'encouragement_text_label'):
                 self.encouragement_text_label.config(text=message)
 
@@ -288,21 +603,14 @@ class MotorTraceViewer:
             available_fonts_list = []
             available_fonts_lower = []
 
-        font_candidates = [
-            'Noto Sans CJK SC',
-            'Noto Sans CJK TC',
-            'Noto Sans CJK JP',
-            'Noto Sans CJK',
-            'Droid Sans Fallback',
-            'AR PL UKai CN',
-            'AR PL UMing CN',
-            'DejaVu Sans',
-            'Liberation Sans',
-            'Ubuntu',
-            'FreeSans',
-            'Sans',
-            'Serif',
-        ]
+        font_candidates = []
+        override_font = os.environ.get(TK_FONT_ENV, '').strip()
+        if override_font:
+            font_candidates.append(override_font)
+        font_candidates.extend(_fontconfig_family_candidates(TK_CHINESE_FONT_CANDIDATES))
+        font_candidates = list(dict.fromkeys(font_candidates))
+        if not font_candidates:
+            font_candidates = TK_CHINESE_FONT_CANDIDATES
 
         for family in font_candidates:
             if family in available_fonts_list:
@@ -322,19 +630,52 @@ class MotorTraceViewer:
                     except Exception:
                         continue
 
-        return ('Sans', size, weight)
+        fallback_family = 'song ti' if 'song ti' in available_fonts_lower else 'fixed'
+        return (fallback_family, size, weight)
+
+    def apply_tk_font_defaults(self, font_family: str):
+        """Apply a readable font to Tk's named fonts and common widgets."""
+        named_fonts = {
+            'TkDefaultFont': {'size': 10},
+            'TkTextFont': {'size': 10},
+            'TkFixedFont': {'size': 10},
+            'TkMenuFont': {'size': 10},
+            'TkHeadingFont': {'size': 10},
+            'TkCaptionFont': {'size': 10},
+            'TkSmallCaptionFont': {'size': 9},
+            'TkIconFont': {'size': 10},
+            'TkTooltipFont': {'size': 9},
+        }
+        for font_name, options in named_fonts.items():
+            try:
+                tkfont.nametofont(font_name).configure(family=font_family, **options)
+            except Exception:
+                continue
+
+        option_patterns = [
+            '*Font', '*Menu*Font', '*Button*Font', '*Label*Font', '*Entry*Font',
+            '*Text*Font', '*Checkbutton*Font', '*Radiobutton*Font', '*Listbox*Font',
+            '*TCombobox*Listbox.font', '*Treeview*Font', '*Treeview*Heading*Font',
+        ]
+        for pattern in option_patterns:
+            try:
+                self.root.option_add(pattern, self.font_normal, 80)
+            except Exception:
+                pass
 
     def setup_styles(self):
         font_normal_family = self.get_available_font(11, 'normal')[0]
         font_small_family = self.get_available_font(10, 'normal')[0]
 
-        self.font_title = ('Noto Sans CJK SC', 14, 'bold')
-        self.font_large = ('Noto Sans CJK SC', 12, 'normal')
-        self.font_normal = ('Noto Sans CJK SC', 11, 'normal')
-        self.font_small = ('Noto Sans CJK SC', 10, 'normal')
-        self.font_bold = ('Noto Sans CJK SC', 11, 'bold')
+        self.font_title = (font_normal_family, 14, 'normal')
+        self.font_large = (font_normal_family, 12, 'normal')
+        self.font_normal = (font_normal_family, 11, 'normal')
+        self.font_small = (font_small_family, 10, 'normal')
+        self.font_bold = (font_normal_family, 11, 'normal')
+        self.use_emoji = False
+        print(f"[字体配置] Tk界面字体: {font_normal_family}")
 
-        self.root.option_add('*Font', self.font_normal)
+        self.apply_tk_font_defaults(font_normal_family)
 
         self.ttk_style = ttk.Style()
         try:
@@ -348,7 +689,7 @@ class MotorTraceViewer:
         )
         self.ttk_style.configure(
             'Treeview.Heading',
-            font=(font_small_family, 10, 'bold'),
+            font=(font_small_family, 10, 'normal'),
         )
 
         self.colors = {
@@ -387,7 +728,8 @@ class MotorTraceViewer:
         title_frame.pack(fill=tk.X, pady=(0, 10))
         title_frame.pack_propagate(False)
 
-        title_label = tk.Label(title_frame, text="🔧 电机追踪数据查看器",
+        title_text = "电机追踪数据查看器"
+        title_label = tk.Label(title_frame, text=title_text,
                               font=self.font_title, bg=self.colors['accent'],
                               fg='white', padx=20, pady=15)
         title_label.pack(side=tk.LEFT)
@@ -407,7 +749,8 @@ class MotorTraceViewer:
         button_frame = tk.Frame(toolbar_frame, bg=self.colors['bg_section'])
         button_frame.pack(side=tk.LEFT, padx=15, pady=10)
 
-        btn_load = tk.Button(button_frame, text="📂 打开CSV文件",
+        load_text = "打开CSV文件"
+        btn_load = tk.Button(button_frame, text=load_text,
                             font=self.font_normal, bg='#4A90E2', fg='white',
                             relief='flat', bd=0, padx=16, pady=8,
                             cursor='hand2', activebackground='#357ABD',
@@ -417,31 +760,31 @@ class MotorTraceViewer:
 
         # 鼓励话语显示
         self.encouraging_messages = [
-            ("🔧", "观测电机数据，精准调试控制参数"),
-            ("📊", "数据不会说谎，但需要正确的解读方式"),
-            ("🔍", "观察数据趋势比单个数值更有价值"),
-            ("📈", "对比期望与实际，发现跟踪误差"),
-            ("🎯", "先看整体趋势，再深入细节分析"),
-            ("💡", "异常值往往蕴含着关键信息"),
-            ("🔬", "多角度观察数据，全面理解系统行为"),
-            ("📉", "下降趋势和上升趋势同样重要"),
-            ("⚡", "快速识别数据模式，提高分析效率"),
-            ("🎓", "数据可视化让复杂信息一目了然"),
-            ("🔧", "选择合适的比例尺，让数据更清晰"),
-            ("📝", "记录分析过程，便于后续回顾"),
-            ("🌟", "从数据中发现规律，指导系统优化"),
-            ("🔥", "加油优宝特，一定能上市！"),
-            ("🤖", "优宝特机器人，引领未来智能时代"),
-            ("🏔️", "行者泰山，登峰造极，勇攀高峰"),
-            ("🚶", "行者泰山，稳健前行，走向世界舞台"),
-            ("🌟", "优宝特机器人，让中国智造闪耀全球"),
-            ("🎖️", "优宝特团队，技术精湛，追求卓越"),
-            ("🌏", "优宝特机器人，服务全球，创造价值"),
-            ("💎", "优宝特品质，精益求精，匠心独运"),
-            ("🎊", "优宝特机器人，为人类进步贡献力量"),
-            ("🚀", "优宝特加速前行，迈向更广阔的未来"),
-            ("🏅", "优宝特技术领先，产品卓越，团队优秀"),
-            ("🌠", "优宝特机器人，让科技温暖世界"),
+            ("", "观测电机数据，精准调试控制参数"),
+            ("", "数据不会说谎，但需要正确的解读方式"),
+            ("", "观察数据趋势比单个数值更有价值"),
+            ("", "对比期望与实际，发现跟踪误差"),
+            ("", "先看整体趋势，再深入细节分析"),
+            ("", "异常值往往蕴含着关键信息"),
+            ("", "多角度观察数据，全面理解系统行为"),
+            ("", "下降趋势和上升趋势同样重要"),
+            ("", "快速识别数据模式，提高分析效率"),
+            ("", "数据可视化让复杂信息一目了然"),
+            ("", "选择合适的比例尺，让数据更清晰"),
+            ("", "记录分析过程，便于后续回顾"),
+            ("", "从数据中发现规律，指导系统优化"),
+            ("", "加油优宝特，一定能上市！"),
+            ("", "优宝特机器人，引领未来智能时代"),
+            ("", "行者泰山，登峰造极，勇攀高峰"),
+            ("", "行者泰山，稳健前行，走向世界舞台"),
+            ("", "优宝特机器人，让中国智造闪耀全球"),
+            ("", "优宝特团队，技术精湛，追求卓越"),
+            ("", "优宝特机器人，服务全球，创造价值"),
+            ("", "优宝特品质，精益求精，匠心独运"),
+            ("", "优宝特机器人，为人类进步贡献力量"),
+            ("", "优宝特加速前行，迈向更广阔的未来"),
+            ("", "优宝特技术领先，产品卓越，团队优秀"),
+            ("", "优宝特机器人，让科技温暖世界"),
         ]
 
         encouraging_frame = tk.Frame(toolbar_frame, bg=self.colors['bg_main'])
@@ -460,35 +803,7 @@ class MotorTraceViewer:
         center_container = tk.Frame(encouragement_content, bg='#FFF9E6')
         center_container.pack(expand=True, fill=tk.BOTH)
 
-        def get_emoji_font():
-            import platform
-            system = platform.system()
-            if system == 'Linux':
-                emoji_fonts = [
-                    'Noto Color Emoji', 'Noto Emoji', 'Symbola',
-                    'DejaVu Sans', 'Liberation Sans', 'Ubuntu', 'Sans',
-                ]
-            elif system == 'Darwin':
-                emoji_fonts = ['Apple Color Emoji', 'Arial Unicode MS', 'Helvetica Neue']
-            elif system == 'Windows':
-                emoji_fonts = ['Segoe UI Emoji', 'Segoe UI Symbol', 'Arial Unicode MS', 'Microsoft YaHei']
-            else:
-                emoji_fonts = ['Sans']
-
-            try:
-                available_font_families = tkfont.families()
-                for font_name in emoji_fonts:
-                    if font_name in available_font_families:
-                        return font_name
-                    font_name_lower = font_name.lower()
-                    for avail_font in available_font_families:
-                        if avail_font.lower() == font_name_lower:
-                            return avail_font
-            except Exception:
-                pass
-            return 'Sans'
-
-        emoji_font_name = get_emoji_font()
+        emoji_font_name = self.get_available_font(16, 'normal')[0]
         text_font = self.get_available_font(13, 'normal')
 
         self.encouragement_icon_label = tk.Label(
@@ -504,8 +819,9 @@ class MotorTraceViewer:
         self.encouragement_text_label.pack(side=tk.LEFT, expand=True)
 
         refresh_btn = tk.Label(
-            center_container, text="🔄",
-            font=(emoji_font_name, 16), bg='#FFF9E6', fg='#666666', cursor='hand2'
+            center_container, text=("" if self.use_emoji else "刷新"),
+            font=(emoji_font_name, 16 if self.use_emoji else 11),
+            bg='#FFF9E6', fg='#666666', cursor='hand2'
         )
         refresh_btn.pack(side=tk.LEFT, padx=(15, 0))
         refresh_btn.bind('<Button-1>', lambda e: self.update_encouraging_message())
@@ -750,13 +1066,14 @@ class MotorTraceViewer:
                             fontsize=14, fontweight='bold', pad=15)
 
             self.canvas = FigureCanvasTkAgg(self.fig, self.plot_frame)
+            self.canvas.mpl_connect('button_press_event', self.on_plot_click)
             self.canvas.draw()
             self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
             toolbar_frame = tk.Frame(self.plot_frame, bg=self.colors['bg_section'])
             toolbar_frame.pack(fill=tk.X)
-            toolbar = NavigationToolbar2Tk(self.canvas, toolbar_frame)
-            toolbar.update()
+            self.toolbar = TextNavigationToolbar2Tk(self.canvas, toolbar_frame)
+            self.toolbar.update()
         else:
             no_plot_label = tk.Label(right_panel,
                                     text="matplotlib未安装，无法显示曲线图\n请安装: pip install matplotlib numpy",
@@ -1086,7 +1403,7 @@ class MotorTraceViewer:
             for var_name in self.variable_groups[category]:
                 display_name = self._format_var_display(var_name)
                 if var_name in self.pinned_variables:
-                    display_name = '✓ ' + display_name
+                    display_name = PIN_PREFIX + display_name
                 self.variable_tree.insert(category_id, 'end', text=display_name, tags=('variable',))
 
     def _build_tree_by_leg(self):
@@ -1103,7 +1420,7 @@ class MotorTraceViewer:
                 for var_name in var_types_in_leg[var_type]:
                     display_name = self._format_var_display(var_name)
                     if var_name in self.pinned_variables:
-                        display_name = '✓ ' + display_name
+                        display_name = PIN_PREFIX + display_name
                     self.variable_tree.insert(type_id, 'end', text=display_name, tags=('variable',))
 
     def _build_tree_by_joint(self):
@@ -1120,14 +1437,14 @@ class MotorTraceViewer:
                 for var_name in var_types_in_joint[var_type]:
                     display_name = self._format_var_display(var_name)
                     if var_name in self.pinned_variables:
-                        display_name = '✓ ' + display_name
+                        display_name = PIN_PREFIX + display_name
                     self.variable_tree.insert(type_id, 'end', text=display_name, tags=('variable',))
 
     def _build_tree_by_compare(self):
         """按对比视图分组构建树（期望 vs 实际）"""
         compare_order = [
-            ('q_des_vs_q', '📐 角度对比 (q_des vs q)'),
-            ('tau_des_vs_tau', '🔧 扭矩对比 (τ_des vs τ)'),
+            ('q_des_vs_q', '角度对比 (q_des vs q)'),
+            ('tau_des_vs_tau', '扭矩对比 (tau_des vs tau)'),
         ]
 
         for pair_key, pair_display in compare_order:
@@ -1136,17 +1453,17 @@ class MotorTraceViewer:
                 for var_name in self.compare_groups[pair_key]:
                     display_name = self._format_var_display(var_name)
                     if var_name in self.pinned_variables:
-                        display_name = '✓ ' + display_name
+                        display_name = PIN_PREFIX + display_name
                     self.variable_tree.insert(pair_id, 'end', text=display_name, tags=('variable',))
 
         # 处理其他对比组
         for pair_key in sorted(self.compare_groups.keys()):
             if pair_key not in [p[0] for p in compare_order] and self.compare_groups[pair_key]:
-                pair_id = self.variable_tree.insert('', 'end', text=f'📊 对比: {pair_key}', open=False)
+                pair_id = self.variable_tree.insert('', 'end', text=f'对比: {pair_key}', open=False)
                 for var_name in self.compare_groups[pair_key]:
                     display_name = self._format_var_display(var_name)
                     if var_name in self.pinned_variables:
-                        display_name = '✓ ' + display_name
+                        display_name = PIN_PREFIX + display_name
                     self.variable_tree.insert(pair_id, 'end', text=display_name, tags=('variable',))
 
     def _format_var_display(self, var_name: str) -> str:
@@ -1177,7 +1494,7 @@ class MotorTraceViewer:
         if 'variable' not in tags:
             return
 
-        display_text = text.replace('✓ ', '', 1) if text.startswith('✓ ') else text
+        display_text = text.replace(PIN_PREFIX, '', 1) if text.startswith(PIN_PREFIX) else text
 
         var_name = self._display_to_column_name(display_text)
         if var_name is None:
@@ -1188,7 +1505,7 @@ class MotorTraceViewer:
             self.variable_tree.item(item_id, text=display_text)
         else:
             self.pinned_variables.add(var_name)
-            self.variable_tree.item(item_id, text='✓ ' + display_text)
+            self.variable_tree.item(item_id, text=PIN_PREFIX + display_text)
 
         self.update_plot()
 
@@ -1318,11 +1635,100 @@ class MotorTraceViewer:
 
         return f'other_{var_name}'
 
+    def register_plot_line(self, line, var_name: str, label: str):
+        """记录已绘制曲线，用于点击后查找最近数据点。"""
+        self.plot_lines.append({
+            'line': line,
+            'var_name': var_name,
+            'label': label,
+        })
+
+    def clear_click_annotation(self):
+        """清除上一次点击坐标标注。"""
+        for artist in (self.click_annotation, self.click_marker):
+            if artist is None:
+                continue
+            try:
+                artist.remove()
+            except Exception:
+                pass
+        self.click_annotation = None
+        self.click_marker = None
+
+    def on_plot_click(self, event):
+        """点击图中曲线附近时显示最近数据点的横纵坐标。"""
+        if not MATPLOTLIB_AVAILABLE or event.button != 1 or event.inaxes is None:
+            return
+
+        toolbar = getattr(self, 'toolbar', None)
+        if toolbar is not None and getattr(toolbar, 'mode', ''):
+            return
+
+        if not self.plot_lines:
+            return
+
+        best = None
+        best_distance = None
+
+        for item in self.plot_lines:
+            line = item['line']
+            axis = line.axes
+            try:
+                x_data = np.asarray(line.get_xdata(), dtype=float)
+                y_data = np.asarray(line.get_ydata(), dtype=float)
+            except Exception:
+                continue
+
+            if x_data.size == 0 or y_data.size == 0:
+                continue
+
+            valid_mask = np.isfinite(x_data) & np.isfinite(y_data)
+            if not np.any(valid_mask):
+                continue
+
+            x_valid = x_data[valid_mask]
+            y_valid = y_data[valid_mask]
+            display_points = axis.transData.transform(np.column_stack([x_valid, y_valid]))
+            distances = ((display_points[:, 0] - event.x) ** 2 +
+                         (display_points[:, 1] - event.y) ** 2)
+            point_index = int(np.argmin(distances))
+            distance = float(np.sqrt(distances[point_index]))
+
+            if best_distance is None or distance < best_distance:
+                best_distance = distance
+                best = (item, axis, x_valid[point_index], y_valid[point_index], distance)
+
+        if best is None or best_distance is None or best_distance > 30:
+            return
+
+        item, axis, x_value, y_value, _ = best
+        self.clear_click_annotation()
+
+        color = item['line'].get_color()
+        x_display = f"{int(x_value)}" if float(x_value).is_integer() else f"{x_value:.3f}"
+        text = f"{item['label']}\nX: {x_display}\nY: {y_value:.6g}"
+
+        self.click_marker = axis.plot(
+            [x_value], [y_value], marker='o', markersize=8,
+            markerfacecolor='#FFF176', markeredgecolor=color,
+            markeredgewidth=2, linestyle='None', zorder=10,
+            label='_nolegend_'
+        )[0]
+        self.click_annotation = axis.annotate(
+            text, xy=(x_value, y_value), xytext=(12, 12),
+            textcoords='offset points', fontsize=9, color='#2C3E50',
+            bbox=dict(boxstyle='round,pad=0.35', fc='#FFFDE7', ec=color, alpha=0.95),
+            arrowprops=dict(arrowstyle='->', color=color, lw=1.2),
+        )
+        self.canvas.draw_idle()
+
     def update_plot(self):
         """更新图表"""
         if not MATPLOTLIB_AVAILABLE or not self.data:
             return
 
+        self.clear_click_annotation()
+        self.plot_lines = []
         self.fig.clear()
         self.ax = self.fig.add_subplot(111)
 
@@ -1375,6 +1781,7 @@ class MotorTraceViewer:
                         line = self.ax.plot(iteration_data, data_array,
                                           label=label, color=color, linewidth=2.0, alpha=0.85)
                         lines_list.append(line[0])
+                        self.register_plot_line(line[0], var_name, label)
                         self.ax.set_ylabel(label, fontsize=11, color=color, fontweight='bold')
                         self.ax.tick_params(axis='y', labelcolor=color, labelsize=10)
                         self.ax.spines['left'].set_color(color)
@@ -1387,6 +1794,7 @@ class MotorTraceViewer:
                         line = ax_new.plot(iteration_data, data_array,
                                          label=label, color=color, linewidth=2.0, alpha=0.85)
                         lines_list.append(line[0])
+                        self.register_plot_line(line[0], var_name, label)
                         ax_new.set_ylabel(label, fontsize=11, color=color, fontweight='bold')
                         ax_new.tick_params(axis='y', labelcolor=color, labelsize=10)
                         ax_new.spines['right'].set_color(color)
@@ -1409,8 +1817,9 @@ class MotorTraceViewer:
                         label = self._format_var_display(var_name)
                         if len(label) > 30:
                             label = label[:27] + '...'
-                        self.ax.plot(iteration_data, np.array(self.data[var_name]),
-                                   label=label, color=color, linewidth=2.0, alpha=0.85)
+                        line = self.ax.plot(iteration_data, np.array(self.data[var_name]),
+                                          label=label, color=color, linewidth=2.0, alpha=0.85)
+                        self.register_plot_line(line[0], var_name, label)
 
                 self.ax.set_ylabel('数值', fontsize=12, fontweight='bold')
                 self.ax.tick_params(axis='both', labelsize=10)
@@ -1438,8 +1847,8 @@ class MotorTraceViewer:
         type_names = {
             'q_des': '期望角度 q_des',
             'q': '实际角度 q',
-            'tau_des': '期望扭矩 τ_des',
-            'tau': '实际扭矩 τ',
+            'tau_des': '期望扭矩 tau_des',
+            'tau': '实际扭矩 tau',
             'imu_rpy': 'IMU姿态角',
             'imu_gyro': 'IMU角速度',
             'imu_acc': 'IMU加速度',
@@ -1479,6 +1888,7 @@ class MotorTraceViewer:
                 line = current_ax.plot(iteration_data, data_array,
                                      label=label, color=color, linewidth=2.0, alpha=0.85)
                 lines_list.append(line[0])
+                self.register_plot_line(line[0], var_name, label)
 
             if group_idx == 0:
                 current_ax.set_ylabel(type_display_name, fontsize=11, color=group_colors[0], fontweight='bold')
@@ -1565,12 +1975,12 @@ class MotorTraceViewer:
                 fg=self.colors['fg_label'], anchor='w').pack(fill=tk.X, pady=(0, 8))
 
         features = [
-            "  • 自动跳过前4列元数据(iteration, time_s, loop_interval_ms, cycle_duration_ms)",
-            "  • 支持按变量类型/腿/关节/对比视图分组浏览电机数据",
-            "  • 一键预设：角度对比(q_des vs q)、扭矩对比(τ_des vs τ)",
-            "  • 单独查看IMU姿态、加速度数据",
-            "  • 智能Y轴分组、独立Y轴显示",
-            "  • 支持缩放和平移",
+            "  - 自动跳过前4列元数据(iteration, time_s, loop_interval_ms, cycle_duration_ms)",
+            "  - 支持按变量类型/腿/关节/对比视图分组浏览电机数据",
+            "  - 一键预设：角度对比(q_des vs q)、扭矩对比(tau_des vs tau)",
+            "  - 单独查看IMU姿态、加速度数据",
+            "  - 智能Y轴分组、独立Y轴显示",
+            "  - 支持缩放和平移",
         ]
 
         for feature in features:

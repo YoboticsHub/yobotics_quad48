@@ -19,10 +19,14 @@ simulation:
     control_decimation: 1  # 控制频率（每 N 个仿真步长执行一次控制）
     lcm_url: ""  # LCM URL（空字符串表示使用默认）
 
+robot_runner:
+  enable_motor_trace_logging: false  # 是否记录电机关节跟踪 CSV
+  motor_trace_log_path: "log/motor_trace.csv"  # 轨迹日志文件路径（相对于项目根目录或绝对路径）
+
 rl_walk:
   model_path: "actor_model/walk/quadTSnet.onnx"  # 模型路径（相对于项目根目录）
   log_file_path: "log/log_RL_data.csv"  # 日志文件路径（相对于项目根目录或绝对路径）
-  enable_logging: true  # 是否启用日志记录
+  enable_logging: false  # 是否启用日志记录
   
   obs_dim: 48  # 观测维度（多技能单策略版本：45 + command_2(roll/pitch/height) 3维）
   dof_dim: 12  # 关节维度
@@ -42,8 +46,8 @@ rl_walk:
   clip_action: 200.0  # 动作值裁剪范围
   tau_limit: 200.0  # 扭矩限制
   
-  command_forward_scale: 1.0  # 前进命令缩放 
-  command_lateral_scale: 0.5  # 侧向命令缩放
+  command_forward_scale: 0.8  # 前进命令缩放 
+  command_lateral_scale: 0.8  # 侧向命令缩放
   command_yaw_scale: 1.0  # 偏航命令缩放
   
   default_dof_pos: [0.0, -0.8, 1.6, 0.0, -0.8, 1.6, 0.0, -0.8, 1.6, 0.0, -0.8, 1.6]  # 默认关节位置（12维）
@@ -74,8 +78,8 @@ rl_run:
   clip_action: 200.0  # 动作值裁剪范围
   tau_limit: 200.0  # 扭矩限制
 
-  command_forward_scale: 3.0  # 前进命令缩放
-  command_lateral_scale: 0.5  # 侧向命令缩放
+  command_forward_scale: 1.0  # 前进命令缩放
+  command_lateral_scale: 0.8  # 侧向命令缩放
   command_yaw_scale: 1.0  # 偏航命令缩放
 
   default_dof_pos: [0.0, -0.8, 1.6, 0.0, -0.8, 1.6, 0.0, -0.8, 1.6, 0.0, -0.8, 1.6]  # 默认关节位置（12维）
@@ -98,11 +102,11 @@ robot_control_parameters:
   control_mode: 0  # 控制模式
 
 logging:
-  enable_logging: True  # 是否启用日志保存（将终端输出保存到文件）
+  enable_logging: true  # 是否启用日志保存（将终端输出保存到文件）
   log_file_path: "log/robot_log.txt"  # 日志文件路径（相对于项目根目录或绝对路径）
 
 gamepad:  # at9s, gamepad, lcm, hybrid
-  device_type: "lcm"  
+  device_type: "hybrid"  
   joystick_device: "/dev/input/js0"
   at9s_port: "/dev/ttyS4"
   lcm_control_channel: "QUAD_ROBOT_CONTROL"  # 遥控/上位机控制输入通道， 要与webRtcServer端保持一致
@@ -142,8 +146,24 @@ gamepad:  # at9s, gamepad, lcm, hybrid
 
 imu:
   # IMU传感器端口配置
-  port_base: "/dev/ttyS0"  # IMU端口基础路径（LordIMU使用ttyACM，SelfIMU使用ttyUSB）
-  # port_number: 0  # IMU端口编号（将追加到port_base后，例如：/dev/ttyACM0）
+  type: "hipnuc"  # IMU驱动类型: "hipnuc" 或 "lord"
+  port_base: "/dev/ttyS0"  # hipnuc: 完整设备路径，例如/dev/ttyS0；lord: 设备名前缀，例如/dev/ttyACM
+  # port_number: 0  # 仅lord使用，最终设备为 port_base + port_number，例如/dev/ttyACM0
+
+temp_humid:
+  # 温湿度传感器后台采集配置
+  enable: false  # 是否启用温湿度采集
+  port: "/dev/ttyTHS2"  # 串口设备路径
+  baud: 9600  # 波特率
+  log_interval: 1.0  # 日志记录间隔（秒）
+  log_file: "log/temp_humid_log.csv"  # 日志文件路径
+  frequency: 20.0  # 采集频率（Hz）
+
+can_power:
+  # CAN 电源读取配置
+  enable: false  # 是否启用 CAN 电源读取
+  can_interface: "can0"  # CAN 接口名称
+  frequency: 20.0  # 采集频率（Hz）
 
 
 safety_checker:
@@ -154,16 +174,16 @@ safety_checker:
   # 单独检查使能标志 - 独立控制每种安全检查类型
   # 如果enable_safety_check为False，所有检查都将被禁用，无论这些标志如何设置
   # 如果enable_safety_check为True，每个检查可以单独启用/禁用
-  enable_orientation_check: False  # 是否启用姿态检查
-  enable_joint_torque_check: False  # 是否启用关节扭矩检查
-  enable_joint_velocity_check: False  # 是否启用关节速度检查
-  enable_joint_position_check: False  # 是否启用关节位置检查 
-  enable_leg_cartesian_velocity_check: True  # 是否启用腿部笛卡尔速度检查
-  enable_hardware_loss_check: False  # 是否启用硬件丢失保护（触发ESTOP）
+  enable_orientation_check: false  # 是否启用姿态检查
+  enable_joint_torque_check: false  # 是否启用关节扭矩检查
+  enable_joint_velocity_check: false  # 是否启用关节速度检查
+  enable_joint_position_check: false  # 是否启用关节位置检查 
+  enable_leg_cartesian_velocity_check: false  # 是否启用腿部笛卡尔速度检查
+  enable_hardware_loss_check: true  # 是否启用硬件丢失保护（触发ESTOP）
   enable_hardware_loss_print: True  # 是否启用硬件丢失打印（独立于保护功能）
   
   urdf_path: "resources/robots/quad48/urdf/quad48.urdf"  # URDF文件路径（相对于项目根目录或绝对路径）
-  safety_margin_factor: 0.9  # 安全裕度因子，所有关节限制（位置、速度、扭矩）将乘以该因子（典型值：0.8-0.95，更保守=更小值）
+  safety_margin_factor: 1 # 安全裕度因子，所有关节限制（位置、速度、扭矩）将乘以该因子（典型值：0.8-0.95，更保守=更小值）
   
   max_roll_deg: 30.0  # 最大滚转角限制（度）
   max_pitch_deg: 50.0  # 最大俯仰角限制（度）

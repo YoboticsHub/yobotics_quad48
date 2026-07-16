@@ -24,14 +24,14 @@ lcm:
 
 execution:
   frequency: 100.0
-  lcm_send_frequency: 500.0
+  lcm_send_frequency: 200.0
   auto_start: true
   auto_end: true
   max_execution_time: 0.0
 
 motion:
-  frequency: 1.0
-  amplitude: 0.35
+  frequency: 0.1
+  amplitude: 0.5
 
 rl_mode:
   is_rl_mode: false

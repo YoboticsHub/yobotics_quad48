@@ -180,7 +180,7 @@ class RunAlgorithm(AlgorithmBase):
         # 期望速度全部设置为0
         joint_velocities = np.zeros(12, dtype=np.float32)
         
-        # 更新命令缓存（不直接发送，由500Hz发送循环发送）
+        # 更新命令缓存（不直接发送，由基类发送循环按配置频率发送，最高200Hz）
         with self.latest_command_lock:
             self.latest_command = {
                 'enable_development_mode': True,
@@ -242,4 +242,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

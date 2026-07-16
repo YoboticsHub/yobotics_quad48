@@ -76,7 +76,7 @@ class RunAlgorithm(AlgorithmBase):
 
         # 生成上下波形：sin波控制 thigh/calf 偏移
         thigh_offset = amplitude * np.sin(phase)
-        calf_offset =  - amplitude * np.sin(phase)
+        calf_offset =  -2 * amplitude * np.sin(phase)
 
         action = np.zeros(self.model_params['num_actions'], dtype=np.float32)
         # 目标命令只作用于 thigh/calf 关节，hip 关节保持默认位置
@@ -111,8 +111,8 @@ class RunAlgorithm(AlgorithmBase):
         joint_velocities = np.zeros(12, dtype=np.float32)
         joint_torques = np.zeros(12, dtype=np.float32)
 
-        # joint_kp = self.model_params.get('joint_stiffness', np.array([200.0] * 12, dtype=np.float32))
-        # joint_kd = self.model_params.get('joint_damping', np.array([2.0] * 12, dtype=np.float32))
+        joint_kp = self.model_params.get('joint_stiffness', np.array([200.0] * 12, dtype=np.float32))
+        joint_kd = self.model_params.get('joint_damping', np.array([2.0] * 12, dtype=np.float32))
 
         joint_kp = np.array([30.0] * 12, dtype=np.float32)
         joint_kd = np.array([0.5] * 12, dtype=np.float32)

@@ -15,13 +15,13 @@ simulation:
   mujoco:
     xml_path: "resources/robots/quad48/scene_terrain.xml"  # MuJoCo XML 文件路径（相对于项目根目录）
     simulation_dt: 0.002  # 仿真时间步长（秒）
-    control_decimation: 1  # 控制频率（每 N 个仿真步长执行一次控制）
+    control_decimation: 1  # 控制频率（每 N 个仿真步长执行1一次控制）
     lcm_url: ""  # LCM URL（空字符串表示使用默认）
 
 rl_walk:
   model_path: "actor_model/walk/quadTSnet.onnx"  # 模型路径（相对于项目根目录）
   log_file_path: "log/log_RL_walk_data.csv"  # 日志文件路径（相对于项目根目录或绝对路径）
-  enable_logging: true  # 是否启用日志记录
+  enable_logging: false  # 是否启用日志记录
 
   obs_dim: 48  # 观测维度（多技能单策略版本：45 + command_2(roll/pitch/height) 3维）
   dof_dim: 12  # 关节维度
@@ -41,7 +41,7 @@ rl_walk:
   clip_action: 200.0  # 动作值裁剪范围
   tau_limit: 200.0  # 扭矩限制
 
-  command_forward_scale: 1.0  # 前进命令缩放
+  command_forward_scale: 0.5  # 前进命令缩放
   command_lateral_scale: 0.5  # 侧向命令缩放
   command_yaw_scale: 1.0  # 偏航命令缩放
 
@@ -101,7 +101,7 @@ logging:
   log_file_path: "log/robot_log.txt"  # 日志文件路径（相对于项目根目录或绝对路径）
 
 gamepad:  # at9s, gamepad, lcm, hybrid
-  device_type: "lcm"
+  device_type: "hybrid"
   joystick_device: "/dev/input/js0"
   at9s_port: "/dev/ttyUSB0"
   lcm_control_channel: "QUAD_ROBOT_CONTROL"  # 遥控/上位机控制输入通道
@@ -141,8 +141,40 @@ gamepad:  # at9s, gamepad, lcm, hybrid
 
 imu:
   # IMU传感器端口配置
-  port_base: "/dev/ttyUSB"  # IMU端口基础路径（LordIMU使用ttyACM，SelfIMU使用ttyUSB）
-  port_number: 0  # IMU端口编号（将追加到port_base后，例如：/dev/ttyACM0）
+  type: "hipnuc"  # IMU驱动类型: "hipnuc" 或 "lord"
+  port_base: "/dev/ttyS0"  # hipnuc: 完整设备路径，例如/dev/ttyS0；lord: 设备名前缀，例如/dev/ttyACM
+  # port_number: 0  # 仅lord使用，最终设备为 port_base + port_number，例如/dev/ttyACM0
+
+temp_humid:
+  # 温湿度传感器后台采集配置
+  enable: false  # 是否启用温湿度采集
+  port: "/dev/ttyTHS2"  # 串口设备路径
+  baud: 9600  # 波特率
+  log_interval: 1.0  # 日志记录间隔（秒）
+  log_file: "log/temp_humid_log.csv"  # 日志文件路径
+  frequency: 20.0  # 采集频率（Hz）
+
+can_power:
+  # CAN 电源读取配置
+  enable: false  # 是否启用 CAN 电源读取
+  can_interface: "can0"  # CAN 接口名称
+  frequency: 20.0  # 采集频率（Hz）
+
+serial_power:
+  # 串口总电压读取配置
+  enable: false  # 是否启用串口总电压读取
+  port: "/dev/ttyS3"  # 串口设备路径
+  baud: 460800  # 波特率
+  frequency: 20.0  # 采集频率（Hz）
+  low_voltage: 33.0  # 低压阈值（V）
+  low_voltage_release: 33.5  # 退出低压阈值（V）
+  min_voltage: 28.0  # 0% 对应电压（V）
+  max_voltage: 42.0  # 100% 对应电压（V）
+  valid_min_voltage: 20.0  # 允许接受的最小有效电压（V）
+  valid_max_voltage: 60.0  # 允许接受的最大有效电压（V）
+  filter_tau_sec: 3.0  # 电压低通滤波时间常数（秒）
+  percent_deadband: 1.0  # 百分比显示死区（%）
+  percent_drop_rate_per_sec: 3.0  # 百分比下降最大速率（%/s）
 
 
 safety_checker:
@@ -162,7 +194,7 @@ safety_checker:
   enable_hardware_loss_print: True  # 是否启用硬件丢失打印（独立于保护功能）
 
   urdf_path: "resources/robots/quad48/urdf/quad48.urdf"  # URDF文件路径（相对于项目根目录或绝对路径）
-  safety_margin_factor: 0.9  # 安全裕度因子，所有关节限制（位置、速度、扭矩）将乘以该因子（典型值：0.8-0.95，更保守=更小值）
+  safety_margin_factor: 1  # 安全裕度因子，所有关节限制（位置、速度、扭矩）将乘以该因子（典型值：0.8-0.95，更保守=更小值）
 
   max_roll_deg: 30.0  # 最大滚转角限制（度）
   max_pitch_deg: 50.0  # 最大俯仰角限制（度）

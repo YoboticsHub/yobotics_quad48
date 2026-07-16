@@ -153,13 +153,21 @@ class AlgorithmBase(ABC):
             if self.inference_check_frequency > 0
             else 0.002
         )
-        self.lcm_send_frequency = self.config['execution'].get('lcm_send_frequency', 500.0)  # LCM发送频率（500Hz）
+        max_lcm_send_frequency = 200.0
+        configured_lcm_send_frequency = self.config['execution'].get('lcm_send_frequency', max_lcm_send_frequency)
+        if configured_lcm_send_frequency > max_lcm_send_frequency:
+            print(
+                f"[{self.__class__.__name__}] WARNING: Configured LCM send frequency "
+                f"{configured_lcm_send_frequency} Hz exceeds max {max_lcm_send_frequency} Hz; "
+                f"clamping to {max_lcm_send_frequency} Hz"
+            )
+        self.lcm_send_frequency = min(configured_lcm_send_frequency, max_lcm_send_frequency)
         self.lcm_send_period = 1.0 / self.lcm_send_frequency if self.lcm_send_frequency > 0 else 0.002
         self.auto_start = self.config['execution']['auto_start']
         self.auto_end = self.config['execution']['auto_end']
         self.max_execution_time = self.config['execution']['max_execution_time']
 
-        # 最新的控制命令缓存（用于500Hz发送）
+        # 最新的控制命令缓存（由发送循环按配置频率发送，最高200Hz）
         self.latest_command = None
         
         print(f"[{self.__class__.__name__}] Initialized: {self.config['algorithm_name']}")
@@ -645,12 +653,12 @@ class AlgorithmBase(ABC):
         print(f"[{self.__class__.__name__}] Execution loop ended")
     
     def _lcm_send_loop(self):
-        """LCM发送循环（500Hz）"""
+        """LCM发送循环（按配置频率发送，最高200Hz）"""
         print(f"[{self.__class__.__name__}] LCM send loop started ({self.lcm_send_frequency} Hz)")
         
         # 用于跟踪结束命令发送次数
         end_command_sent_count = 0
-        end_command_target_count = int(self.lcm_send_frequency * 0.1)  # 发送100ms（约50次@500Hz）
+        end_command_target_count = int(self.lcm_send_frequency * 0.1)  # 发送约100ms
         next_send_time = time.monotonic()
         
         while True:
@@ -720,7 +728,7 @@ class AlgorithmBase(ABC):
         execution_thread = threading.Thread(target=self._execution_loop, daemon=True)
         execution_thread.start()
         
-        # 启动LCM发送线程（500Hz）
+        # 启动LCM发送线程（按配置频率发送，最高200Hz）
         lcm_send_thread = threading.Thread(target=self._lcm_send_loop, daemon=True)
         lcm_send_thread.start()
         

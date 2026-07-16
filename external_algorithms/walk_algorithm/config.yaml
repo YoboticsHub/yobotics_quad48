@@ -37,7 +37,7 @@ lcm:
 # 执行配置
 execution:
   frequency: 50.0  # 策略推理频率（Hz，如50Hz）
-  lcm_send_frequency: 500.0  # LCM发送频率（Hz，固定500Hz）
+  lcm_send_frequency: 200.0  # LCM发送频率（Hz，最高200Hz）
   auto_start: true
   auto_end: true
   max_execution_time: 0.0  # 0表示无限制
@@ -56,5 +56,4 @@ joint_mapping:
 debug:
   print_config: true  # 是否打印配置文件内容
   print_metadata: true  # 是否打印ONNX模型metadata内容
-
 
