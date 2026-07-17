@@ -107,15 +107,15 @@ class RunAlgorithm(AlgorithmBase):
 
         joint_positions = default_pos + action
         
-        print("des: joint_positions:", joint_positions[:6])
+        # print("des: joint_positions:", joint_positions[:6])
         joint_velocities = np.zeros(12, dtype=np.float32)
         joint_torques = np.zeros(12, dtype=np.float32)
 
         joint_kp = self.model_params.get('joint_stiffness', np.array([200.0] * 12, dtype=np.float32))
         joint_kd = self.model_params.get('joint_damping', np.array([2.0] * 12, dtype=np.float32))
 
-        joint_kp = np.array([30.0] * 12, dtype=np.float32)
-        joint_kd = np.array([0.5] * 12, dtype=np.float32)
+        # joint_kp = np.array([30.0] * 12, dtype=np.float32)
+        # joint_kd = np.array([0.5] * 12, dtype=np.float32)
 
         if isinstance(joint_kp, list):
             joint_kp = np.array(joint_kp, dtype=np.float32)
