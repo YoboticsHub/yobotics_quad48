@@ -1,6 +1,6 @@
 # 四足机器人强化学习控制框架（仿真包）
 
-> 四足机器人（quad48/Yobotics Quad）RL 控制仿真部署包，支持 MuJoCo 仿真模式实时运行。（运行环境：Ubuntu20.04以上x86架构系统）
+> 四足机器人（quad48/Yobotics Quad）RL 控制仿真部署包，支持 MuJoCo 仿真模式实时运行。（运行环境：Ubuntu20.04以上，支持 x86_64 与 RK3588/aarch64 控制器分发包）
 
 版本信息见 [VERSION.txt](./VERSION.txt)。当前仓库面向 `quad48 / Yobotics Quad` 控制包交付与二次开发，包含主控制器二进制与依赖库、MuJoCo 仿真、LCM 消息类型、WebRTC 服务、外部算法框架，以及 `E15` SDK 示例。
 
@@ -17,7 +17,7 @@
 主要有两种运行方式：
 
 1. MuJoCo 仿真：使用 [config_sim.yaml](./config_sim.yaml) 和 [scripts/start_mujoco.sh](./scripts/start_mujoco.sh)
-2. 真机控制：使用 [config.yaml](./config.yaml) 和 `./run_human_debug.sh ../bin/ybt_ctrl`
+2. 真机控制：使用 [config.yaml](./config.yaml) 和 [scripts/run_robot_controller.sh](./scripts/run_robot_controller.sh)
 
 外部算法只在 `DEVELOPMENT` 模式下通过 LCM 接入，相关说明见 [external_algorithms/README.md](./external_algorithms/README.md)。
 
@@ -67,8 +67,10 @@ conda activate quad_controller
 
 ## 运行入口与目录
 
-- `bin/`：分发包入口目录，`bin/ybt_ctrl` 是启动包装脚本，`bin/ybt_ctrl.bin` 是实际控制器二进制
-- `lib/`：运行时依赖库，包括 ONNX Runtime 等共享库
+- `bin/`：x86_64 分发包入口目录，`bin/ybt_ctrl` 是启动包装脚本，`bin/ybt_ctrl.bin` 是实际控制器二进制
+- `lib/`：x86_64 运行时依赖库，包括 ONNX Runtime 等共享库
+- `bin_rk3588/`：RK3588/aarch64 分发包入口目录，结构与 `bin/` 一致
+- `lib_rk3588/`：RK3588/aarch64 运行时依赖库
 - `config.yaml`：真机默认配置
 - `config_sim.yaml`：MuJoCo 仿真默认配置
 - `actor_model/`：`RL_WALK` 与 `RL_RUN` 使用的 ONNX 策略模型

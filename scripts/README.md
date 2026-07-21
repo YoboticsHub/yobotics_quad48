@@ -17,8 +17,10 @@ cd yobotics_quad48
 
 ```text
 yobotics_quad48/
-├── bin/                  # 控制器可执行文件，例如 ybt_ctrl
-├── lib/                  # 运行所需动态库
+├── bin/                  # x86_64 控制器可执行文件，例如 ybt_ctrl
+├── bin_rk3588/           # RK3588/aarch64 控制器可执行文件
+├── lib/                  # x86_64 运行所需动态库
+├── lib_rk3588/           # RK3588/aarch64 运行所需动态库
 ├── log/                  # 运行日志、CSV 日志输出目录
 ├── lcm-types/            # LCM 类型定义和生成结果
 ├── mujoco_sim/           # MuJoCo 仿真相关代码
@@ -103,30 +105,34 @@ python3 scripts/motor_trace_viewer.py log/motor_trace.csv
 
 ### `run_robot_controller.sh`
 
-用于启动开发包内的控制器程序。脚本会设置运行所需的动态库路径，避免控制器找不到
-`lib/` 目录下的 `.so` 文件。
+用于启动开发包内的控制器程序。脚本会按 `uname -m` 自动选择 x86_64 或 RK3588/aarch64
+对应的 `bin*/` 和 `lib*/` 目录，避免控制器找不到当前架构的 `.so` 文件。
 
 常用命令：
 
 ```bash
 bash scripts/run_robot_controller.sh
+bash scripts/run_robot_controller.sh --config config.yaml
 ```
 
 适用场景：
 
 - 在实物环境中启动控制器。
-- 验证打包后的 `bin/ybt_ctrl` 是否可以独立运行。
+- 验证打包后的 `bin/ybt_ctrl` 或 `bin_rk3588/ybt_ctrl` 是否可以独立运行。
 - 调试 `config.yaml` 中的控制器参数。
 
 注意事项：
 
 - 建议从开发包根目录运行。
-- 如果提示动态库缺失，先确认 `lib/` 目录完整。
+- 无参数运行时默认使用 `config.yaml`，并按系统架构选择控制器。
+- 如果提示动态库缺失，先确认当前架构对应的 `lib/` 或 `lib_rk3588/` 目录完整。
 - 如果控制器启动后没有机器人状态，通常需要同时检查仿真进程和 LCM 网络。
 
 ### `start_mujoco.sh`
 
 用于启动 MuJoCo 仿真环境。默认读取开发包内的仿真配置，也可以通过参数指定配置文件。
+脚本会按系统架构自动选择控制器：x86_64 使用 `bin/` 和 `lib/`，RK3588/aarch64 使用
+`bin_rk3588/` 和 `lib_rk3588/`。
 
 常用命令：
 

@@ -31,6 +31,10 @@ while [[ $# -gt 0 ]]; do
             echo "  --config FILE    指定配置文件路径（默认: config_sim.yaml）"
             echo "  --headless       无头模式运行（不显示可视化窗口）"
             echo "  -h, --help       显示此帮助信息"
+            echo ""
+            echo "架构选择:"
+            echo "  x86_64           使用 bin/ybt_ctrl 和 lib/"
+            echo "  aarch64/arm64    使用 bin_rk3588/ybt_ctrl 和 lib_rk3588/"
             exit 0
             ;;
         *)
@@ -74,17 +78,41 @@ cd "$PROJECT_ROOT"
 export PYTHONPATH="${PROJECT_ROOT}:${PYTHONPATH}"
 export YBT_CONFIG_FILE="${CONFIG_FILE}"
 
+# 根据系统架构选择分发包内的控制器和动态库目录
+HOST_ARCH="$(uname -m)"
+ARCH_LABEL=""
+DISTRIBUTION_BIN_DIR=""
+DISTRIBUTION_LIB_DIR=""
+
+case "$HOST_ARCH" in
+    x86_64)
+        ARCH_LABEL="x86_64"
+        DISTRIBUTION_BIN_DIR="${PROJECT_ROOT}/bin"
+        DISTRIBUTION_LIB_DIR="${PROJECT_ROOT}/lib"
+        ;;
+    aarch64|arm64)
+        ARCH_LABEL="RK3588/aarch64"
+        DISTRIBUTION_BIN_DIR="${PROJECT_ROOT}/bin_rk3588"
+        DISTRIBUTION_LIB_DIR="${PROJECT_ROOT}/lib_rk3588"
+        ;;
+    *)
+        echo "错误: 不支持的系统架构: $HOST_ARCH"
+        echo "当前分发包仅支持 x86_64 和 aarch64/arm64 (RK3588)"
+        exit 1
+        ;;
+esac
+
 # 检测环境类型（分发包还是开发环境）
 IS_DISTRIBUTION=false
 CONTROLLER_EXE=""
 LD_LIBRARY_PATHS=""
 
-# 检查是否是分发包结构（有 bin/ 和 lib/ 目录）
-if [ -d "${PROJECT_ROOT}/bin" ] && [ -d "${PROJECT_ROOT}/lib" ] && [ -f "${PROJECT_ROOT}/bin/ybt_ctrl" ]; then
+# 检查是否是当前架构对应的分发包结构
+if [ -d "$DISTRIBUTION_BIN_DIR" ] && [ -d "$DISTRIBUTION_LIB_DIR" ] && [ -f "${DISTRIBUTION_BIN_DIR}/ybt_ctrl" ]; then
     IS_DISTRIBUTION=true
-    CONTROLLER_EXE="${PROJECT_ROOT}/bin/ybt_ctrl"
-    LD_LIBRARY_PATHS="${PROJECT_ROOT}/lib"
-    echo "检测到分发包环境"
+    CONTROLLER_EXE="${DISTRIBUTION_BIN_DIR}/ybt_ctrl"
+    LD_LIBRARY_PATHS="${DISTRIBUTION_LIB_DIR}"
+    echo "检测到分发包环境 (架构: $ARCH_LABEL)"
 else
     # 开发环境：尝试多个可能的构建目录
     BUILD_DIRS=(
@@ -121,29 +149,37 @@ fi
 # 检查控制器可执行文件
 if [ -z "$CONTROLLER_EXE" ] || [ ! -f "$CONTROLLER_EXE" ]; then
     echo "错误: 找不到控制器可执行文件"
-    if [ "$IS_DISTRIBUTION" = true ]; then
-        echo "分发包中应该存在: ${PROJECT_ROOT}/bin/ybt_ctrl"
-    else
-        echo "开发环境中应该在以下位置之一："
-        echo "  - ${PROJECT_ROOT}/build/user/YBT_Controller/ybt_ctrl"
-        echo "  - ${PROJECT_ROOT}/build_lib/user/YBT_Controller/ybt_ctrl"
-        echo ""
-        echo "请先编译项目:"
-        echo "  cd build && cmake .. && make -j4"
-        echo "或者:"
-        echo "  cd build_lib && cmake -DBUILD_AS_LIBRARY=ON .. && make -j4"
-    fi
+    echo "当前系统架构: $HOST_ARCH ($ARCH_LABEL)"
+    echo "当前架构分发包中应该存在："
+    echo "  - ${DISTRIBUTION_BIN_DIR}/ybt_ctrl"
+    echo "  - ${DISTRIBUTION_LIB_DIR}/"
+    echo ""
+    echo "开发环境中应该在以下位置之一："
+    echo "  - ${PROJECT_ROOT}/build/user/YBT_Controller/ybt_ctrl"
+    echo "  - ${PROJECT_ROOT}/build_lib/user/YBT_Controller/ybt_ctrl"
+    echo ""
+    echo "请先编译项目:"
+    echo "  cd build && cmake .. && make -j4"
+    echo "或者:"
+    echo "  cd build_lib && cmake -DBUILD_AS_LIBRARY=ON .. && make -j4"
     exit 1
 fi
 
 # 设置库路径
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATHS}:${LD_LIBRARY_PATH}"
+EXISTING_LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}"
+EXISTING_LD_LIBRARY_PATH="${EXISTING_LD_LIBRARY_PATH#:}"
+if [ -n "$EXISTING_LD_LIBRARY_PATH" ]; then
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATHS}:${EXISTING_LD_LIBRARY_PATH}"
+else
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATHS}"
+fi
 
 # 启动 MuJoCo 仿真器
 echo "=========================================="
 echo "启动 MuJoCo 仿真器和控制器"
 echo "=========================================="
 echo "环境类型: $([ "$IS_DISTRIBUTION" = true ] && echo "分发包" || echo "开发环境")"
+echo "系统架构: $HOST_ARCH ($ARCH_LABEL)"
 echo "项目根目录: $PROJECT_ROOT"
 echo "可执行文件: $CONTROLLER_EXE"
 echo "配置文件: $CONFIG_FILE"
