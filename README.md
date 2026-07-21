@@ -1,4 +1,4 @@
-# 四足机器人强化学习控制框架（仿真包）
+# 四足机器人强化学习控制框架
 
 > 四足机器人（quad48/Yobotics Quad）RL 控制仿真部署包，支持 MuJoCo 仿真模式实时运行。（运行环境：Ubuntu20.04以上，支持 x86_64 与 RK3588/aarch64 控制器分发包）
 
@@ -60,7 +60,7 @@ conda activate quad_controller
 ./scripts/start_mujoco.sh
 
 # 启动控制脚本
-./yobotics_sdk_e15_sdk_260408/build/E15_sport_client
+./yobotics_sdk/build/E15_sport_client
 ```
 
 按 `Ctrl+C` 停止所有进程。
