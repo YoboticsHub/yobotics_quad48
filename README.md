@@ -65,6 +65,66 @@ conda activate quad_controller
 
 按 `Ctrl+C` 停止所有进程。
 
+## 实机运行
+
+实机运行前建议先完成一次 MuJoCo 仿真验证，确认 Python 环境、模型文件和基础配置可用。机器人主机通常为 Ubuntu + RK3588/aarch64 环境，部署包内至少需要确认以下目录和文件完整：
+
+- `bin_rk3588/`：RK3588/aarch64 控制器入口
+- `lib_rk3588/`：RK3588/aarch64 运行时动态库
+- `config.yaml`：实机默认配置文件
+- `actor_model/`：`RL_WALK` 与 `RL_RUN` 使用的 ONNX 策略模型
+- `resources/`：URDF、XML、网格等机器人资源
+
+如果在 x86_64 主机上做本地验证，脚本会自动切换到 `bin/` 和 `lib/`。
+
+### 1. 配置确认
+
+实机默认使用 [config.yaml](./config.yaml)。运行前重点确认以下配置：
+
+- `simulation.enable_mujoco: false`：关闭 MuJoCo 仿真，进入硬件控制链路
+- `motor_communication.type: spi_legacy`：使用当前实机 SPI 通信方式
+- `gamepad.device_type: hybrid`：支持本地遥控器与 LCM/WebRTC 控制输入
+- `safety_checker.enable_safety_check: True`：保持安全检查开启；不建议在真实机器人上关闭安全保护
+
+如需调整遥控器、串口、SPI 或 LCM 通道，请优先修改 `config.yaml`，并保持 WebRTC 侧配置与主控配置一致。
+
+### 2. 启动控制器
+
+在项目根目录运行：
+
+```bash
+bash scripts/run_robot_controller.sh --config config.yaml
+```
+
+该脚本会按 `uname -m` 自动选择控制器和动态库路径：
+
+- x86_64：使用 `bin/ybt_ctrl` 和 `lib/`
+- RK3588/aarch64：使用 `bin_rk3588/ybt_ctrl` 和 `lib_rk3588/`
+
+脚本当前会使用 `eth1` 配置 LCM 多播网络。如果机器人实际网卡名不是 `eth1`，请先调整 [scripts/run_robot_controller.sh](./scripts/run_robot_controller.sh) 中的网卡配置，或按现场网络环境完成对应 LCM 多播配置。
+
+### 3. 可选：启动 WebRTC 远程控制/视频服务
+
+如需启用 WebRTC 视频和远程控制，先确认 [WebRTC_server/config.json](./WebRTC_server/config.json) 中的控制/状态通道与 `config.yaml` 内以下配置一致：
+
+- `gamepad.lcm_control_channel`
+- `gamepad.lcm_state_channel`
+
+然后在机器人部署包根目录运行：
+
+```bash
+python3 WebRTC_server/control_publisher.py
+```
+
+更多 WebRTC 配置、依赖和排查方式见 [WebRTC_server/README.md](./WebRTC_server/README.md)。
+
+### 4. 运行检查与停止
+
+- 控制器日志默认写入 `log/robot_log.txt`，也会在终端输出关键状态
+- 如需检查 LCM 通道和消息频率，可使用 `bash scripts/monitor_lcm.sh` 或 `bash scripts/launch_lcm_spy.sh`
+- 如果控制器启动后没有机器人状态，优先检查电机/SPI/IMU 连接、LCM 网卡和 `config.yaml` 中的通信配置
+- 前台运行时按 `Ctrl+C` 停止控制器；WebRTC 服务前台运行时同样按 `Ctrl+C` 停止
+
 ## 运行入口与目录
 
 - `bin/`：x86_64 分发包入口目录，`bin/ybt_ctrl` 是启动包装脚本，`bin/ybt_ctrl.bin` 是实际控制器二进制
