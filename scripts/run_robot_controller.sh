@@ -89,8 +89,8 @@ cd "$PROJECT_ROOT"
 # enable multicast and add route for lcm out the top
 # sudo ifconfig enxa0cec80e3ced multicast
 # sudo route add -net 224.0.0.0 netmask 240.0.0.0 dev enxa0cec80e3ced
-sudo ifconfig eth1 multicast
-sudo route add -net 224.0.0.0 netmask 240.0.0.0 dev eth1 2>/dev/null || true
+#sudo ifconfig eth1 multicast
+#sudo route add -net 224.0.0.0 netmask 240.0.0.0 dev eth1 2>/dev/null || true
 
 EXISTING_LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}"
 EXISTING_LD_LIBRARY_PATH="${EXISTING_LD_LIBRARY_PATH#:}"

@@ -85,6 +85,12 @@ bash scripts/run_robot_controller.sh
 bash scripts/start_mujoco.sh --headless
 ```
 
+如果需要把实物机器人反馈实时显示到 MuJoCo Viewer 中，可以使用：
+
+```bash
+bash scripts/start_hardware_viewer.sh
+```
+
 ### 5. 监控和分析数据
 
 监控 LCM：
@@ -152,6 +158,78 @@ bash scripts/start_mujoco.sh --headless
 - 如果启动失败，先检查 `resources/`、`mujoco_sim/` 和 `config_sim.yaml` 是否存在。
 - 如果图形界面无法打开，确认当前环境是否支持显示。
 - 如果控制器与仿真没有通信，优先检查 LCM URL、网卡和多播配置。
+
+### `start_hardware_viewer.sh`
+
+用于启动硬件实时可视化 MuJoCo Viewer。脚本会设置 `PYTHONPATH`，然后调用
+`hardware_mujoco_viewer.py` 接收实物机器人 LCM 反馈，并把关节角、机身姿态和高度显示到
+MuJoCo 模型中。
+
+默认参数：
+
+- XML 模型：`resources/robots/quad48/scene_terrain.xml`
+- LCM URL：`udpm://239.255.76.67:7667?ttl=255`
+- Viewer 刷新率：`60 Hz`
+
+常用命令：
+
+```bash
+bash scripts/start_hardware_viewer.sh
+bash scripts/start_hardware_viewer.sh --xml resources/robots/quad48/scene_flat.xml
+bash scripts/start_hardware_viewer.sh --lcm-url "udpm://239.255.76.67:7667?ttl=255"
+bash scripts/start_hardware_viewer.sh --viewer-hz 30
+bash scripts/start_hardware_viewer.sh --help
+```
+
+适用场景：
+
+- 实物机器人运行时，实时查看当前关节和机身姿态。
+- 排查控制器反馈、LCM 数据流或模型姿态显示是否正常。
+- 在不启动完整仿真闭环的情况下，用 MuJoCo Viewer 观察硬件状态。
+
+注意事项：
+
+- 建议优先使用该 shell 脚本启动，而不是直接运行 Python 文件。
+- 运行前需要可用的 Python LCM 绑定、`mujoco` Python 包和图形显示环境。
+- 如果 Viewer 中模型没有动作，先确认实物控制器正在发布 LCM 反馈，并检查 LCM URL 是否一致。
+
+### `hardware_mujoco_viewer.py`
+
+Python 版硬件状态 MuJoCo Viewer，可以直接运行，也可以由 `start_hardware_viewer.sh` 调用。
+该工具只根据收到的硬件反馈刷新 MuJoCo 模型姿态，不推进物理仿真。
+
+常用命令：
+
+```bash
+python3 scripts/hardware_mujoco_viewer.py
+python3 scripts/hardware_mujoco_viewer.py --xml resources/robots/quad48/scene_flat.xml
+python3 scripts/hardware_mujoco_viewer.py --lcm-url "udpm://239.255.76.67:7667?ttl=255"
+python3 scripts/hardware_mujoco_viewer.py --joint-channel leg_control_data --robot-state-channel QUAD_ROBOT_STATE
+python3 scripts/hardware_mujoco_viewer.py --height 0.45 --x 0.0 --y 0.0 --viewer-hz 60 --stale-timeout 2.0
+```
+
+主要参数：
+
+- `--xml`：MuJoCo XML 路径，可以是绝对路径，也可以是相对开发包根目录的路径。
+- `--lcm-url`：接收硬件反馈使用的 LCM URL。
+- `--joint-channel`：关节反馈频道，默认 `leg_control_data`，消息类型为 `quad_joint_state_t`。
+- `--robot-state-channel`：机身状态频道，默认 `QUAD_ROBOT_STATE`，消息类型为 `sport_client_state_t`。
+- `--height`：没有收到有效机身高度时使用的默认悬浮基高度。
+- `--x`、`--y`：Viewer 中固定显示的世界坐标位置。
+- `--viewer-hz`：Viewer 刷新率，只限制画面刷新，不表示仿真步频。
+- `--stale-timeout`：超过该秒数未收到新消息时打印 stale 警告。
+
+适用场景：
+
+- 需要直接调试硬件 Viewer 的 Python 参数或 LCM 频道。
+- 临时切换模型 XML、LCM URL、刷新率或默认显示位置。
+- 检查 `leg_control_data` 和 `QUAD_ROBOT_STATE` 是否能正确驱动模型显示。
+
+注意事项：
+
+- 直接运行时需要自己保证 `PYTHONPATH` 能找到开发包根目录和 `lcm-types/python`。
+- 如果提示 `import lcm` 或 `import mujoco` 失败，先准备 Python 环境或安装对应依赖。
+- 如果长时间提示等待 `leg_control_data` 或 `QUAD_ROBOT_STATE`，检查控制器是否已启动以及 LCM 网络是否配置正确。
 
 ## LCM 相关脚本
 

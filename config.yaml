@@ -4,8 +4,9 @@
 
 motor_communication:
   type: "spi_legacy"  # 通信方式: "lcm" 或 "spi" 或 "spi_legacy"
-  spi_device0: "/dev/spidev3.0"  # SPI 设备0路径
-  spi_device1: "/dev/spidev4.0"  # SPI 设备1路径
+  spi_type: "E15"  # 机器人型号   E15 或 Y15
+  spi_device0: "/dev/spidev3.0"  # SPI 设备0路径  E15 为spidev3.0. Y15 为spidev2.0
+  spi_device1: "/dev/spidev4.0"  # SPI 设备1路径  E15 为spidev4.0. Y15 为spidev2.1
   lcm_channels:
     joint_state: "QUAD_JOINT_STATE"  # 关节状态 LCM 通道名
     joint_command: "QUAD_JOINT_COMMAND"  # 关节命令 LCM 通道名
@@ -146,9 +147,9 @@ gamepad:  # at9s, gamepad, lcm, hybrid
 
 imu:
   # IMU传感器端口配置
-  type: "hipnuc"  # IMU驱动类型: "hipnuc" 或 "lord"
-  port_base: "/dev/ttyS0"  # hipnuc: 完整设备路径，例如/dev/ttyS0；lord: 设备名前缀，例如/dev/ttyACM
-  # port_number: 0  # 仅lord使用，最终设备为 port_base + port_number，例如/dev/ttyACM0
+  type: "hipnuc"  # IMU驱动类型: "hipnuc" 或 "lord"  E15 使用 hipnuc， Y15 使用 lord
+  port_base: "/dev/ttyS0"  # hipnuc: 完整设备路径，例如/dev/ttyS0；lord: 设备名前缀，例如/dev/ttyUSB
+  # port_number: 0  # 仅lord使用，最终设备为 port_base + port_number，例如/dev/ttyUSB0
 
 temp_humid:
   # 温湿度传感器后台采集配置
