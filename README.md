@@ -86,6 +86,25 @@ conda activate quad_controller
 - `gamepad.device_type: hybrid`：支持本地遥控器与 LCM/WebRTC 控制输入
 - `safety_checker.enable_safety_check: True`：保持安全检查开启；不建议在真实机器人上关闭安全保护
 
+#### 型号配置速查
+
+启动脚本会按 `uname -m` 自动选择 x86_64 或 RK3588/aarch64 对应的控制器目录，但机器人型号相关硬件配置仍需要在 `config.yaml` 中手动确认：
+
+| 型号/平台 | `motor_communication.spi_type` | `motor_communication.spi_device0` | `motor_communication.spi_device1` | `imu.type` | `imu.port_base` | `imu.port_number` | `development.robot_id` | 开发模式 LCM 通道 |
+|-----------|--------------------------------|-----------------------------------|-----------------------------------|------------|-----------------|-------------------|------------------------|-------------------|
+| `y15 / x86_64` | `"Y15"` | `"/dev/spidev2.0"` | `"/dev/spidev2.1"` | `"lord"` | `"/dev/ttyUSB"` | `0` | `"Y15"` | `Y15_development_state` / `Y15_development_command` |
+| `E15 / ARM(RK3588/aarch64)` | `"E15"` | `"/dev/spidev3.0"` | `"/dev/spidev4.0"` | `"hipnuc"` | `"/dev/ttyS0"` | 保持注释或不配置 | `"E15"` | `E15_development_state` / `E15_development_command` |
+
+Y15 使用 `lord` 时需要取消 `port_number` 前的注释，并按现场设备号修改；E15 使用 `hipnuc` 时 `port_base` 直接填写完整串口路径。
+
+如果复制出多个型号配置文件，可以在启动时显式指定：
+
+```bash
+bash scripts/run_robot_controller.sh --config config.yaml
+bash scripts/run_robot_controller.sh --config config_y15.yaml
+bash scripts/run_robot_controller.sh --config config_e15.yaml
+```
+
 如需调整遥控器、串口、SPI 或 LCM 通道，请优先修改 `config.yaml`，并保持 WebRTC 侧配置与主控配置一致。
 
 ### 2. 启动控制器
@@ -159,6 +178,13 @@ python3 WebRTC_server/control_publisher.py
 - `simulation.enable_mujoco` — 仿真/硬件模式切换
 - `simulation.mujoco.xml_path` — MuJoCo 场景文件路径
 - `motor_communication.type` — 通信方式（仿真用 `lcm`，硬件用 `spi_legacy`）
+- `motor_communication.spi_type` — 实机型号（`Y15` 或 `E15`）
+- `motor_communication.spi_device0` / `motor_communication.spi_device1` — SPI 设备路径，需与型号和系统设备节点一致
+- `imu.type` — IMU 驱动类型（E15 使用 `hipnuc`，Y15 使用 `lord`）
+- `imu.port_base` — IMU 串口路径或设备名前缀
+- `imu.port_number` — 仅 Y15/lord 使用，需取消注释后与 `port_base` 拼接成实际设备路径
+- `development.robot_id` — 开发模式机器人标识，用于生成或区分 LCM 消息标识
+- `development.state_channel` / `development.command_channel` — 开发模式状态与指令 LCM 通道
 - `gamepad.device_type` — 遥控器类型（`gamepad`/`at9s`/`lcm`）
 - `safety_checker` — 多层安全检查配置
 
