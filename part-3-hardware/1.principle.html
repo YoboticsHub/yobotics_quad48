@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>3.1 实物部署原理 - Quad48 四足机器人控制框架使用说明书</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.1 \u5b9e\u7269\u90e8\u7f72\u539f\u7406";
+        var mkdocs_page_input_path = "part-3-hardware/1.principle.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.1 实物部署原理</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">相同点</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">区别</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">控制器硬件数据链路</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#e15-y15">E15 / Y15 实物系统架构示意</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#spi">SPI 节点是什么</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#y15-e15-spi">Y15 与 E15 的 SPI 差异</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#y15-e15-imu">Y15 和 E15 使用不同 IMU</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">从仿真到实物的运行时序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">安全提示</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.config.html">3.2 修改 config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 LCM 结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 LCM 消息定义</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 开发包示例</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 开发者模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">第三部分 实物部署、运行、调试</li>
+      <li class="breadcrumb-item active">3.1 实物部署原理</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="31">3.1 实物部署原理<a class="headerlink" href="#31" title="Permanent link">¶</a></h1>
+<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>本节说明实物部署和 MuJoCo 仿真的相同点、区别和切换原则。</p>
+<h2 id="_2">相同点<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>仿真和实物共用以下核心逻辑：</p>
+<ul>
+<li>主控制器。</li>
+<li>FSM 控制模式，例如 <code>DAMP</code>、<code>RECOVERY_STAND</code>、<code>RL_WALK</code>、<code>RL_RUN</code>、<code>DEVELOPMENT</code>。</li>
+<li>RL 策略模型和观测处理逻辑。</li>
+<li>SDK / WebRTC / 外部算法通过 LCM 发送控制或开发模式命令。</li>
+<li>安全检查、日志和配置加载流程。</li>
+</ul>
+<h2 id="_3">区别<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>仿真</th>
+<th>实物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置文件</td>
+<td><code>config_sim.yaml</code></td>
+<td><code>config.yaml</code></td>
+</tr>
+<tr>
+<td>MuJoCo 开关</td>
+<td><code>simulation.enable_mujoco: true</code></td>
+<td><code>simulation.enable_mujoco: false</code></td>
+</tr>
+<tr>
+<td>电机通信</td>
+<td>LCM 仿真通道</td>
+<td>SPI / 实物电机通信</td>
+</tr>
+<tr>
+<td>数据来源</td>
+<td>MuJoCo 关节和 IMU 数据</td>
+<td>真实电机、IMU、遥控器、传感器</td>
+</tr>
+<tr>
+<td>风险</td>
+<td>程序或模型错误</td>
+<td>机器人摔倒、撞击、硬件损坏或人员受伤</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">控制器硬件数据链路<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>实物启动后，控制器不是直接根据机器人名称选择通信方式，而是按配置逐层初始化：</p>
+<pre><code class="language-text">config.yaml
+    -&gt; FSM_ConfigLoader
+    -&gt; RobotRunner::init()
+    -&gt; MotorCommunicationInterface
+    -&gt; SPI/LCM 电机状态与命令
+</code></pre>
+<p>仿真使用 <code>config_sim.yaml</code>：<code>simulation.enable_mujoco: true</code>，电机状态和命令通过 LCM 在仿真桥与控制器之间传递。实物使用 <code>config.yaml</code>：关闭 MuJoCo，由 SPI 设备读取真实电机状态并下发命令；IMU 则由独立的串口驱动读取。</p>
+<h3 id="e15-y15">E15 / Y15 实物系统架构示意<a class="headerlink" href="#e15-y15" title="Permanent link">¶</a></h3>
+<p>下图用于说明 E15 和 Y15 实物部署时，控制器、SPI 通信板、IMU、LCM / SDK 和电机之间的整体关系。不同机型的设备节点、SPI 类型和 IMU 类型需要以现场配置为准。</p>
+<p><code>E15:</code>
+<img alt="E15 系统架构" src="images/e15-system-architecture.png"></p>
+<p><img alt="E15 SPI_IMU" src="images/E15%20spi_and_imu.png"></p>
+<p><code>Y15:</code></p>
+<p><img alt="Y15 系统架构" src="images/y15-system-architecture.png"></p>
+<p><img alt="Y15 SPI_IMU" src="images/Y15%20spi_and_imu.png"></p>
+<h3 id="spi">SPI 节点是什么<a class="headerlink" href="#spi" title="Permanent link">¶</a></h3>
+<p>SPI 节点指 Linux 系统暴露出的 SPI 设备文件，例如 <code>/dev/spidev3.0</code>。实物运行时，控制程序通过两个 SPI 设备节点与电机通信板交换数据，读取电机状态并下发电机命令。</p>
+<p>SPI 节点属于操作系统和硬件枚举结果，不等于机器人型号，也不能只根据 CPU 架构推断。节点名称、节点顺序或权限错误时，可能导致 SPI 无法打开；即使 SPI 能打开，设备映射错误仍可能造成关节状态和方向异常。</p>
+<p>控制器通过配置中的 <code>spi_device0</code> 和 <code>spi_device1</code> 选择两个 SPI 板。具体设备号应在目标机器上确认：</p>
+<pre><code class="language-bash">ls -l /dev/spidev*
+</code></pre>
+<h2 id="y15-e15-spi">Y15 与 E15 的 SPI 差异<a class="headerlink" href="#y15-e15-spi" title="Permanent link">¶</a></h2>
+<p>Y15 和 E15 共用四足机器人关节抽象、两个 SPI 板和 12 个关节命令接口，但 SPI 原始帧格式和关节零点并不完全相同。<code>spi_type</code> 用于选择协议分支、读取结构、SPI 速率和关节偏置。</p>
+<p>这里的 Y15/E15 是 SPI 通信板类型，不是 IMU 类型的别名。项目代码不会因为 <code>spi_type: E15</code> 自动选择 HipNuc，也不会因为 <code>spi_type: Y15</code> 自动选择 Lord；IMU 由 <code>imu</code> 配置块单独选择。</p>
+<h3 id="y15-e15-imu">Y15 和 E15 使用不同 IMU<a class="headerlink" href="#y15-e15-imu" title="Permanent link">¶</a></h3>
+<p>当前项目的实际硬件组合是：Y15 使用 MicroStrain 厂商 IMU，E15 使用 HipNuc 厂商 IMU。两类 IMU 的串口协议、设备命名、波特率、数据格式和四元数处理方式不同，因此控制器不能用同一个读取类直接兼容。</p>
+<table>
+<thead>
+<tr>
+<th>机型</th>
+<th>IMU 厂商</th>
+<th>代码驱动</th>
+<th>配置值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Y15</td>
+<td>MicroStrain</td>
+<td><code>LordImu</code> / Lord 驱动</td>
+<td><code>imu.type: "lord"</code></td>
+</tr>
+<tr>
+<td>E15</td>
+<td>HipNuc</td>
+<td><code>Imu_data</code> / HipNuc 驱动</td>
+<td><code>imu.type: "hipnuc"</code></td>
+</tr>
+</tbody>
+</table>
+<p>硬件组合和软件字段的关系要区分开：当前产品通常是 Y15 + MicroStrain、E15 + HipNuc，但代码仍把 <code>spi_type</code> 和 <code>imu.type</code> 作为两个独立配置项。<code>spi_type</code> 选择电机 SPI 协议和关节转换，<code>imu.type</code> 选择 IMU 厂商驱动；前者不会自动推导后者。</p>
+<p>无论使用哪家 IMU，驱动最终都会把加速度、四元数和角速度转换到统一的数据结构。后续状态估计、FSM 和安全检查只使用统一数据，不需要知道底层厂商。</p>
+<p>HipNuc 和 Lord 的串口配置不能混用。例如 hipnuc 的 port_base 应是完整设备路径；lord 和 ahrs 通常把 port_base 写成设备名前缀，再由 port_number 拼接最终设备名。</p>
+<h2 id="_5">从仿真到实物的运行时序<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ol>
+<li>在 MuJoCo 中完成模型、控制器和外部算法验证。</li>
+<li>根据目标机型准备对应的 SPI 和 IMU 配置。</li>
+<li>将部署包发送到机器人端。</li>
+<li>确认电池、急停、线缆、地面和安全区域。</li>
+<li>启动控制器，并从安全模式逐步进入运动模式。</li>
+<li>运行中记录日志并使用 LCM 工具观察状态。</li>
+</ol>
+<p>SPI 设备号、IMU 串口号、Y15/E15 配置示例和启动日志属于操作性内容，统一放在 3.2 配置章节中。</p>
+<h2 id="_6">安全提示<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>脚本可以根据系统架构选择 <code>bin/</code> 或 <code>bin_rk3588/</code>，但不能自动判断机器人真实型号、SPI 板类型或 IMU 串口。运行前必须人工确认 <code>config.yaml</code> 中 <code>motor_communication.spi_type</code>、SPI 设备节点和 <code>imu</code> 配置与实物一致。设备节点是现场 Linux 枚举结果，不应只根据 CPU 架构或机器人名称猜测。</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part-2-mujoco/4.debug.html" class="btn btn-neutral float-left" title="2.4 仿真调试"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="2.config.html" class="btn btn-neutral float-right" title="3.2 修改 config">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part-2-mujoco/4.debug.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="2.config.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

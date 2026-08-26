@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Quad48 四足机器人控制框架的环境配置、仿真验证、实物部署、SDK 二次开发和 LCM 底层开发文档" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Quad48 四足机器人控制框架使用说明书</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u9996\u9875";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">首页</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">推荐阅读路径</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">使用原则</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">常用入口</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">机器人操作视频</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="part-3-hardware/1.principle.html">3.1 实物部署原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-3-hardware/2.config.html">3.2 修改 config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-3-hardware/3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-3-hardware/4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-3-hardware/5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="part-5-lcm-dev/1.lcm-structure.html">5.1 LCM 结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-5-lcm-dev/2.messages.html">5.2 LCM 消息定义</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-5-lcm-dev/3.dev-package-examples.html">5.3 开发包示例</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-5-lcm-dev/4.development-mode.html">5.4 开发者模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="part-5-lcm-dev/7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quad48 四足机器人控制框架使用说明书</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">首页</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="quad48">Quad48 四足机器人控制框架使用说明书<a class="headerlink" href="#quad48" title="Permanent link">¶</a></h1>
+<p>本文档用于指导用户安装、配置、启动、调试和二次开发 Quad48 四足机器人控制框架。</p>
+<h2 id="_1">推荐阅读路径<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>用户类型</th>
+<th>推荐路径</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首次使用人员</td>
+<td>第一部分 -&gt; 第二部分</td>
+<td>完成环境配置并跑通 MuJoCo 仿真</td>
+</tr>
+<tr>
+<td>现场交付人员</td>
+<td>第一部分 -&gt; 第二部分 -&gt; 第三部分</td>
+<td>从仿真验证切换到实物部署</td>
+</tr>
+<tr>
+<td>SDK 集成人员</td>
+<td>第一部分 -&gt; 第四部分</td>
+<td>通过 SDK 读取状态、下发运动命令或 HTTP 控制</td>
+</tr>
+<tr>
+<td>算法开发人员</td>
+<td>第二部分 -&gt; 第五部分 -&gt; 第三部分</td>
+<td>在仿真中验证自研算法，再部署到实物</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">使用原则<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>先仿真、再实机：新模型、新脚本、新参数必须先在 MuJoCo 或安全支架环境中验证。</li>
+<li>先默认配置、再小步修改：不要一次性修改多个通信、模型和安全参数。</li>
+<li>先验证算法、再上机器人：确认关节顺序、动作幅值、PD 参数、LCM 通道和日志输出后再实物运行。</li>
+<li>实机运行前必须确认急停、供电、地面环境、线缆、IMU、SPI 设备配置。</li>
+</ul>
+<h2 id="_3">常用入口<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<pre><code class="language-bash"># 准备 Python / MuJoCo / LCM 环境
+bash scripts/setup_conda_env.sh
+
+# 启动 MuJoCo 仿真
+bash scripts/start_mujoco.sh --config config_sim.yaml
+
+# 启动实物控制器
+bash scripts/run_robot_controller.sh --config config.yaml
+
+# 监控 LCM 通道
+bash scripts/monitor_lcm.sh --no-gui
+</code></pre>
+<p>真实机器人运行涉及运动安全风险。未确认原因前，不要重复运行异常模型、异常脚本或异常配置。</p>
+<h2 id="_4">机器人操作视频<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p><div class="video-container"><iframe src="videos/E15.mp4" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="part-1-quick-start/1.framework.html" class="btn btn-neutral float-right" title="1.1 软件框架介绍">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="part-1-quick-start/1.framework.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-08-26 08:06:20.384721+00:00
+-->

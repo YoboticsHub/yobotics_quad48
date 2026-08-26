@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>5.3 开发包示例 - Quad48 四足机器人控制框架使用说明书</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.3 \u5f00\u53d1\u5305\u793a\u4f8b";
+        var mkdocs_page_input_path = "part-5-lcm-dev/3.dev-package-examples.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 实物部署原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 修改 config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.lcm-structure.html">5.1 LCM 结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.messages.html">5.2 LCM 消息定义</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.3 开发包示例</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">目录结构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">核心文件</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">整体架构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#algorithmbase">AlgorithmBase 负责什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lcminterface">LCMInterface 负责什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">运行示例</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">新建自研算法目录</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">配置块</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">常见问题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">安全提示</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.development-mode.html">5.4 开发者模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">第五部分 LCM 底层开发与自研算法包接入</li>
+      <li class="breadcrumb-item active">5.3 开发包示例</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="53">5.3 开发包示例<a class="headerlink" href="#53" title="Permanent link">¶</a></h1>
+<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>本节介绍 <code>external_algorithms/</code> 开发包结构和两个内置示例。读完后，应能看懂外部算法如何读取状态、生成 12 维关节命令、通过 LCM 发给控制器，并知道新建自研算法目录时应从哪些文件开始改。</p>
+<h2 id="_2">目录结构<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<pre><code class="language-text">external_algorithms/
+├── README.md
+├── algorithm_base.py
+├── lcm_interface.py
+├── walk_algorithm/
+│   ├── config.yaml
+│   ├── run_algorithm.py
+│   └── quadTSnet.onnx
+└── wave_algorithm/
+    ├── README.md
+    ├── config.yaml
+    └── run_algorithm.py
+</code></pre>
+<h2 id="_3">核心文件<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm_base.py</code></td>
+<td>配置加载、策略加载、开发模式生命周期、推理循环、LCM 发送</td>
+</tr>
+<tr>
+<td><code>lcm_interface.py</code></td>
+<td>订阅开发模式状态，发布开发模式命令</td>
+</tr>
+<tr>
+<td><code>walk_algorithm/</code></td>
+<td>基于 ONNX 的强化学习行走示例</td>
+</tr>
+<tr>
+<td><code>wave_algorithm/</code></td>
+<td>基于规则的关节正弦波控制示例</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">整体架构<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>外部算法开发包可以理解为三层：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>主要文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通信层</td>
+<td><code>lcm_interface.py</code></td>
+<td>订阅控制器状态通道，发布开发模式命令通道</td>
+</tr>
+<tr>
+<td>生命周期层</td>
+<td><code>algorithm_base.py</code></td>
+<td>加载配置、策略预热、推理线程、LCM 发送线程、退出命令</td>
+</tr>
+<tr>
+<td>算法层</td>
+<td>两个示例的 <code>run_algorithm.py</code></td>
+<td>根据状态生成 action，并转换成 12 维 PD 命令</td>
+</tr>
+</tbody>
+</table>
+<p>控制器侧在 <code>FSM_State_Development.cpp</code> 中广播 <code>development_state_t</code>，并在收到合法的 <code>development_command_t</code> 后写入关节目标。外部算法侧不直接操作电机，只负责发布开发模式命令。</p>
+<h2 id="algorithmbase">AlgorithmBase 负责什么<a class="headerlink" href="#algorithmbase" title="Permanent link">¶</a></h2>
+<p><code>AlgorithmBase</code> 是所有外部算法的公共底座。自研算法通常只需要继承它，并实现观测和动作处理。</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置加载</td>
+<td>读取算法目录下的 <code>config.yaml</code></td>
+</tr>
+<tr>
+<td>策略加载</td>
+<td><code>policy.type: "onnx"</code> 时加载 ONNX；规则算法可重写 <code>_load_policy()</code></td>
+</tr>
+<tr>
+<td>策略预热</td>
+<td><code>warmup_count &gt; 0</code> 时用真实状态推理并检查 action 阈值</td>
+</tr>
+<tr>
+<td>推理线程</td>
+<td>按 <code>execution.frequency</code> 调用观测、推理和动作处理</td>
+</tr>
+<tr>
+<td>发送线程</td>
+<td>按 <code>execution.lcm_send_frequency</code> 发送最近命令，最高 200 Hz</td>
+</tr>
+<tr>
+<td>自动开始/结束</td>
+<td>自动发送启用命令，退出时发送 <code>enable_development_mode: 0</code></td>
+</tr>
+</tbody>
+</table>
+<p>算法子类最重要的两个入口是：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compute_observation(state)</code></td>
+<td>把 <code>development_state_t</code> 转成观测向量</td>
+</tr>
+<tr>
+<td><code>process_action(state, action)</code></td>
+<td>转成位置、速度、力矩、Kp、Kd 五组 12 维数组</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lcminterface">LCMInterface 负责什么<a class="headerlink" href="#lcminterface" title="Permanent link">¶</a></h2>
+<p><code>LCMInterface</code> 只做通信封装，不做控制逻辑。它订阅 <code>Y15_development_state</code>，解码后按 <code>robot_id</code> 过滤；发送时构造 <code>development_command_t</code> 并发布到 <code>Y15_development_command</code>。</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lcm.url</code></td>
+<td>空字符串表示使用默认 URL</td>
+</tr>
+<tr>
+<td><code>lcm.state_channel</code></td>
+<td>当前示例为 <code>Y15_development_state</code></td>
+</tr>
+<tr>
+<td><code>lcm.command_channel</code></td>
+<td>当前示例为 <code>Y15_development_command</code></td>
+</tr>
+<tr>
+<td><code>lcm.robot_id</code></td>
+<td>状态和命令匹配的机器人 ID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">运行示例<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>行走策略：</p>
+<pre><code class="language-bash">python3 external_algorithms/walk_algorithm/run_algorithm.py --config external_algorithms/walk_algorithm/config.yaml
+</code></pre>
+<p>波形控制：</p>
+<pre><code class="language-bash">python3 external_algorithms/wave_algorithm/run_algorithm.py --config external_algorithms/wave_algorithm/config.yaml
+</code></pre>
+<p>运行前应先启动 MuJoCo 或实物控制器，并让控制器进入 <code>DEVELOPMENT</code>。如果只启动 Python 脚本但没有控制器状态，脚本会收不到 <code>development_state_t</code>。</p>
+<h2 id="_6">新建自研算法目录<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>建议从 <code>wave_algorithm/</code> 复制目录开始，因为它没有模型依赖。</p>
+<ol>
+<li>复制目录并改名，例如 <code>my_algorithm/</code>。</li>
+<li>修改 <code>config.yaml</code> 中的 <code>algorithm_name</code> 和 LCM 配置。</li>
+<li>规则算法保留 <code>policy.type: "none"</code>；ONNX 算法设置模型路径。</li>
+<li>在 <code>run_algorithm.py</code> 中实现 <code>compute_observation()</code> 和 <code>process_action()</code>。</li>
+<li>确认观测顺序、动作维度、默认角、动作缩放、关节顺序和 PD 参数。</li>
+<li>先用小幅值在仿真中运行，再用 <code>bash scripts/monitor_lcm.sh --no-gui</code> 观察通道。</li>
+</ol>
+<h2 id="_7">配置块<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>配置块</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>policy</code></td>
+<td>策略类型、模型路径、预热和异常动作阈值</td>
+</tr>
+<tr>
+<td><code>model_params</code></td>
+<td>观测维度、动作维度、默认关节角、Kp、Kd、动作缩放</td>
+</tr>
+<tr>
+<td><code>lcm</code></td>
+<td>LCM URL、状态通道、命令通道、机器人 ID</td>
+</tr>
+<tr>
+<td><code>execution</code></td>
+<td>推理频率、LCM 发送频率、自动开始和结束</td>
+</tr>
+<tr>
+<td><code>rl_mode</code></td>
+<td>是否按强化学习模式处理</td>
+</tr>
+<tr>
+<td><code>debug</code></td>
+<td>是否打印配置和模型 metadata</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">常见问题<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一直等不到状态</td>
+<td>控制器未启动、LCM 网络不通、通道名不一致</td>
+<td>先运行 <code>bash scripts/monitor_lcm.sh --no-gui</code></td>
+</tr>
+<tr>
+<td>状态存在但算法不动作</td>
+<td>未进入 <code>DEVELOPMENT</code> 或 <code>robot_id</code> 不匹配</td>
+<td>核对模式编号 <code>1005</code> 和 <code>robot_id: "Y15"</code></td>
+</tr>
+<tr>
+<td>ONNX 加载失败</td>
+<td>路径或依赖错误</td>
+<td>确认模型存在并安装 <code>onnxruntime</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">安全提示<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<p>外部算法应先在 MuJoCo 中运行。确认状态接收、命令发布、关节顺序、动作幅值和退出逻辑正常后，再考虑实物部署。</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="2.messages.html" class="btn btn-neutral float-left" title="5.2 LCM 消息定义"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="4.development-mode.html" class="btn btn-neutral float-right" title="5.4 开发者模式">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="2.messages.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="4.development-mode.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

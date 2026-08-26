@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>3.5 实物日志开关方式和绘图方式 - Quad48 四足机器人控制框架使用说明书</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.5 \u5b9e\u7269\u65e5\u5fd7\u5f00\u5173\u65b9\u5f0f\u548c\u7ed8\u56fe\u65b9\u5f0f";
+        var mkdocs_page_input_path = "part-3-hardware/5.logs-and-plots.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.principle.html">3.1 实物部署原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.config.html">3.2 修改 config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.5 实物日志开关方式和绘图方式</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">控制器日志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rl">RL 数据日志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">电机跟踪日志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">绘图方式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">成功标志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">安全提示</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 LCM 结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 LCM 消息定义</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 开发包示例</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 开发者模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">第三部分 实物部署、运行、调试</li>
+      <li class="breadcrumb-item active">3.5 实物日志开关方式和绘图方式</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="35">3.5 实物日志开关方式和绘图方式<a class="headerlink" href="#35" title="Permanent link">¶</a></h1>
+<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>本节说明实物运行时如何开启日志、定位日志文件，并使用 CSV 绘图工具分析数据。</p>
+<h2 id="_2">控制器日志<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p><code>config.yaml</code> 中的控制器日志开关：</p>
+<pre><code class="language-yaml">logging:
+  enable_logging: true
+  log_file_path: "log/robot_log.txt"
+</code></pre>
+<p>查看日志：</p>
+<pre><code class="language-bash">tail -n 80 log/robot_log.txt
+tail -f log/robot_log.txt
+</code></pre>
+<h2 id="rl">RL 数据日志<a class="headerlink" href="#rl" title="Permanent link">¶</a></h2>
+<p><code>RL_WALK</code> 日志：</p>
+<pre><code class="language-yaml">rl_walk:
+  enable_logging: false
+  log_file_path: "log/log_RL_data.csv"
+</code></pre>
+<p><code>RL_RUN</code> 日志：</p>
+<pre><code class="language-yaml">rl_run:
+  enable_logging: false
+  log_file_path: "log/log_RL_run_data.csv"
+</code></pre>
+<p>需要分析策略输入、输出或动作趋势时，可以临时打开对应开关并重新启动控制器。</p>
+<h2 id="_3">电机跟踪日志<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p><code>config.yaml</code> 中的电机跟踪日志：</p>
+<pre><code class="language-yaml">robot_runner:
+  enable_motor_trace_logging: false
+  motor_trace_log_path: "log/motor_trace.csv"
+</code></pre>
+<p>该日志用于分析关节期望位置、实际位置、速度和力矩等数据。</p>
+<h2 id="_4">绘图方式<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>普通 CSV / RL 数据：</p>
+<pre><code class="language-bash">python3 scripts/data_viewer.py
+python3 scripts/data_viewer.py log/log_RL_data.csv
+</code></pre>
+<p>电机跟踪数据：</p>
+<pre><code class="language-bash">python3 scripts/motor_trace_viewer.py
+python3 scripts/motor_trace_viewer.py log/motor_trace.csv
+</code></pre>
+<h2 id="_5">成功标志<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ul>
+<li><code>log/</code> 下生成对应日志文件。</li>
+<li>CSV 文件有表头和持续更新的数据行。</li>
+<li>绘图工具可以正常打开文件。</li>
+<li>曲线中没有明显 NaN、Inf、异常尖峰或长时间断点。</li>
+</ul>
+<h2 id="_6">安全提示<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>实物运行时不要长期打开过多高频日志，避免影响磁盘空间和实时性。调试完成后建议关闭临时 CSV 日志开关。</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="4.runtime-checks.html" class="btn btn-neutral float-left" title="3.4 实物运行检查与安全停止"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part-4-sdk/1.overview.html" class="btn btn-neutral float-right" title="4.1 SDK 代码目录与功能">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="4.runtime-checks.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part-4-sdk/1.overview.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

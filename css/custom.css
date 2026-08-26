@@ -1,0 +1,23 @@
+/* 左侧导航：当前选中项 */
+.wy-menu-vertical li.current > a,
+.wy-menu-vertical li.on a {
+  background-color: #007acc;
+  color: #ffffff;
+}
+
+/* 当前展开的父级菜单 */
+.wy-menu-vertical li.current {
+  background-color: #339999;
+}
+
+/* 鼠标悬停 */
+.wy-menu-vertical a:hover {
+  background-color: #005f99;
+  color: #ffffff;
+}
+
+/* 子菜单当前项 */
+.wy-menu-vertical li.current a.current {
+  background-color: #007acc;
+  color: #ffffff;
+}

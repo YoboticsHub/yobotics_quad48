@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>5.4 开发者模式 - Quad48 四足机器人控制框架使用说明书</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.4 \u5f00\u53d1\u8005\u6a21\u5f0f";
+        var mkdocs_page_input_path = "part-5-lcm-dev/4.development-mode.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 实物部署原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 修改 config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.lcm-structure.html">5.1 LCM 结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.messages.html">5.2 LCM 消息定义</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.dev-package-examples.html">5.3 开发包示例</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.4 开发者模式</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">前提</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">工作流程</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">进入开发模式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">成功标志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">控制器侧逻辑</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">配置含义</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">完整运行时序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">常见问题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">安全提示</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">第五部分 LCM 底层开发与自研算法包接入</li>
+      <li class="breadcrumb-item active">5.4 开发者模式</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="54">5.4 开发者模式<a class="headerlink" href="#54" title="Permanent link">¶</a></h1>
+<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>开发者模式允许 Python 外部算法通过 LCM 接收机器人状态，并发布 12 维关节命令。控制器只有进入 <code>DEVELOPMENT</code> 模式后，才会响应开发模式命令。</p>
+<h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>控制器已启动。</li>
+<li>SDK、遥控器或其他控制入口可以切换到 <code>DEVELOPMENT</code>。</li>
+<li>外部算法配置中的 <code>robot_id</code>、<code>state_channel</code>、<code>command_channel</code> 与控制器一致。</li>
+<li>MuJoCo 或实物端 LCM 网络正常。</li>
+</ul>
+<h2 id="_3">工作流程<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<ol>
+<li>控制器运行并广播当前状态。</li>
+<li>SDK 或控制入口将控制模式切换到 <code>DEVELOPMENT</code>。</li>
+<li>外部算法订阅 <code>Y15_development_state</code>。</li>
+<li>外部算法发布 <code>Y15_development_command</code>。</li>
+<li>控制器校验模式和命令后执行关节控制。</li>
+<li>外部算法结束时发布禁用命令或安全命令。</li>
+</ol>
+<h2 id="_4">进入开发模式<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>SDK 中模式编号：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1005</code></td>
+<td><code>DEVELOPMENT</code></td>
+</tr>
+</tbody>
+</table>
+<p>进入开发模式后再运行 Python 开发包：</p>
+<pre><code class="language-bash">python3 external_algorithms/wave_algorithm/run_algorithm.py --config external_algorithms/wave_algorithm/config.yaml
+</code></pre>
+<h2 id="_5">成功标志<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ul>
+<li>外部算法能持续收到 <code>development_state_t</code>。</li>
+<li>控制器处于 <code>DEVELOPMENT</code> 模式。</li>
+<li><code>monitor_lcm.sh</code> 能看到开发模式状态和命令通道。</li>
+<li>算法退出时机器人能回到安全状态。</li>
+</ul>
+<h2 id="_6">控制器侧逻辑<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>控制器侧入口在 FSM_State_Development.cpp。只有 FSM 处于 DEVELOPMENT，且命令中的 robot_id 与控制器配置一致、enable_development_mode 为 1 时，外部命令才会写入 12 个关节目标。</p>
+<table>
+<thead>
+<tr>
+<th>逻辑</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态发布</td>
+<td>发布 development_state_t 到 Y15_development_state</td>
+</tr>
+<tr>
+<td>命令订阅</td>
+<td>订阅 development_command_t 的 Y15_development_command</td>
+</tr>
+<tr>
+<td>robot_id 检查</td>
+<td>不匹配的命令直接忽略</td>
+</tr>
+<tr>
+<td>enable_development_mode</td>
+<td>1 表示外部接管，0 表示结束外部接管</td>
+</tr>
+<tr>
+<td>50 ms 超时</td>
+<td>激活后超过 50 ms 没有新命令，自动结束外部接管</td>
+</tr>
+<tr>
+<td>自检</td>
+<td>退出外部接管后检查 roll/pitch，失败则清零控制命令</td>
+</tr>
+</tbody>
+</table>
+<p>控制器会把 joint_des_q、joint_des_qd、joint_des_tau、joint_des_kp、joint_des_kd 直接写入关节目标。因此 Python 算法发布的数组必须已经是最终可执行命令。</p>
+<h2 id="_7">配置含义<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<p>控制器和外部算法必须使用相同的 robot_id: Y15、Y15_development_state 和 Y15_development_command。lcm.url 为空时使用默认 URL；跨机器或多网卡异常时，先检查 LCM 网络，再用监控脚本验证。</p>
+<h2 id="_8">完整运行时序<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>操作</th>
+<th>期望现象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>启动控制器</td>
+<td>能发布状态</td>
+</tr>
+<tr>
+<td>2</td>
+<td>切换到 DEVELOPMENT</td>
+<td>FSM 进入开发者模式</td>
+</tr>
+<tr>
+<td>3</td>
+<td>启动算法</td>
+<td>加载配置并订阅状态</td>
+</tr>
+<tr>
+<td>4</td>
+<td>收到第一帧状态</td>
+<td>自动开始，先用当前关节角接管</td>
+</tr>
+<tr>
+<td>5</td>
+<td>推理或规则计算</td>
+<td>更新最近一次 12 维命令</td>
+</tr>
+<tr>
+<td>6</td>
+<td>LCM 发送线程</td>
+<td>按配置频率发送，最高 200 Hz</td>
+</tr>
+<tr>
+<td>7</td>
+<td>退出算法</td>
+<td>发送禁用命令，控制器退出外部接管</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">常见问题<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令有数据但机器人不动</td>
+<td>FSM 未进入 DEVELOPMENT</td>
+<td>确认 SDK 模式编号 1005</td>
+</tr>
+<tr>
+<td>控制器忽略命令</td>
+<td>robot_id 不一致</td>
+<td>核对控制器和算法配置</td>
+</tr>
+<tr>
+<td>动一下就退出</td>
+<td>命令间隔超过 50 ms</td>
+<td>检查 LCM 网络和发送频率</td>
+</tr>
+<tr>
+<td>退出后清零</td>
+<td>roll/pitch 自检失败</td>
+<td>检查 IMU、姿态和控制器日志</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">安全提示<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<p>不要在非 <code>DEVELOPMENT</code> 模式下假设外部算法命令会生效。实物运行时，进入开发者模式前必须确认机器人姿态稳定、速度命令为零、人员远离机器人。</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="3.dev-package-examples.html" class="btn btn-neutral float-left" title="5.3 开发包示例"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="5.wave-template.html" class="btn btn-neutral float-right" title="5.5 wave_algorithm 关节状态控制模板">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="3.dev-package-examples.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="5.wave-template.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>5.7 自研算法实物部署 - Quad48 四足机器人控制框架使用说明书</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.7 \u81ea\u7814\u7b97\u6cd5\u5b9e\u7269\u90e8\u7f72";
+        var mkdocs_page_input_path = "part-5-lcm-dev/7.hardware-deploy.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 实物部署原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 修改 config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.lcm-structure.html">5.1 LCM 结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.messages.html">5.2 LCM 消息定义</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.dev-package-examples.html">5.3 开发包示例</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.development-mode.html">5.4 开发者模式</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.7 自研算法实物部署</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">前提</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">仿真到实物检查清单</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">实物部署步骤</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">成功标志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">上实物前复核</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">监控重点</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">异常处理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">安全提示</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">第五部分 LCM 底层开发与自研算法包接入</li>
+      <li class="breadcrumb-item active">5.7 自研算法实物部署</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="57">5.7 自研算法实物部署<a class="headerlink" href="#57" title="Permanent link">¶</a></h1>
+<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>本节说明用户自研算法从仿真部署到实物部署的切换流程。实物部署的目标不是让算法马上跑起来，而是用可观察、可停止、可回退的方式确认仿真逻辑在真实机器人上仍然成立。</p>
+<p>默认原则：先仿真，再支架或安全区域，先小幅、短时间测试；有异常立即回退到 DAMP 或停止控制器，回到仿真排查，不用增大 PD、扭矩或限制值掩盖问题。</p>
+<h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>算法已在 MuJoCo 中完成验证。</li>
+<li><code>monitor_lcm.sh</code> 能看到开发模式状态和命令。</li>
+<li>算法退出时能发布禁用命令或安全命令。</li>
+<li>实物 <code>config.yaml</code> 已核对机器人型号、SPI、IMU、LCM 和安全检查。</li>
+<li>急停、支架或安全区域已准备。</li>
+<li>现场人员知道如何切回 DAMP 或停止控制器。</li>
+</ul>
+<h2 id="_3">仿真到实物检查清单<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置一致性</td>
+<td>核对 robot_id、通道名、模型参数</td>
+</tr>
+<tr>
+<td>LCM 通道</td>
+<td>能看到 Y15_development_state 和 Y15_development_command</td>
+</tr>
+<tr>
+<td>SPI / IMU</td>
+<td>控制器无通信错误，姿态数据无明显跳变</td>
+</tr>
+<tr>
+<td>机器人姿态</td>
+<td>roll/pitch 稳定，未超过开发者模式自检阈值</td>
+</tr>
+<tr>
+<td>关节顺序</td>
+<td>与 development_command_t 的 12 维顺序一致</td>
+</tr>
+<tr>
+<td>默认关节角</td>
+<td>与实物初始姿态一致</td>
+</tr>
+<tr>
+<td>PD 参数</td>
+<td>不超过仿真验证范围</td>
+</tr>
+<tr>
+<td>动作幅值</td>
+<td>首次使用小幅值和短时间</td>
+</tr>
+<tr>
+<td>退出路径</td>
+<td>Ctrl+C、切 DAMP、急停均已确认可用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">实物部署步骤<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<ol>
+<li>将算法目录、配置文件和模型文件放入机器人端软件包。</li>
+<li>确认算法配置中的 LCM URL、<code>robot_id</code>、状态通道和命令通道与 <code>config.yaml</code> 一致。</li>
+<li>启动实物控制器：</li>
+</ol>
+<pre><code class="language-bash">bash scripts/run_robot_controller.sh --config config.yaml
+</code></pre>
+<ol start="4">
+<li>读取状态并确认机器人姿态稳定。</li>
+<li>启动 LCM 监控：</li>
+</ol>
+<pre><code>bash scripts/monitor_lcm.sh --no-gui
+</code></pre>
+<ol start="6">
+<li>通过 SDK 或控制入口进入 <code>DEVELOPMENT</code>。</li>
+<li>先运行降低幅值后的 <code>wave_algorithm</code>，确认方向和退出逻辑。</li>
+<li>再运行自研算法，例如：</li>
+</ol>
+<pre><code class="language-bash">python3 external_algorithms/walk_algorithm/run_algorithm.py --config external_algorithms/walk_algorithm/config.yaml
+</code></pre>
+<ol start="9">
+<li>使用日志和 LCM 监控观察状态：</li>
+</ol>
+<pre><code class="language-bash">bash scripts/monitor_lcm.sh --no-gui
+tail -f log/robot_log.txt
+</code></pre>
+<ol start="10">
+<li>首次运行只保持短时间，确认状态、命令和姿态稳定后主动退出。</li>
+</ol>
+<h2 id="_5">成功标志<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ul>
+<li>实物控制器无 SPI、IMU、LCM 和安全检查错误。</li>
+<li>外部算法能收到真实机器人状态。</li>
+<li>机器人只执行小幅、稳定、可停止的动作。</li>
+<li>算法退出后机器人进入安全状态。</li>
+</ul>
+<h2 id="_6">上实物前复核<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>动作幅值</td>
+<td>先使用小幅值和短时间测试</td>
+</tr>
+<tr>
+<td>关节顺序</td>
+<td>与 <code>development_command_t</code> 完全一致</td>
+</tr>
+<tr>
+<td>PD 参数</td>
+<td>不超过仿真验证范围</td>
+</tr>
+<tr>
+<td>频率</td>
+<td>不超过控制器和 LCM 能稳定处理的范围</td>
+</tr>
+<tr>
+<td>安全检查</td>
+<td>保持开启</td>
+</tr>
+<tr>
+<td>急停</td>
+<td>现场可立即触发</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">监控重点<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>监控项</th>
+<th>正常现象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Y15_development_state</td>
+<td>持续更新，robot_id 为 Y15</td>
+</tr>
+<tr>
+<td>Y15_development_command</td>
+<td>运行时持续更新，退出时 enable_development_mode 为 0</td>
+</tr>
+<tr>
+<td>控制器日志</td>
+<td>无 SPI、IMU、LCM 和安全检查错误</td>
+</tr>
+<tr>
+<td>roll/pitch</td>
+<td>姿态稳定，退出外部接管后自检通过</td>
+</tr>
+<tr>
+<td>关节目标</td>
+<td>连续，无 NaN/Inf 和明显突变</td>
+</tr>
+<tr>
+<td>实际关节</td>
+<td>跟随目标，无异常抖动、异响或饱和</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">异常处理<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>异常</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姿态快速变化</td>
+<td>立即停止算法，切回 DAMP 或急停</td>
+</tr>
+<tr>
+<td>关节方向不对</td>
+<td>停止实物测试，回仿真逐关节核对顺序</td>
+</tr>
+<tr>
+<td>命令丢失或超时</td>
+<td>检查 LCM 频率、网络和发送线程</td>
+</tr>
+<tr>
+<td>自检失败</td>
+<td>检查 IMU、支架姿态和控制器日志</td>
+</tr>
+<tr>
+<td>NaN/Inf 或维度错误</td>
+<td>停止部署，回到模型输入排查</td>
+</tr>
+<tr>
+<td>抖动或异响</td>
+<td>降低幅值和 PD，回仿真，不继续实物调参</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">安全提示<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<p>如果实物动作与仿真不一致，立即停止并回到仿真排查。不要通过增大 PD、扭矩或速度上限来掩盖模型、状态估计或关节顺序问题。</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="6.walk-onnx-sim.html" class="btn btn-neutral float-left" title="5.6 walk_algorithm ONNX 仿真部署"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="6.walk-onnx-sim.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

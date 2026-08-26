@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>5.5 wave_algorithm 关节状态控制模板 - Quad48 四足机器人控制框架使用说明书</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.5 wave_algorithm \u5173\u8282\u72b6\u6001\u63a7\u5236\u6a21\u677f";
+        var mkdocs_page_input_path = "part-5-lcm-dev/5.wave-template.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 实物部署原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 修改 config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.lcm-structure.html">5.1 LCM 结构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.messages.html">5.2 LCM 消息定义</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.dev-package-examples.html">5.3 开发包示例</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.development-mode.html">5.4 开发者模式</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.5 wave_algorithm 关节状态控制模板</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">前提</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">设计思路</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">运行方式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">成功标志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">配置和动作含义</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">初学者改参流程</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">常见问题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">安全提示</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">第五部分 LCM 底层开发与自研算法包接入</li>
+      <li class="breadcrumb-item active">5.5 wave_algorithm 关节状态控制模板</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="55-wave_algorithm">5.5 以 wave_algorithm 为标准模板讲关节状态控制<a class="headerlink" href="#55-wave_algorithm" title="Permanent link">¶</a></h1>
+<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p><code>wave_algorithm</code> 是基于规则的关节控制模板，适合学习如何读取开发模式状态、生成 12 维关节目标并发布 PD 命令。</p>
+<h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>控制器已进入 <code>DEVELOPMENT</code> 模式。</li>
+<li>LCM 通道配置一致。</li>
+<li>已完成 MuJoCo 仿真启动。</li>
+</ul>
+<h2 id="_3">设计思路<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p><code>wave_algorithm</code> 不加载 ONNX 模型，而是通过正弦波生成动作：</p>
+<ol>
+<li>继承 <code>AlgorithmBase</code>。</li>
+<li>覆盖 <code>_load_policy()</code>，跳过策略加载。</li>
+<li>在 <code>_run_inference()</code> 中根据时间生成周期信号。</li>
+<li>hip 关节保持默认位置。</li>
+<li>thigh / calf 关节按正弦波偏移。</li>
+<li>在 <code>process_action()</code> 中生成 <code>joint_des_q</code>、<code>joint_des_qd</code>、<code>joint_des_tau</code>、<code>joint_des_kp</code>、<code>joint_des_kd</code>。</li>
+</ol>
+<h2 id="_4">运行方式<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<pre><code class="language-bash">python3 external_algorithms/wave_algorithm/run_algorithm.py --config external_algorithms/wave_algorithm/config.yaml
+</code></pre>
+<p>也可以进入目录后运行：</p>
+<pre><code class="language-bash">cd external_algorithms/wave_algorithm
+python3 run_algorithm.py --config config.yaml
+</code></pre>
+<h2 id="_5">成功标志<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ul>
+<li>程序启动后能收到开发模式状态。</li>
+<li>LCM 监控中能看到 <code>Y15_development_command</code>。</li>
+<li>仿真中机器人关节按预期周期运动。</li>
+<li>算法退出时没有命令残留。</li>
+</ul>
+<h2 id="_6">配置和动作含义<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>wave_algorithm 的 policy.type 是 none，表示不加载 ONNX 模型。基类仍会按统一生命周期启动状态接收、推理循环和 LCM 发送线程，但 _load_policy() 会直接设置 policy=None。</p>
+<p>当前配置中 motion.frequency 为 0.1 Hz，motion.amplitude 为 0.5。每条腿按 hip、thigh、calf 排列，hip 保持默认角，thigh 使用 amplitude * sin(phase)，calf 使用 -2 * amplitude * sin(phase)。</p>
+<p>process_action() 最终生成以下五组 12 维数据：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>当前行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>joint_des_q</td>
+<td>default_joint_pos + action</td>
+</tr>
+<tr>
+<td>joint_des_qd</td>
+<td>全部为 0</td>
+</tr>
+<tr>
+<td>joint_des_tau</td>
+<td>全部为 0</td>
+</tr>
+<tr>
+<td>joint_des_kp</td>
+<td>使用 joint_stiffness，当前为 60</td>
+</tr>
+<tr>
+<td>joint_des_kd</td>
+<td>使用 joint_damping，当前为 2.0</td>
+</tr>
+</tbody>
+</table>
+<p>因此 action 是关节位置偏移，不是力矩。默认角为四条腿重复的 [0.0, -0.8, 1.6]，修改时必须保持 12 维和正确关节顺序。</p>
+<h2 id="_7">初学者改参流程<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ol>
+<li>保持 policy.type 为 none。</li>
+<li>先把 motion.amplitude 降到 0.05 到 0.10。</li>
+<li>保持 motion.frequency 为 0.1，在 MuJoCo 中确认运动方向。</li>
+<li>只改一个参数再重跑，避免同时修改幅值、频率和 PD。</li>
+<li>用 monitor_lcm.sh --no-gui 检查 Y15_development_command 的 12 维目标是否连续。</li>
+<li>确认仿真稳定后，再逐步增加幅值。</li>
+</ol>
+<h2 id="_8">常见问题<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关节方向反了</td>
+<td>默认角或关节方向理解错误</td>
+<td>只给一个关节很小偏移，逐关节观察</td>
+</tr>
+<tr>
+<td>机器人抖动</td>
+<td>幅值、频率、Kp 或 Kd 过大</td>
+<td>先降低 amplitude 和 Kp</td>
+</tr>
+<tr>
+<td>hip 也在动</td>
+<td>动作索引写错</td>
+<td>检查 leg_id * 3 + joint 的索引</td>
+</tr>
+<tr>
+<td>没有命令</td>
+<td>未进入 DEVELOPMENT 或没有状态</td>
+<td>同时监控状态和命令通道</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">安全提示<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<p>实物测试前必须降低动作幅值，并确认每个关节方向、默认角、Kp、Kd 和动作周期。规则算法没有模型保护，参数错误会直接反映到关节命令。</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="4.development-mode.html" class="btn btn-neutral float-left" title="5.4 开发者模式"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="6.walk-onnx-sim.html" class="btn btn-neutral float-right" title="5.6 walk_algorithm ONNX 仿真部署">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="4.development-mode.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="6.walk-onnx-sim.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
