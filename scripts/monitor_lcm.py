@@ -806,9 +806,11 @@ class LCMChannelMonitor:
         # 通用消息处理器
         self.generic_handlers = {}
         
-    def _generic_handler(self, channel_name):
-        """创建通用消息处理器"""
+    def _generic_handler(self):
+        """创建通配消息处理器，使用回调中的真实通道名"""
         def handler(channel, data):
+            channel_name = channel
+
             # 记录消息
             if channel_name not in self.channels:
                 with self.channels_lock:
@@ -821,12 +823,12 @@ class LCMChannelMonitor:
             decoded_msg = None
             if TYPES_AVAILABLE:
                 try:
-                    if channel_name == "quad_JOINT_STATE":
+                    if channel_name in ("QUAD_JOINT_STATE", "quad_JOINT_STATE"):
                         decoded_msg = quad_joint_state_t.decode(data)
-                    elif channel_name == "quad_JOINT_COMMAND":
+                    elif channel_name in ("QUAD_JOINT_COMMAND", "quad_JOINT_COMMAND"):
                         # COMMAND 使用不同的消息类型
                         decoded_msg = quad_joint_command_t.decode(data)
-                    elif channel_name == "MICROSTRAIN_IMU_DATA":
+                    elif channel_name in ("QUAD_IMU_DATA", "MICROSTRAIN_IMU_DATA"):
                         decoded_msg = microstrain_lcmt.decode(data)
                     elif "development_state" in channel_name.lower():
                         decoded_msg = development_state_t.decode(data)
@@ -851,20 +853,10 @@ class LCMChannelMonitor:
             else:
                 self.lcm = lcm.LCM()
             
-            # 订阅所有已知的通道
-            known_channels = [
-                "quad_JOINT_STATE",
-                "quad_JOINT_COMMAND",
-                "MICROSTRAIN_IMU_DATA",
-                "state_estimator",
-                "Y15_development_state",
-                "Y15_development_command",
-            ]
-            
-            for channel in known_channels:
-                handler = self._generic_handler(channel)
-                self.lcm.subscribe(channel, handler)
-                self.generic_handlers[channel] = handler
+            # 使用正则订阅全部通道，行为接近 lcm-spy
+            handler = self._generic_handler()
+            self.lcm.subscribe(".*", handler)
+            self.generic_handlers[".*"] = handler
             
             self.running = True
             
