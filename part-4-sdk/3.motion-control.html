@@ -95,11 +95,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_4">运行方式</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_5">常用控制字段</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">运行结果</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_6">成功标志</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">常用控制字段</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_7">安全提示</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">成功标志</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">安全提示</a>
     </li>
     </ul>
                   </li>
@@ -176,11 +178,22 @@
 <pre><code class="language-bash">cd yobotics_sdk/build
 ./yobot_sport_client
 </code></pre>
+<h2 id="_5">运行结果<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<pre><code class="language-bash">键盘控制已启动：
+1: RECOVERY_STAND | 2: STAND_DOWN | 3: DAMP | 4: RL_WALK | 5: DEVELOPMENT
+移动键: 方向键
+左右横移: H/J
+QAZ 调站高: q增加  a减小  z归零
+WSX 调横滚: w增加  s减小  x归零
+EDC 调俯仰: e增加  d减小  c归零
+V: 退出程序
+模式切换 -&gt; 3
+</code></pre>
 <p>如需指定 LCM URL：</p>
 <pre><code class="language-bash">export YOBOTICS_LCM_URL="udpm://239.255.76.67:7667?ttl=255"
 ./yobot_sport_client
 </code></pre>
-<h2 id="_5">常用控制字段<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<h2 id="_6">常用控制字段<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
@@ -231,13 +244,14 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_6">成功标志<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>可复制控制流程：PASSIVE-&gt;DAMP-&gt;STAND_DOWN-&gt;RECOVERY_STAND...</p>
+<h2 id="_7">成功标志<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
 <ul>
 <li>控制器能收到 <code>QUAD_ROBOT_CONTROL</code>。</li>
 <li>状态回读通道能看到模式和速度命令变化。</li>
 <li>仿真或实物机器人按限幅后的速度响应。</li>
 </ul>
-<h2 id="_7">安全提示<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<h2 id="_8">安全提示<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
 <p>实物测试时从小速度开始，例如先测试低幅值 <code>vx</code>、<code>vy</code>、<code>vyaw</code>。不要在未验证情况下直接发送大速度、快速模式切换或机身姿态大幅命令。</p></div>
               
             </div>
@@ -278,6 +292,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

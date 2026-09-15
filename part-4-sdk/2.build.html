@@ -181,12 +181,21 @@ yobotics_sdk/build/yobot_http_server
 <p>SDK 默认使用 LCM 默认地址。如需指定地址：</p>
 <pre><code class="language-bash">export YOBOTICS_LCM_URL="udpm://239.255.76.67:7667?ttl=255"
 </code></pre>
-<p>SDK、控制器、仿真器和外部算法需要使用相同的 LCM URL。</p>
+<p>跨机控制用 ttl=255；与控制器、仿真、外部算法保持同一 URL。
+查看LCM环境变量是否设置成功</p>
+<pre><code class="language-bash">echo $YOBOTICS_LCM_URL
+</code></pre>
+<p><img alt="" src="image/1.png">
+SDK、控制器、仿真器和外部算法需要使用相同的 LCM URL，</p>
 <h2 id="_6">成功标志<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <ul>
-<li><code>cmake ..</code> 能找到 LCM。</li>
-<li><code>make -j4</code> 无编译错误。</li>
-<li><code>build/</code> 下生成 <code>yobot_sport_client</code>、<code>yobot_robot_state_client</code>、<code>yobot_http_server</code>。</li>
+<li><code>cmake ..</code> 能找到 LCM。
+<img alt="" src="image/res0.png"></li>
+<li><code>make -j4</code> 无编译错误。
+<img alt="" src="image/res0.0.png">
+<img alt="" src="image/res0.1.png"></li>
+<li><code>build/</code> 下生成 <code>yobot_sport_client</code>、<code>yobot_robot_state_client</code>、<code>yobot_http_server</code>。
+ <img alt="" src="image/res.png"></li>
 </ul>
 <h2 id="_7">常见问题<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
 <table>
@@ -250,6 +259,7 @@ yobotics_sdk/build/yobot_http_server
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

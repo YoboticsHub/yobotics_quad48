@@ -21,3 +21,47 @@
   background-color: #007acc;
   color: #ffffff;
 }
+
+/* 代码块复制按钮 */
+.code-copy-wrapper {
+  position: relative;
+}
+
+.rst-content .code-copy-wrapper pre code {
+  padding-right: 4.5rem;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #404040;
+  background: #ffffff;
+  border: 1px solid #c7c9cb;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.code-copy-wrapper:hover .code-copy-btn,
+.code-copy-btn:focus,
+.code-copy-btn.copied {
+  opacity: 1;
+}
+
+.code-copy-btn:hover,
+.code-copy-btn:focus {
+  background: #f0f0f0;
+  outline: none;
+}
+
+.code-copy-btn.copied {
+  color: #1a7f37;
+  border-color: #1a7f37;
+  background: #f0fff4;
+}

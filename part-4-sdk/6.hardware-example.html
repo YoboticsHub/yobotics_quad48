@@ -174,6 +174,9 @@
 </ul>
 <h2 id="_3">操作步骤<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <h3 id="1">1. 在机器人端启动控制器<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
+<pre><code class="language-bash">#ssh连接机器人
+ssh cat@机器人IP（例如：192.168.1.100）
+</code></pre>
 <pre><code class="language-bash">bash scripts/run_robot_controller.sh --config config.yaml
 </code></pre>
 <h3 id="2-sdk-lcm-url">2. 在 SDK 端设置 LCM URL<a class="headerlink" href="#2-sdk-lcm-url" title="Permanent link">¶</a></h3>
@@ -235,6 +238,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

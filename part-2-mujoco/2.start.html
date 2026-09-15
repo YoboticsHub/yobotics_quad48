@@ -158,9 +158,10 @@
 <p>本节说明如何启动 MuJoCo 仿真器和控制器，确认基础环境、模型资源和 LCM 通信可用。</p>
 <h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ul>
-<li>已激活 Python 环境，例如 <code>conda activate robot_controller</code>。</li>
+<li>已激活 Python 环境，例如 <code>conda activate robot_controller</code>（环境配置见1.2章节）。</li>
 <li><code>config_sim.yaml</code> 存在，并且 <code>simulation.enable_mujoco: true</code>。</li>
 <li><code>resources/</code>、<code>mujoco_sim/</code> 和控制器可执行文件存在。</li>
+<li>仿真必须用 config_sim.yaml，不要用 config.yaml。</li>
 </ul>
 <h2 id="_3">操作步骤<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <p>在项目根目录运行：</p>
@@ -262,6 +263,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

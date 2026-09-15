@@ -56,10 +56,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_3">软件依赖</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#conda">安装 Conda</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#conda_1">Conda 下载超时处理</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#_4">初次配置</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_5">成功标志</a>
@@ -224,63 +220,34 @@
 <tr>
 <td>CMake / Make / GCC</td>
 <td>编译控制器和 SDK</td>
-<td>系统包管理器安装</td>
+<td><code>bash scripts/check_cmake_make_gcc.sh</code> 或系统包管理器安装</td>
 </tr>
 </tbody>
 </table>
-<h2 id="conda">安装 Conda<a class="headerlink" href="#conda" title="Permanent link">¶</a></h2>
-<p>如果当前系统尚未安装 Conda，推荐先安装轻量版 Miniconda。以下命令适用于 Ubuntu / x86_64 本地仿真与开发环境：</p>
-<pre><code class="language-bash">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
-</code></pre>
-<p>安装过程中按提示确认安装路径，并允许初始化 shell。安装完成后，重新打开一个终端，或执行：</p>
-<pre><code class="language-bash">source ~/.bashrc
-</code></pre>
-<p>确认 Conda 已可用：</p>
-<pre><code class="language-bash">conda --version
-</code></pre>
-<h2 id="conda_1">Conda 下载超时处理<a class="headerlink" href="#conda_1" title="Permanent link">¶</a></h2>
-<p>执行 <code>bash scripts/setup_conda_env.sh</code> 时，脚本会创建 Python 3.8 环境，并从 <code>conda-forge</code> / pip 下载 MuJoCo、ONNX Runtime 等依赖。如果网络较慢或不稳定，可能出现下载慢、连接超时、<code>conda create</code> 或 <code>conda install</code> 长时间卡住等问题。</p>
-<p>遇到这类问题时，推荐先切换到清华 TUNA 镜像源。清华 TUNA 文档说明，可通过修改用户目录下的 <code>.condarc</code> 使用 Anaconda 仓库及 <code>conda-forge</code> 等第三方源镜像：</p>
-<pre><code class="language-bash">cat &gt; ~/.condarc &lt;&lt;'EOF'
-channels:
-  - defaults
-show_channel_urls: true
-default_channels:
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
-custom_channels:
-  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-EOF
-
-conda clean -i
-</code></pre>
-<p>换源后重新执行环境初始化：</p>
-<pre><code class="language-bash">bash scripts/setup_conda_env.sh
-conda activate robot_controller
-</code></pre>
-<p>如果后续需要恢复默认源，可以删除或备份 <code>~/.condarc</code>，然后重新执行：</p>
-<pre><code class="language-bash">conda clean -i
-</code></pre>
 <h2 id="_4">初次配置<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>执行脚本之前，需要安装 Anaconda 或 Miniconda（https://www.anaconda.com/products/distribution ）<br>
+<img alt="" src="images/step1.png">
+<img alt="" src="images/step2.png">
+<img alt="" src="images/step3.png"></p>
+<p>下载安装完成后：</p>
+<p>先创建并激活仿真 / 工具用的 conda 环境 <code>robot_controller</code>：</p>
 <pre><code class="language-bash">bash scripts/setup_conda_env.sh
 conda activate robot_controller
 </code></pre>
-<p>如果 Python LCM 绑定缺失：</p>
+<p>如果 Python 侧缺少 LCM 绑定（例如 <code>import lcm</code> 失败），再补装 Python LCM：</p>
 <pre><code class="language-bash">bash scripts/install_python_lcm.sh
 </code></pre>
-<p>如果多机通信或 LCM 收不到消息：</p>
+<p>如果多机通信或本机收不到 LCM 消息，再配置 LCM 多播 / 网卡相关网络（会改系统网络，仅在需要时执行）：</p>
 <pre><code class="language-bash">sudo bash scripts/setup_lcm_network.sh
 </code></pre>
 <h2 id="_5">成功标志<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
-<ul>
-<li><code>python3 -c "import mujoco"</code> 无报错。</li>
-<li><code>python3 -c "import lcm"</code> 无报错。</li>
-<li><code>bash scripts/monitor_lcm.sh --no-gui</code> 可以启动。</li>
-<li>C++ SDK 可以在 <code>yobotics_sdk/build/</code> 下编译生成示例程序。</li>
-</ul>
+<p>（1）robot_controller conda 环境下，执行<code>python3 -c "import mujoco"</code> 无报错。</p>
+<p><img alt="" src="images/flag_s1.png"></p>
+<p>（2）robot_controller conda 环境下，执行<code>python3 -c "import lcm"</code> 无报错。</p>
+<p><img alt="" src="images/flag_s2.png"></p>
+<p>（3）<code>bash scripts/monitor_lcm.sh --no-gui</code> 可以启动。</p>
+<p><img alt="" src="images/res_img1.png"></p>
+<p>（4）C++ SDK 可以在 <code>yobotics_sdk/build/</code> 下编译生成示例程序(详细编译步骤见1.4章节)。</p>
 <h2 id="_6">安全提示<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <p>实物运行不只依赖软件环境。运行前还必须确认机器人电池、急停、IMU、SPI 设备、网卡、多播路由和配置文件都与现场设备一致。</p></div>
               
@@ -322,6 +289,7 @@ conda activate robot_controller
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

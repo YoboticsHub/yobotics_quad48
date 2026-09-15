@@ -166,12 +166,15 @@
 </code></pre>
 <p><img alt="图片" src="images/4.2.png">
 指定 LCM URL：</p>
-<pre><code class="language-bash">bash scripts/monitor_lcm.sh --lcm-url "udpm://239.255.76.67:7667?ttl=1"
+<pre><code class="language-bash">bash scripts/monitor_lcm.sh --lcm-url "udpm://239.255.76.67:7667?ttl=255"
 </code></pre>
 <p>也可以使用 LCM 官方工具：</p>
 <pre><code class="language-bash">bash scripts/launch_lcm_spy.sh
 </code></pre>
 <p><img alt="图片" src="images/6.png"></p>
+<p>如果多机通信或 LCM 收不到消息（通过 SSH 远程登录机器人设备，LCM 程序可以正常启动、收发控制消息；但同一局域网内的本地电脑无法接收 LCM 消息，执行以下脚本）：</p>
+<pre><code class="language-bash">sudo bash scripts/setup_lcm_network.sh
+</code></pre>
 <h2 id="_2">控制器日志<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>默认日志路径：</p>
 <pre><code class="language-text">log/robot_log.txt
@@ -270,6 +273,7 @@ rl_run:
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

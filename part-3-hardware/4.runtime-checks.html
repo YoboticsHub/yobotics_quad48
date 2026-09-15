@@ -200,18 +200,19 @@
 <li>SDK、WebRTC、遥控器是否出现互相冲突的控制输入。</li>
 </ul>
 <h2 id="_4">安全停止<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<p>前台运行时：</p>
-<pre><code class="language-bash">Ctrl + C
-</code></pre>
-<p>如果机器人仍在运动，应先通过遥控器、SDK、WebRTC 或上位机让机器人进入安全状态，再停止控制器。</p>
-<h2 id="_5">异常处理<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
-<p>出现姿态异常、腿部抽动、控制失联、日志持续报错、异响、异味或人员靠近时：</p>
+<p>正常结束或需要停机时，按以下顺序操作。不要先 <code>Ctrl+C</code> 停止控制器——若机器人仍在运动，直接杀进程可能导致关节失稳。</p>
 <ol>
-<li>立即发送停止、阻尼或 passive 命令。</li>
-<li>无法停止时按下急停。</li>
+<li>通过遥控器、SDK 或上位机发 <code>DAMP</code> / <code>PASSIVE</code> / 停止命令（优先 <code>DAMP</code>，API 编号见 4.3）。</li>
+<li>若仍失控，按下机器人侧面的硬件急停。</li>
+<li>确认机器人静止后，停止外部算法进程（如有）。</li>
+<li>最后在控制器前台按 <code>Ctrl+C</code> 退出。</li>
+</ol>
+<h2 id="_5">异常处理<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>出现姿态异常、腿部抽动、控制失联、日志持续报错、异响、异味或人员靠近时，<strong>先按上文「安全停止」第 1～3 步执行</strong>，然后：</p>
+<ol>
 <li>确认机器人停止后关闭总电源。</li>
 <li>检查电池、线缆、接口、SPI、IMU 和日志。</li>
-<li>未明确原因前不要重复运行。</li>
+<li>未查明原因前不要重复运行。</li>
 </ol>
 <h2 id="_6">禁止操作<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <ul>
@@ -260,6 +261,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

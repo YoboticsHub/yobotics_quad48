@@ -154,7 +154,7 @@
 <p>Quad48 控制框架用于连接 MuJoCo 仿真、实物控制器、SDK 高层接口、LCM 通信和外部算法开发包。用户可以先在仿真中验证模型和算法，再把相同控制逻辑切换到真实机器人。</p>
 <h2 id="_2">工作关系<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>仿真和实物共用控制器、FSM、RL 策略和安全检查逻辑。两者主要区别在桥接层和配置文件：仿真读取 <code>config_sim.yaml</code>，实物读取 <code>config.yaml</code>。</p>
-<pre><code class="language-text">    SDK / 外部算法
+<pre><code class="language-text">SDK / WebRTC / 外部算法
         |
         v
       LCM
@@ -166,6 +166,7 @@ YBT_Controller + FSM + SafetyChecker
         |
         +-- HardwareBridge   -&gt; SPI / IMU / 实物电机
 </code></pre>
+<p>图中自上而下表示控制数据流：上层通过 SDK、WebRTC 或外部算法发出命令；经 LCM 进入主控制器（含 FSM 模式切换与安全检查）；再按场景走仿真桥接到 MuJoCo，或走硬件桥接到 SPI / IMU / 电机。仿真与实物共用中间这一层，主要差别在最下方的桥接与配置。</p>
 <h2 id="_3">操作建议<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <ol>
 <li>初次使用先阅读第一部分，完成环境配置。</li>
@@ -215,6 +216,7 @@ YBT_Controller + FSM + SafetyChecker
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

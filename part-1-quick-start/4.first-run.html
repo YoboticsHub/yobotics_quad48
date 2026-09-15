@@ -62,11 +62,11 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#1">1. 准备环境</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#2-mujoco">2. 启动 MuJoCo 仿真</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2-mujoco-22">2. 启动 MuJoCo 仿真（详情见2.2 启动仿真）</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#3-lcm">3. 检查 LCM 通信</a>
+    <li class="toctree-l3"><a class="reference internal" href="#3-lcm">3. 检查 LCM 通信（另开终端）</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#4-sdk">4. 编译并运行 SDK 示例</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4-sdk-sdk-42">4. 编译并运行 SDK 示例（SDK 编译详见4.2章节）</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#5">5. 实物运行前检查</a>
     </li>
@@ -168,8 +168,8 @@
 <p>本节给出第一次使用软件包时的推荐顺序，避免直接跳到实物运行造成排查困难或安全风险。</p>
 <h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ul>
-<li>已进入项目根目录。</li>
-<li>已安装 Conda；如未安装，请先参考 1.2 系统要求中的 Conda 安装步骤。</li>
+<li>已进入项目根目录（详见1.3软件包目录-目录结构）。</li>
+<li>已安装 Conda 或具备 Python 运行环境（详情见1.2章节）。</li>
 <li>当前机器可以访问软件包中的 <code>scripts/</code>、<code>config_sim.yaml</code> 和 <code>resources/</code>。</li>
 </ul>
 <h2 id="_3">操作步骤<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
@@ -177,19 +177,23 @@
 <pre><code class="language-bash">bash scripts/setup_conda_env.sh
 conda activate robot_controller
 </code></pre>
-<h3 id="2-mujoco">2. 启动 MuJoCo 仿真<a class="headerlink" href="#2-mujoco" title="Permanent link">¶</a></h3>
+<h3 id="2-mujoco-22">2. 启动 MuJoCo 仿真（详情见2.2 启动仿真）<a class="headerlink" href="#2-mujoco-22" title="Permanent link">¶</a></h3>
 <pre><code class="language-bash">bash scripts/start_mujoco.sh --config config_sim.yaml
 </code></pre>
-<h3 id="3-lcm">3. 检查 LCM 通信<a class="headerlink" href="#3-lcm" title="Permanent link">¶</a></h3>
+<h3 id="3-lcm">3. 检查 LCM 通信（另开终端）<a class="headerlink" href="#3-lcm" title="Permanent link">¶</a></h3>
+<pre><code class="language-bash">conda activate robot_controller
+</code></pre>
 <pre><code class="language-bash">bash scripts/monitor_lcm.sh --no-gui
 </code></pre>
-<h3 id="4-sdk">4. 编译并运行 SDK 示例<a class="headerlink" href="#4-sdk" title="Permanent link">¶</a></h3>
+<h3 id="4-sdk-sdk-42">4. 编译并运行 SDK 示例（SDK 编译详见4.2章节）<a class="headerlink" href="#4-sdk-sdk-42" title="Permanent link">¶</a></h3>
 <pre><code class="language-bash">cd yobotics_sdk
 mkdir -p build
 cd build
 cmake ..
 make -j4
 ./yobot_sport_client
+</code></pre>
+<pre><code class="language-bash">./yobot_sport_client 启动后行为见4.3章节
 </code></pre>
 <h3 id="5">5. 实物运行前检查<a class="headerlink" href="#5" title="Permanent link">¶</a></h3>
 <p>切换到真实机器人前，先核对：</p>
@@ -203,7 +207,7 @@ make -j4
 <ul>
 <li>MuJoCo 仿真器和控制器持续运行。</li>
 <li>LCM 监控能看到通道和消息频率。</li>
-<li>SDK 示例可以发送控制命令或读取状态。</li>
+<li>SDK 示例可以发送控制命令或读取状态，对应的仿真机器人有相符动作行为。</li>
 <li>控制器日志没有资源缺失、库缺失、Python 导入失败或通信初始化失败。</li>
 </ul>
 <h2 id="_5">安全提示<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
@@ -247,6 +251,7 @@ make -j4
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

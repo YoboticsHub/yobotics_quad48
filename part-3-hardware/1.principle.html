@@ -225,8 +225,8 @@
 <p>仿真使用 <code>config_sim.yaml</code>：<code>simulation.enable_mujoco: true</code>，电机状态和命令通过 LCM 在仿真桥与控制器之间传递。实物使用 <code>config.yaml</code>：关闭 MuJoCo，由 SPI 设备读取真实电机状态并下发命令；IMU 则由独立的串口驱动读取。</p>
 <h3 id="e15-y15">E15 / Y15 实物系统架构示意<a class="headerlink" href="#e15-y15" title="Permanent link">¶</a></h3>
 <p>下图用于说明 E15 和 Y15 实物部署时，控制器、SPI 通信板、IMU、LCM / SDK 和电机之间的整体关系。不同机型的设备节点、SPI 类型和 IMU 类型需要以现场配置为准。</p>
-<p><code>E15:</code>
-<img alt="E15 系统架构" src="images/e15-system-architecture.png"></p>
+<p><code>E15:</code></p>
+<p><img alt="E15 系统架构" src="images/e15-system-architecture.png"></p>
 <p><img alt="E15 SPI_IMU" src="images/E15%20spi_and_imu.png"></p>
 <p><code>Y15:</code></p>
 <p><img alt="Y15 系统架构" src="images/y15-system-architecture.png"></p>
@@ -320,6 +320,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

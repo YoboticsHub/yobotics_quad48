@@ -186,7 +186,8 @@ tail -f log/robot_log.txt
   enable_motor_trace_logging: false
   motor_trace_log_path: "log/motor_trace.csv"
 </code></pre>
-<p>该日志用于分析关节期望位置、实际位置、速度和力矩等数据。</p>
+<p>无参数时默认读取脚本内置路径（通常为 log/log_RL_data.csv / log/motor_trace.csv），
+该日志用于分析关节期望位置、实际位置、速度和力矩等数据。</p>
 <h2 id="_4">绘图方式<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <p>普通 CSV / RL 数据：</p>
 <pre><code class="language-bash">python3 scripts/data_viewer.py
@@ -244,6 +245,7 @@ python3 scripts/motor_trace_viewer.py log/motor_trace.csv
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
