@@ -50,13 +50,11 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">框架组成</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">工作关系</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">工作关系</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">操作建议</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">操作建议</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_5">安全提示</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">安全提示</a>
     </li>
     </ul>
                   </li>
@@ -154,56 +152,9 @@
                 <div><h1 id="11">1.1 软件框架介绍<a class="headerlink" href="#11" title="Permanent link">¶</a></h1>
 <h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <p>Quad48 控制框架用于连接 MuJoCo 仿真、实物控制器、SDK 高层接口、LCM 通信和外部算法开发包。用户可以先在仿真中验证模型和算法，再把相同控制逻辑切换到真实机器人。</p>
-<h2 id="_2">框架组成<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>模块</th>
-<th>目录</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>主控制器</td>
-<td><code>user/YBT_Controller/</code></td>
-<td>管理 FSM 控制模式、RL 策略、开发模式和安全检查</td>
-</tr>
-<tr>
-<td>桥接层</td>
-<td><code>robot/</code></td>
-<td>区分 MuJoCo 仿真桥接和实物硬件桥接</td>
-</tr>
-<tr>
-<td>公共控制模块</td>
-<td><code>common/</code></td>
-<td>腿部控制、状态估计、通信接口、日志工具</td>
-</tr>
-<tr>
-<td>MuJoCo 仿真</td>
-<td><code>mujoco_sim/</code></td>
-<td>通过 LCM 与控制器交换关节状态、关节命令和 IMU 数据</td>
-</tr>
-<tr>
-<td>SDK</td>
-<td><code>yobotics_sdk/</code></td>
-<td>封装底层 LCM 通信，提供运动控制、状态读取和 HTTP 示例</td>
-</tr>
-<tr>
-<td>外部算法</td>
-<td><code>external_algorithms/</code></td>
-<td>通过开发者模式接入 Python 自研算法或 ONNX 模型</td>
-</tr>
-<tr>
-<td>LCM 类型</td>
-<td><code>lcm-types/</code></td>
-<td>定义控制、状态、开发模式和关节消息结构</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_3">工作关系<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h2 id="_2">工作关系<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>仿真和实物共用控制器、FSM、RL 策略和安全检查逻辑。两者主要区别在桥接层和配置文件：仿真读取 <code>config_sim.yaml</code>，实物读取 <code>config.yaml</code>。</p>
-<pre><code class="language-text">SDK / WebRTC / 外部算法
+<pre><code class="language-text">    SDK / 外部算法
         |
         v
       LCM
@@ -215,7 +166,7 @@ YBT_Controller + FSM + SafetyChecker
         |
         +-- HardwareBridge   -&gt; SPI / IMU / 实物电机
 </code></pre>
-<h2 id="_4">操作建议<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h2 id="_3">操作建议<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <ol>
 <li>初次使用先阅读第一部分，完成环境配置。</li>
 <li>新策略或新算法先进入第二部分，在 MuJoCo 中验证。</li>
@@ -223,7 +174,7 @@ YBT_Controller + FSM + SafetyChecker
 <li>高层业务控制优先使用第四部分 SDK。</li>
 <li>需要直接控制关节或接入自研算法时阅读第五部分。</li>
 </ol>
-<h2 id="_5">安全提示<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<h2 id="_4">安全提示<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <p>不要绕过仿真验证直接运行实物。实物机器人运行时，错误模型、错误关节顺序、异常 LCM 通道或过大的 PD 参数都可能导致机器人摔倒、撞击或损坏。</p></div>
               
             </div>
