@@ -161,7 +161,7 @@
 <h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ul>
 <li>控制器已运行。</li>
-<li>SDK 已编译完成。</li>
+<li>SDK 已编译完成（详见4.2章节）。</li>
 <li><code>QUAD_ROBOT_STATE</code> 通道与控制器配置一致。</li>
 </ul>
 <h2 id="_3">示例程序<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
@@ -179,6 +179,7 @@
 <pre><code class="language-bash">export YOBOTICS_LCM_URL="udpm://239.255.76.67:7667?ttl=255"
 ./yobot_robot_state_client
 </code></pre>
+<p><img alt="" src="image/res_3.png"></p>
 <h2 id="_5">可读取状态<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
 <table>
 <thead>
@@ -209,8 +210,8 @@
 <h2 id="_6">成功标志<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <ul>
 <li>程序持续输出状态。</li>
-<li>模式、速度、姿态等字段随控制器状态变化。</li>
-<li>LCM 监控中可见 <code>QUAD_ROBOT_STATE</code>。</li>
+<li>模式、速度、姿态等字段随控制器状态变化（详见4.3章节）。</li>
+<li>LCM 监控中可见 <code>QUAD_ROBOT_STATE</code>（详见2.4章节）。</li>
 </ul>
 <h2 id="_7">常见问题<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
 <table>
@@ -223,7 +224,7 @@
 <tbody>
 <tr>
 <td>程序无输出</td>
-<td>检查控制器是否启动</td>
+<td>检查控制器是否启动/LCM URL是否与控制器一致</td>
 </tr>
 <tr>
 <td>状态频率很低</td>
@@ -274,6 +275,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

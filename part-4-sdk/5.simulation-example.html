@@ -97,13 +97,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#_3">操作步骤</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#1">1. 启动仿真</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1-1">1. 启动仿真（终端窗口1）</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#2-lcm">2. 监控 LCM</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2-lcm2">2. 监控 LCM（终端窗口2）</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#3-sdk">3. 运行 SDK 运动控制</a>
+    <li class="toctree-l3"><a class="reference internal" href="#3-sdk-3">3. 运行 SDK 运动控制（终端窗口3）</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#4-sdk">4. 运行 SDK 状态读取</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4-sdk-4">4. 运行 SDK 状态读取（终端窗口4）</a>
     </li>
         </ul>
     </li>
@@ -168,31 +168,31 @@
 <p>本节说明如何用 SDK 控制 MuJoCo 仿真，适合作为高层二次开发的第一步验证。</p>
 <h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ul>
-<li>MuJoCo 仿真已启动。</li>
+<li>MuJoCo 仿真可启动。</li>
 <li>SDK 已编译完成。</li>
 <li>SDK 与仿真器、控制器使用同一个 LCM URL。</li>
 </ul>
 <h2 id="_3">操作步骤<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
-<h3 id="1">1. 启动仿真<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
-<pre><code class="language-bash">bash scripts/start_mujoco.sh --config config_sim.yaml
-</code></pre>
-<pre><code class="language-bash"># 如果mujoco安装在conda环境下,先从base切到conda环境,再执行上方脚本
+<h3 id="1-1">1. 启动仿真（终端窗口1）<a class="headerlink" href="#1-1" title="Permanent link">¶</a></h3>
+<pre><code class="language-bash"># 如果mujoco安装在conda环境下,先从base切到conda环境,再执行下方脚本
 conda env list 
 conda activate robot_controller
 </code></pre>
-<h3 id="2-lcm">2. 监控 LCM<a class="headerlink" href="#2-lcm" title="Permanent link">¶</a></h3>
+<pre><code class="language-bash">bash scripts/start_mujoco.sh --config config_sim.yaml
+</code></pre>
+<h3 id="2-lcm2">2. 监控 LCM（终端窗口2）<a class="headerlink" href="#2-lcm2" title="Permanent link">¶</a></h3>
 <pre><code class="language-bash">bash scripts/monitor_lcm.sh --no-gui
 </code></pre>
 <pre><code class="language-bash"># 如果lcm安装在conda环境下,先从base切到conda环境,再执行上方脚本
 conda env list 
 conda activate robot_controller
 </code></pre>
-<h3 id="3-sdk">3. 运行 SDK 运动控制<a class="headerlink" href="#3-sdk" title="Permanent link">¶</a></h3>
+<h3 id="3-sdk-3">3. 运行 SDK 运动控制（终端窗口3）<a class="headerlink" href="#3-sdk-3" title="Permanent link">¶</a></h3>
 <pre><code class="language-bash">cd yobotics_sdk/build
 ./yobot_sport_client
 </code></pre>
 <p><img alt="" src="image/res_2.png"></p>
-<h3 id="4-sdk">4. 运行 SDK 状态读取<a class="headerlink" href="#4-sdk" title="Permanent link">¶</a></h3>
+<h3 id="4-sdk-4">4. 运行 SDK 状态读取（终端窗口4）<a class="headerlink" href="#4-sdk-4" title="Permanent link">¶</a></h3>
 <p>另开一个终端：</p>
 <pre><code class="language-bash">cd yobotics_sdk/build
 ./yobot_robot_state_client
@@ -200,7 +200,7 @@ conda activate robot_controller
 <p><img alt="" src="image/res_3.png"></p>
 <h2 id="_4">成功标志<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <ul>
-<li>MuJoCo Viewer 中机器人对 SDK 命令有响应。</li>
+<li>MuJoCo Viewer 中机器人对 SDK 命令有响应，如能从趴/阻尼到站立再走动。</li>
 <li><code>monitor_lcm.sh</code> 能看到 <code>QUAD_ROBOT_CONTROL</code> 和 <code>QUAD_ROBOT_STATE</code>。</li>
 <li>状态读取示例输出随控制命令变化。</li>
 </ul>
@@ -268,6 +268,7 @@ conda activate robot_controller
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

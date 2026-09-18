@@ -185,7 +185,7 @@
 </table>
 <h2 id="_2">推荐使用顺序<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ol>
-<li>先启动仿真或实物控制器。</li>
+<li>先启动仿真或实物控制器（仿真详见2.2/4.5章节，实物见3.3/4.6章节）。</li>
 <li>运行 <code>yobot_robot_state_client</code>，确认状态可读。</li>
 <li>运行 <code>yobot_sport_client</code>，发送小幅控制命令。</li>
 <li>需要集成 HTTP 时，再启动 <code>yobot_http_server</code>。</li>
@@ -223,7 +223,7 @@
 </tbody>
 </table>
 <h2 id="_4">安全提示<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<p>SDK Demo 适合验证链路，不建议直接作为无人值守业务程序使用。正式集成时应加入状态确认、超时保护、限幅和异常停止逻辑。</p></div>
+<p>SDK Demo 适合验证链路，不建议直接作为无人值守业务程序使用。正式集成时应加入状态确认、超时保护、限幅和异常停止逻辑（详见3.4章节）。</p></div>
               
             </div>
           </div><footer>
@@ -263,6 +263,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

@@ -216,6 +216,10 @@ YBT_Controller
 </tr>
 </tbody>
 </table>
+<p>注意：
+（1）Y15_development_* 是历史命名/通道前缀，不是仅 Y15 机型；
+（2）E15 / Y15 实物开发模式都用这两条通道（与 spi_type 无关）；
+（3）若改通道名，控制器、外部算法 config.yaml、robot_id 必须一起改（详见 5.3 / 5.4章节）。</p>
 <h2 id="_4">操作建议<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <ol>
 <li>修改通道名前，先确认所有通信端都同步修改。</li>
@@ -264,6 +268,7 @@ YBT_Controller
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

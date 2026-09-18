@@ -167,7 +167,7 @@
 <h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ul>
 <li>实物控制器已通过 <code>bash scripts/run_robot_controller.sh --config config.yaml</code> 启动。</li>
-<li>机器人已进入安全姿态。</li>
+<li>机器人已进入安全姿态,例如当前机器人处于被动/阻尼状态。</li>
 <li>SDK 机器与机器人端网络互通。</li>
 <li>SDK 与控制器使用同一个 LCM URL。</li>
 <li>速度限幅、安全检查和急停已确认。</li>
@@ -190,7 +190,9 @@ ssh cat@机器人IP（例如：192.168.1.100）
 <pre><code class="language-bash">cd yobotics_sdk/build
 ./yobot_sport_client
 </code></pre>
-<p>建议先从低速度、短时间命令开始测试。</p>
+<p><img alt="" src="image/res_2.png">
+推荐操作顺序：DAMP-&gt;RECOVERY_STAND-&gt;RL_WALK-&gt;STAND_DOWN，
+建议先从低速度、短时间命令开始测试。</p>
 <h2 id="_4">成功标志<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <ul>
 <li>状态读取稳定。</li>
@@ -238,6 +240,7 @@ ssh cat@机器人IP（例如：192.168.1.100）
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

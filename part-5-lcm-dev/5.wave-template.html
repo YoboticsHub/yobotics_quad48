@@ -164,7 +164,7 @@
 <p><code>wave_algorithm</code> 是基于规则的关节控制模板，适合学习如何读取开发模式状态、生成 12 维关节目标并发布 PD 命令。</p>
 <h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ul>
-<li>控制器已进入 <code>DEVELOPMENT</code> 模式。</li>
+<li>控制器已进入 <code>DEVELOPMENT</code> 模式（详见5.4章节）。</li>
 <li>LCM 通道配置一致。</li>
 <li>已完成 MuJoCo 仿真启动。</li>
 </ul>
@@ -230,7 +230,7 @@ python3 run_algorithm.py --config config.yaml
 <h2 id="_7">初学者改参流程<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
 <ol>
 <li>保持 policy.type 为 none。</li>
-<li>先把 motion.amplitude 降到 0.05 到 0.10。</li>
+<li>先把 motion.amplitude 降到 0.05 到 0.10（首次运行前务必先改 motion.amplitude，不要直接用 0.5）。</li>
 <li>保持 motion.frequency 为 0.1，在 MuJoCo 中确认运动方向。</li>
 <li>只改一个参数再重跑，避免同时修改幅值、频率和 PD。</li>
 <li>用 monitor_lcm.sh --no-gui 检查 Y15_development_command 的 12 维目标是否连续。</li>
@@ -309,6 +309,7 @@ python3 run_algorithm.py --config config.yaml
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

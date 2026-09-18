@@ -223,7 +223,7 @@
 <ol>
 <li>将算法目录、配置文件和模型文件放入机器人端软件包。</li>
 <li>确认算法配置中的 LCM URL、<code>robot_id</code>、状态通道和命令通道与 <code>config.yaml</code> 一致。</li>
-<li>启动实物控制器：</li>
+<li>将软件包发送到机器人端，机器人端启动实物控制器：</li>
 </ol>
 <pre><code class="language-bash">bash scripts/run_robot_controller.sh --config config.yaml
 </code></pre>
@@ -326,6 +326,7 @@ tail -f log/robot_log.txt
 </tr>
 </tbody>
 </table>
+<p>注意：robot_id 与控制器配置一致（示例常为 "Y15"，与机型无关；详见 5.1 / 5.4章节）</p>
 <h2 id="_8">异常处理<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
 <table>
 <thead>
@@ -399,6 +400,7 @@ tail -f log/robot_log.txt
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

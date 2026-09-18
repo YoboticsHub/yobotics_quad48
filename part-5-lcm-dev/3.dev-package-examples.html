@@ -199,11 +199,11 @@
 </tr>
 <tr>
 <td><code>walk_algorithm/</code></td>
-<td>基于 ONNX 的强化学习行走示例</td>
+<td>基于 ONNX 的强化学习行走示例（详见5.6章节）</td>
 </tr>
 <tr>
 <td><code>wave_algorithm/</code></td>
-<td>基于规则的关节正弦波控制示例</td>
+<td>基于规则的关节正弦波控制示例（详见5.5章节）</td>
 </tr>
 </tbody>
 </table>
@@ -399,6 +399,7 @@
 </tr>
 </tbody>
 </table>
+<p>注意：示例默认常为 "Y15"，但这是匹配用字符串，不等于机型只能是 Y15；</p>
 <h2 id="_9">安全提示<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
 <p>外部算法应先在 MuJoCo 中运行。确认状态接收、命令发布、关节顺序、动作幅值和退出逻辑正常后，再考虑实物部署。</p></div>
               
@@ -440,6 +441,7 @@
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
