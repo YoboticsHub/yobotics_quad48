@@ -1,0 +1,108 @@
+/* 左侧导航：当前选中项 */
+.wy-menu-vertical li.current > a,
+.wy-menu-vertical li.on a {
+  background-color: #007acc;
+  color: #ffffff;
+}
+
+/* 当前展开的父级菜单 */
+.wy-menu-vertical li.current {
+  background-color: #339999;
+}
+
+/* 鼠标悬停 */
+.wy-menu-vertical a:hover {
+  background-color: #005f99;
+  color: #ffffff;
+}
+
+/* 子菜单当前项 */
+.wy-menu-vertical li.current a.current {
+  background-color: #007acc;
+  color: #ffffff;
+}
+
+/* 代码块复制按钮 */
+.code-copy-wrapper {
+  position: relative;
+}
+
+.rst-content .code-copy-wrapper pre code {
+  padding-right: 4.5rem;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #404040;
+  background: #ffffff;
+  border: 1px solid #c7c9cb;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.code-copy-wrapper:hover .code-copy-btn,
+.code-copy-btn:focus,
+.code-copy-btn.copied {
+  opacity: 1;
+}
+
+.code-copy-btn:hover,
+.code-copy-btn:focus {
+  background: #f0f0f0;
+  outline: none;
+}
+
+.code-copy-btn.copied {
+  color: #1a7f37;
+  border-color: #1a7f37;
+  background: #f0fff4;
+}
+
+/* Language switcher */
+.language-switcher {
+  margin: 12px 14px 2px;
+  text-align: center;
+}
+
+.language-switcher__link {
+  display: block;
+  padding: 8px 12px;
+  color: #1f2937;
+  background: #fff7cc;
+  border: 1px solid #f2b705;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+}
+
+.language-switcher__link:hover,
+.language-switcher__link:focus {
+  color: #111827;
+  background: #ffe680;
+  border-color: #ffcc00;
+  text-decoration: none;
+  outline: none;
+}
+
+@media screen and (max-width: 768px) {
+  .language-switcher {
+    margin: 10px 12px;
+  }
+
+  .language-switcher__link {
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+}

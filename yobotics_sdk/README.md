@@ -1,29 +1,35 @@
 # yobotics_sdk_e15_260408_lib_generate
 
-本工程包含 E15 SDK、示例程序，以及基于 HTTP 的运动控制与导航控制示例服务。
+This project contains the E15 SDK, example programs, and an HTTP example service for motion control and navigation control.
 
-## 目录说明
-- `include/`：SDK 头文件
-- `lib/libyobotics_sdk.a`：静态库
-- `example/http_server.cpp`：E15 HTTP 控制服务示例
-- `example/sport_client.cpp`：运动控制示例
-- `example/robot_state_client.cpp`：状态订阅示例
-- `dist/`：打包输出目录
-- `tools/`：构建与部署脚本
+Chinese source: [README.zh.md](./README.zh.md). A short SDK integration guide is available at [SDK_User_Guide.md](./SDK_User_Guide.md).
 
-## 编译示例
+## Directory Overview
+
+- `include/`: SDK headers
+- `lib/libyobotics_sdk.a`: static library
+- `example/http_server.cpp`: E15 HTTP control-service example
+- `example/sport_client.cpp`: motion-control example
+- `example/robot_state_client.cpp`: state-subscription example
+- `dist/`: package output directory
+- `tools/`: build and deployment scripts
+
+## Build Examples
+
 ```bash
 mkdir -p build && cd build
 cmake ..
 make -j4
 ```
 
-默认示例可执行文件名：
+Default example executables:
+
 - `yobot_sport_client`
 - `yobot_robot_state_client`
 - `yobot_http_server`
 
-## 安装 SDK
+## Install the SDK
+
 ```bash
 mkdir -p build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/opt/yobotics_sdk_e15_260408
@@ -31,31 +37,37 @@ make -j4
 sudo make install
 ```
 
-## 业务程序直接链接静态库
+## Link the Static Library Directly
+
 ```bash
 g++ -std=c++11 your_app.cpp \
   -I./include -I./include/common -I./include/robot -I./include/robot/channel \
   ./lib/libyobotics_sdk.a -llcm -lpthread -o your_app
 ```
 
-## HTTP 控制服务说明
-默认配置：
-- 服务地址：`http://192.168.1.100:8080`
-- 默认 Token：`E15_Robot_Secure_Token_123`
-- 请求头：`Authorization: Bearer <token>`
+## HTTP Control Service
 
-可通过环境变量调整：
+Default configuration:
+
+- Service address: `http://192.168.1.100:8080`
+- Default token: `E15_Robot_Secure_Token_123`
+- Request header: `Authorization: Bearer <token>`
+
+Environment variables:
+
 - `SERVER_HOST`
 - `SERVER_PORT`
 - `ROBOT_HTTP_TOKEN`
 - `YOBOTICS_LCM_URL`
 
-### 通用请求头
+### Common Request Header
+
 ```bash
 -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json"
 ```
 
-PowerShell 示例：
+PowerShell example:
+
 ```powershell
 $headers = @{
   Authorization = "Bearer E15_Robot_Secure_Token_123"
@@ -65,18 +77,21 @@ $headers = @{
 
 ---
 
-## 运动控制接口
+## Motion Control API
 
-### 1. 查询整体状态
+### 1. Query Overall Status
+
 ```bash
 curl -X GET "http://192.168.1.34:8080/control/status" -H "Authorization: Bearer E15_Robot_Secure_Token_123"
 ```
 
-### 2. 更新运动控制命令
-接口：`POST /control/motion`
+### 2. Update Motion Control Command
 
-支持字段：
-- `mode`：`passive` / `damp` / `recovery_stand` / `stand_down` / `rl_walk` / `development`
+Endpoint: `POST /control/motion`
+
+Supported fields:
+
+- `mode`: `passive` / `damp` / `recovery_stand` / `stand_down` / `rl_walk` / `development`
 - `vx`
 - `vy`
 - `vyaw`
@@ -84,103 +99,103 @@ curl -X GET "http://192.168.1.34:8080/control/status" -H "Authorization: Bearer 
 - `roll`
 - `pitch`
 
-说明：
-- 当 `mode` 不是 `rl_walk` 或 `development` 时，速度和姿态相关量会被自动清零。
-- 当前限幅规则：
-  - `vx`：`[-1.5, 1.5]`
-  - `vy`：`[-1.0, 1.0]`
-  - `vyaw`：`[-1.5, 1.5]`
-  - `body_height`：`[-0.20, 0.20]`
-  - `roll`：`[-0.50, 0.50]`
-  - `pitch`：`[-0.50, 0.50]`
+Notes:
 
-### 2.1 切换阻尼模式
+- When `mode` is not `rl_walk` or `development`, velocity and attitude-related values are cleared automatically.
+- Current limits: `vx` `[-1.5, 1.5]`, `vy` `[-1.0, 1.0]`, `vyaw` `[-1.5, 1.5]`, `body_height` `[-0.20, 0.20]`, `roll` `[-0.50, 0.50]`, `pitch` `[-0.50, 0.50]`.
+
+### 2.1 Switch to Damping Mode
+
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"mode\":\"damp\"}"
+curl -X POST "http://192.168.1.100:8080/control/motion" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{"mode":"damp"}"
 ```
 
-### 2.2 恢复站立
+### 2.2 Recover to Stand
+
 ```bash
-curl -X POST "http://192.168.1.34:8080/control/motion" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"mode\":\"recovery_stand\"}"
+curl -X POST "http://192.168.1.34:8080/control/motion" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{"mode":"recovery_stand"}"
 ```
 
-### 2.3 进入 RL 行走并给前进速度
+### 2.3 Enter RL Walk and Send Forward Velocity
+
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"mode\":\"rl_walk\",\"vx\":0.3,\"vy\":0.0,\"vyaw\":0.0}"
+curl -X POST "http://192.168.1.100:8080/control/motion" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"mode":"rl_walk","vx":0.3,"vy":0.0,"vyaw":0.0}"
 ```
 
-### 2.4 RL 行走横移 + 转向
+### 2.4 RL Walk Lateral Motion and Turning
+
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"mode\":\"rl_walk\",\"vx\":0.1,\"vy\":0.2,\"vyaw\":0.3}"
+curl -X POST "http://192.168.1.100:8080/control/motion" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"mode":"rl_walk","vx":0.1,"vy":0.2,"vyaw":0.3}"
 ```
 
-### 2.5 调整机身高度与姿态
+### 2.5 Adjust Body Height and Attitude
+
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"mode\":\"development\",\"body_height\":0.05,\"roll\":0.05,\"pitch\":-0.05}"
+curl -X POST "http://192.168.1.100:8080/control/motion" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"mode":"development","body_height":0.05,"roll":0.05,"pitch":-0.05}"
 ```
 
-### 2.6 更新部分字段
-例如只更新角速度：
+### 2.6 Update Partial Fields
+
+For example, update only yaw velocity:
+
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"vyaw\":0.4}"
+curl -X POST "http://192.168.1.100:8080/control/motion" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"vyaw":0.4}"
 ```
 
-说明：该接口会基于当前缓存命令做增量更新。
+This endpoint performs an incremental update based on the current cached command.
 
-### 3. 停止运动
-接口：`POST /control/stop`
+### 3. Stop Motion
+
+Endpoint: `POST /control/stop`
 
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/stop" 
+curl -X POST "http://192.168.1.100:8080/control/stop" \
   -H "Authorization: Bearer E15_Robot_Secure_Token_123"
 ```
 
-### 4. 运动控制错误测试示例
+### 4. Motion-Control Error Tests
 
-#### 4.1 非法模式
-```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"mode\":\"run_fast\"}"
-```
+Use invalid modes, invalid field types, or a wrong token to verify validation and authentication:
 
-#### 4.2 `mode` 类型错误
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"mode\":123}"
-```
+curl -X POST "http://192.168.1.100:8080/control/motion" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"mode":"run_fast"}"
 
-#### 4.3 Token 错误
-```bash
-curl -X GET "http://192.168.1.100:8080/control/status" 
+curl -X POST "http://192.168.1.100:8080/control/motion" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"mode":123}"
+
+curl -X GET "http://192.168.1.100:8080/control/status" \
   -H "Authorization: Bearer wrong_token"
 ```
 
 ---
 
-## 导航控制接口
+## Navigation Control API
 
-### 1. 查询导航状态
+### 1. Query Navigation Status
+
 ```bash
 curl -X GET "http://192.168.1.34:8080/control/nav/status" -H "Authorization: Bearer E15_Robot_Secure_Token_123"
 ```
 
-重点字段：
+Important fields:
+
 - `data.nav_state.code`
 - `data.nav_state.code_desc`
 - `data.last_command.expected_response_code`
@@ -188,10 +203,12 @@ curl -X GET "http://192.168.1.34:8080/control/nav/status" -H "Authorization: Bea
 - `data.summary.status`
 - `data.summary.goal_reached`
 
-### 2. 导航命令接口
-接口：`POST /control/nav`
+### 2. Navigation Command Endpoint
 
-支持命令：
+Endpoint: `POST /control/nav`
+
+Supported commands:
+
 - `start_mapping`
 - `end_mapping`
 - `start_cutter`
@@ -207,171 +224,98 @@ curl -X GET "http://192.168.1.34:8080/control/nav/status" -H "Authorization: Bea
 - `start_all`
 - `stop_all`
 
-### 2.1 启动定位
+Examples:
+
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"start_localization\"}"
+curl -X POST "http://192.168.1.100:8080/control/nav" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"cmd_type":"start_localization"}"
+
+curl -X POST "http://192.168.1.100:8080/control/nav" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"cmd_type":"start_nav"}"
 ```
 
-预期状态：
-- `nav_state.code = 20265`
-- `summary.status = "ack_received"`
+Expected states include `nav_state.code = 20265` for localization ACK and `nav_state.code = 20267` with `last_command.matched_expected_response = true` for navigation ACK.
 
-### 2.2 结束定位
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"end_localization\"}"
-```
+### 2.6 Send a Goal
 
-### 2.3 启动导航
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"start_nav\"}"
-```
+`params` must contain 8 space-separated numbers:
 
-预期状态：
-- `nav_state.code = 20267`
-- `last_command.matched_expected_response = true`
-
-### 2.4 结束导航
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"end_nav\"}"
-```
-
-### 2.5 启动目标点程序
-```bash
-curl -X POST "http://192.168.1.34:8080/control/nav" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"cmd_type\":\"start_goal_program\"}"
-```
-
-### 2.6 发送目标点
-`params` 必须为 8 个空格分隔数字：
 `goal_index x y z roll pitch yaw w`
 
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"send_goal\",\"params\":\"1 0.5 0.0 0.0 0.0 0.0 0.0 1.0\"}"
+curl -X POST "http://192.168.1.100:8080/control/nav" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"cmd_type":"send_goal","params":"1 0.5 0.0 0.0 0.0 0.0 0.0 1.0"}"
 ```
 
-预期过程：
-- 刚发送后：`summary.status = "waiting_ack"`
-- 收到 ACK 后：`summary.status = "ack_received"`
-- 到点后：`summary.status = "goal_reached"`
+Expected sequence:
 
-### 2.7 清空目标点
+- Immediately after sending: `summary.status = "waiting_ack"`
+- After ACK: `summary.status = "ack_received"`
+- After reaching the goal: `summary.status = "goal_reached"`
+
+### 2.7 Clear / Stop Navigation
+
 ```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"clear_goal\"}"
+curl -X POST "http://192.168.1.100:8080/control/nav" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"cmd_type":"clear_goal"}"
+
+curl -X POST "http://192.168.1.100:8080/control/nav" \
+  -H "Authorization: Bearer E15_Robot_Secure_Token_123" \
+  -H "Content-Type: application/json" \
+  -d "{"cmd_type":"stop_all"}"
 ```
 
-### 2.8 结束目标点程序
-```bash
-curl -X POST "http://192.168.1.34:8080/control/nav" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"cmd_type\":\"end_goal_program\"}"
-```
+### 3. Navigation Error Tests
 
-### 2.9 一键启动全部导航程序
-```bash
-curl -X POST "http://192.168.1.34:8080/control/nav" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"cmd_type\":\"start_all\"}"
-```
-
-### 2.10 一键停止全部导航程序
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"stop_all\"}"
-```
-
-### 3. 导航错误测试示例
-
-#### 3.1 缺少 `cmd_type`
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{}"
-```
-
-#### 3.2 `send_goal` 缺少 `params`
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"send_goal\"}"
-```
-
-#### 3.3 `params` 使用逗号
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"send_goal\",\"params\":\"1,0,0,0,0,0,0,1\"}"
-```
-
-#### 3.4 `params` 数量错误
-```bash
-curl -X POST "http://192.168.1.100:8080/control/nav" 
-  -H "Authorization: Bearer E15_Robot_Secure_Token_123" 
-  -H "Content-Type: application/json" 
-  -d "{\"cmd_type\":\"send_goal\",\"params\":\"1 0 0\"}"
-```
+Test missing `cmd_type`, missing `params` for `send_goal`, comma-separated `params`, and wrong parameter counts to verify request validation.
 
 ---
 
-## 推荐联调顺序
+## Recommended Joint-Debug Sequence
 
-### 运动控制
+### Motion Control
+
 1. `POST /control/motion` -> `{"mode":"damp"}`
 2. `POST /control/motion` -> `{"mode":"recovery_stand"}`
 3. `POST /control/motion` -> `{"mode":"rl_walk","vx":0.2}`
 4. `GET /control/status`
 5. `POST /control/stop`
 
-### 导航控制
+### Navigation Control
+
 1. `start_localization`
-2. 查询 `/control/nav/status`
+2. Query `/control/nav/status`.
 3. `start_nav`
 4. `start_goal_program`
 5. `send_goal`
-6. 轮询 `/control/nav/status`
-7. 观察 `summary.status` 是否变为 `goal_reached`
+6. Poll `/control/nav/status`.
+7. Check whether `summary.status` becomes `goal_reached`.
 
 ---
 
-## PowerShell 示例
+## PowerShell Examples
 
-### 查询导航状态
 ```powershell
 Invoke-RestMethod `
   -Uri "http://192.168.1.100:8080/control/nav/status" `
   -Method Get `
   -Headers @{ Authorization = "Bearer E15_Robot_Secure_Token_123" }
-```
 
-### 发运动命令
-```powershell
 Invoke-RestMethod `
   -Uri "http://192.168.1.100:8080/control/motion" `
   -Method Post `
   -Headers @{ Authorization = "Bearer E15_Robot_Secure_Token_123" } `
   -ContentType "application/json" `
   -Body '{"mode":"rl_walk","vx":0.3,"vy":0.0,"vyaw":0.0}'
-```
 
-### 发导航目标点
-```powershell
 Invoke-RestMethod `
   -Uri "http://192.168.1.100:8080/control/nav" `
   -Method Post `
@@ -382,110 +326,60 @@ Invoke-RestMethod `
 
 ---
 
-## LCM / 导航使能联调步骤
+## LCM / Navigation Enable Joint Debugging
 
-> 适用于 `POST /control/nav/enable` -> `NAV_ENABLE_CTRL` -> `RL_WALK` 的联调确认。
+This applies to `POST /control/nav/enable` -> `NAV_ENABLE_CTRL` -> `RL_WALK`.
 
-### 1. 前置条件确认
-1. 控制程序已经运行，并且 `RL_WALK` 已进入导航订阅逻辑。
-2. 控制侧日志已打印：`[RL_Walk][NAV] Subscribed to NAV_CONTROL and NAV_ENABLE_CTRL`
-3. HTTP 服务已经启动，且能正常访问 `/control/status` 和 `/control/nav/status`
-4. HTTP 服务端与控制侧使用同一个 LCM 组播地址，当前默认都是：`udpm://239.255.76.67:7667?ttl=255`
-5. 机器人当前可以切换到 `rl_walk`，因为开启导航使能时服务端要求当前模式必须是 `rl_walk`
+### Prerequisites
 
-### 2. 先确认 HTTP 服务正常
+1. The controller is running and `RL_WALK` has entered navigation subscription logic.
+2. Controller log printed: `[RL_Walk][NAV] Subscribed to NAV_CONTROL and NAV_ENABLE_CTRL`.
+3. HTTP service is running and `/control/status` plus `/control/nav/status` are reachable.
+4. HTTP server and controller use the same LCM multicast URL, currently `udpm://239.255.76.67:7667?ttl=255`.
+5. The robot can switch to `rl_walk`; navigation enable requires current mode to be `rl_walk`.
+
+### Basic Flow
+
 ```bash
 curl -X GET "http://192.168.1.100:8080/control/status" -H "Authorization: Bearer E15_Robot_Secure_Token_123"
+
+curl -X POST "http://192.168.1.100:8080/control/motion" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{"mode":"rl_walk"}"
+
+curl -X POST "http://192.168.1.34:8080/control/nav/enable" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{"nav_enabled":true}"
 ```
 
-如果这里不通，先不要继续查 LCM。
-
-### 3. 切换到 `rl_walk`
-```bash
-curl -X POST "http://192.168.1.100:8080/control/motion" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"mode\":\"rl_walk\"}"
-```
-
-如果不是 `rl_walk`，开启导航使能时会返回类似：
-
-```json
-{"code":400,"msg":"nav enable requires rl_walk mode"}
-```
-
-### 4. 开启导航使能
-```bash
-curl -X POST "http://192.168.1.34:8080/control/nav/enable" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"nav_enabled\":true}"
-```
-
-期望 HTTP 返回：
+Expected response:
 
 ```json
 {"code":0,"msg":"nav enable updated", ...}
 ```
 
-### 5. 观察控制侧日志
-执行第 4 步后，控制侧应看到类似日志：
+Expected controller log:
 
 ```text
 [RL_Walk][NAV] NAV_ENABLE_CTRL received: 1
 ```
 
-如果关闭导航使能：
+Disable navigation:
 
 ```bash
-curl -X POST "http://192.168.1.34:8080/control/nav/enable" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{\"nav_enabled\":false}"
+curl -X POST "http://192.168.1.34:8080/control/nav/enable" -H "Authorization: Bearer E15_Robot_Secure_Token_123" -H "Content-Type: application/json" -d "{"nav_enabled":false}"
 ```
 
-控制侧应看到：
+The controller should print:
 
 ```text
 [RL_Walk][NAV] NAV_ENABLE_CTRL received: 0
 ```
 
-### 6. 再发送导航速度源验证是否叠加生效
-开启导航使能后，再确认导航侧 `NAV_CONTROL` 有持续输入，并观察 `RL_WALK` 是否开始叠加：
-- `nav_lcm_xvel_`
-- `nav_lcm_yvel_`
-- `nav_control_steering_angle_`
+With the current logic, navigation blending is enabled if either condition is true:
 
-当前逻辑下，只要以下任一条件成立，就会启用导航叠加：
-1. 遥控侧 `rcCommand->variable[0] == 1`
-2. LCM 下发的 `NAV_ENABLE_CTRL == 1`
+1. Remote-control side: `rcCommand->variable[0] == 1`
+2. LCM command: `NAV_ENABLE_CTRL == 1`
 
-### 7. 推荐联调顺序
-1. `GET /control/status`
-2. `GET /control/nav/status`
-3. `POST /control/motion` -> `{"mode":"rl_walk"}`
-4. `POST /control/nav/enable` -> `{"nav_enabled":true}`
-5. 查看控制侧日志是否打印 `NAV_ENABLE_CTRL received: 1`
-6. 发送 `start_nav` / `start_goal_program` / `send_goal`
-7. 轮询 `/control/nav/status`
-8. 如需关闭导航接管，发送 `{"nav_enabled":false}`
+### Troubleshooting
 
-### 8. 常见问题排查
-
-#### 8.1 `curl` 没报错，但控制侧没日志
-优先检查：
-- HTTP 服务和控制程序是否真的在同一网络环境
-- 双方是否使用同一个 LCM URL
-- 控制程序是否已经重新编译并重启到最新版本
-- 是否真的进入了 `RL_WALK`
-
-#### 8.2 `/control/nav/enable` 返回 400
-通常是因为当前不是 `rl_walk` 模式，先执行第 3 步。
-
-#### 8.3 `/control/nav/status` 正常，但导航使能没效果
-这通常说明：
-- 导航状态链路是通的
-- 但 `NAV_ENABLE_CTRL` 这条链路未打通，或者控制侧未真正启用导航叠加
-
-应重点看控制侧是否打印：
-
-```text
-[RL_Walk][NAV] NAV_ENABLE_CTRL received: 1
-```
-
-#### 8.4 开启后还是没有运动效果
-说明“使能开关”已通，但还要继续确认：
-- `NAV_CONTROL` 是否真的在持续发速度/转向命令
-- 机器人当前姿态与状态机是否允许输出
-- 自检是否触发了 `setAllMotorsToZero()`
+- `curl` succeeds but controller has no log: check network, LCM URL, controller rebuild/restart, and `RL_WALK` mode.
+- `/control/nav/enable` returns 400: current mode is usually not `rl_walk`.
+- `/control/nav/status` is normal but enable has no effect: `NAV_ENABLE_CTRL` path is not connected or controller navigation blending is not enabled.
+- Enabled but still no motion: confirm continuous `NAV_CONTROL`, valid robot posture, FSM output permission, and no `setAllMotorsToZero()` self-check trigger.

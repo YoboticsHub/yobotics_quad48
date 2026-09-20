@@ -1,53 +1,53 @@
-# WebRTC_server 使用说明
+# WebRTC_server User Guide
 
-`WebRTC_server` 用于在机器人端启动 WebRTC 视频/数据发布服务。它通过摄像头采集视频，经 WebRTC 推送给远端客户端；同时通过 DataChannel 接收 JSON 控制消息，并转发到 LCM 控制通道，也会把机器人状态从 LCM 状态通道回传给客户端。
+`WebRTC_server` starts a WebRTC video/data publishing service on the robot side. It captures camera video and sends it to a remote client through WebRTC. It also receives JSON control messages through a DataChannel, forwards them to the LCM control channel, and sends robot state from the LCM state channel back to the client.
 
-## 目录内容
+Chinese source: [README.zh.md](./README.zh.md).
 
-- `control_publisher.py`：推荐入口，负责同时启动 `signaling_server.py` 和 `publisher.py`，并监控子进程异常退出后自动重启。
-- `signaling_server.py`：WebSocket 信令服务器，默认监听 `0.0.0.0:8765`，用于转发 WebRTC Offer/Answer/ICE 消息。
-- `publisher.py`：WebRTC 发布端，读取摄像头画面，建立 P2P 连接，处理 DataChannel 和 LCM 通信。
-- `config.json`：运行配置，包括摄像头、LCM 通道、信令地址和低时延码率参数。
-- `test.py`：测试/调试版本发布端，一般优先使用 `publisher.py` 或 `control_publisher.py`。
-- `[Yobotics]JSON格式列表.docx`：控制/状态 JSON 字段说明文档。
+## Directory Contents
 
-## 前置条件
+- `control_publisher.py`: recommended entry point. Starts `signaling_server.py` and `publisher.py`, monitors them, and restarts them if a child process exits unexpectedly.
+- `signaling_server.py`: WebSocket signaling server. It listens on `0.0.0.0:8765` by default and relays WebRTC Offer/Answer/ICE messages.
+- `publisher.py`: WebRTC publisher. It reads camera frames, establishes a P2P connection, and handles DataChannel and LCM communication.
+- `config.json`: runtime configuration for camera, LCM channels, signaling address, and low-latency bitrate parameters.
+- `test.py`: test/debug publisher. Prefer `publisher.py` or `control_publisher.py` for normal use.
+- Yobotics JSON field reference document: control/state JSON field reference.
 
-### Python 依赖
+## Prerequisites
 
-建议在项目 Conda 环境中运行：
+### Python Dependencies
 
 ```bash
 conda activate robot_controller
 python -m pip install websockets aiortc opencv-python numpy av
 ```
 
-如果需要 LCM 控制与状态回传，还需要：
+For LCM control and state forwarding:
 
 ```bash
 python -m pip install lcm
 ```
 
-或使用项目脚本安装：
+Or use the project helper:
 
 ```bash
 bash scripts/install_python_lcm.sh
 ```
 
-### LCM 类型文件
+### LCM Type Files
 
-`publisher.py` 会从项目根目录的 `lcm-types/python/` 导入：
+`publisher.py` imports these generated files from `lcm-types/python/`:
 
 - `sport_client_cmd_t.py`
 - `sport_client_state_t.py`
 
-如果缺失，请先在项目根目录生成：
+Generate them if missing:
 
 ```bash
 bash scripts/generate_lcm_types.sh
 ```
 
-部署包中应保持如下结构，`WebRTC_server/` 和 `lcm-types/` 与 `build/` 同级：
+Deployment layout:
 
 ```text
 robot-software/
@@ -56,9 +56,9 @@ robot-software/
 └── WebRTC_server/
 ```
 
-## 配置说明
+## Configuration
 
-编辑 `WebRTC_server/config.json`：
+Edit `WebRTC_server/config.json`:
 
 ```json
 {
@@ -87,107 +87,55 @@ robot-software/
 }
 ```
 
-常用字段：
+Common fields:
 
-- `use_camera`：是否启用真实摄像头；设为 `false` 时使用虚拟画面。
-- `camera.device_index`：OpenCV 摄像头编号，对应 `/dev/video*`。
-- `camera.width/height/fps`：采集分辨率和帧率。
-- `lcm.url`：LCM 多播地址。
-- `lcm.control_channel`：DataChannel 收到控制 JSON 后发布到的 LCM 通道。
-- `lcm.state_channel`：订阅机器人状态并回传给客户端的 LCM 通道。
-- `signaling.server`：发布端连接的 WebSocket 信令地址。
-- `webrtc.*`：低时延和码率控制参数。
+- `use_camera`: enable the real camera; `false` uses a virtual frame.
+- `camera.device_index`: OpenCV camera index, corresponding to `/dev/video*`.
+- `camera.width/height/fps`: capture resolution and frame rate.
+- `lcm.url`: LCM multicast URL.
+- `lcm.control_channel`: LCM channel for control JSON received from DataChannel.
+- `lcm.state_channel`: LCM channel subscribed for robot state and forwarded back to the client.
+- `signaling.server`: WebSocket signaling address used by the publisher.
+- `webrtc.*`: low-latency and bitrate-control parameters.
 
-## 启动方法
+## Startup
 
-### 推荐方式：统一启动
-
-在机器人部署包目录：
+Recommended unified startup:
 
 ```bash
 cd ~/robot-software
 python3 WebRTC_server/control_publisher.py
 ```
 
-该方式会自动启动：
+This starts `signaling_server.py` and `publisher.py`, and restarts them when a process exits or `restart.flag` is detected.
 
-- `signaling_server.py`
-- `publisher.py`
-
-并在进程退出或检测到 `restart.flag` 时尝试重启。
-
-### 分开启动：调试用
-
-终端 1：启动信令服务器。
+Separate debug startup:
 
 ```bash
 python3 WebRTC_server/signaling_server.py
-```
-
-终端 2：启动 WebRTC 发布端。
-
-```bash
 python3 WebRTC_server/publisher.py
 ```
 
-远端客户端需要连接到机器人 IP 的 `ws://<robot_ip>:8765` 作为信令地址。
+The remote client should use `ws://<robot_ip>:8765` as the signaling address.
 
-## 运行检查
-
-### 检查摄像头
+## Runtime Checks
 
 ```bash
 ls /dev/video*
-```
-
-如果 `config.json` 中 `camera.device_index` 为 `4`，通常对应 `/dev/video4`。摄像头编号不匹配时，修改 `device_index`。
-
-### 检查端口
-
-```bash
 ss -lntp | grep 8765
-```
-
-能看到 `0.0.0.0:8765` 表示信令服务器已监听。
-
-### 检查 LCM
-
-```bash
 bash scripts/monitor_lcm.sh --no-gui
-```
-
-如果收不到 LCM 消息，先配置多播网络：
-
-```bash
 sudo bash scripts/setup_lcm_network.sh
 ```
 
-## 常见问题
+If `camera.device_index` is `4`, it usually maps to `/dev/video4`. Seeing `0.0.0.0:8765` means the signaling server is listening.
 
-### 摄像头打不开
+## Troubleshooting
 
-- 检查 `/dev/video*` 是否存在。
-- 修改 `config.json` 的 `camera.device_index`。
-- 确认当前用户有摄像头读取权限，必要时临时使用 `sudo` 运行。
+- Camera cannot open: check `/dev/video*`, update `camera.device_index`, and confirm camera read permissions.
+- LCM import fails: install Python LCM and confirm `lcm-types/python/` contains `sport_client_cmd_t.py` and `sport_client_state_t.py`.
+- Client cannot connect: confirm robot port `8765`, client URL such as `ws://192.168.1.134:8765`, and network reachability.
+- Video latency is high: reduce camera resolution/FPS or bitrate and keep `webrtc.low_latency` as `true`.
 
-### LCM 模块导入失败
+## Stop the Service
 
-- 确认已安装 Python LCM。
-- 确认 `lcm-types/python/` 存在并包含 `sport_client_cmd_t.py`、`sport_client_state_t.py`。
-- 在部署包中确认 `WebRTC_server/` 和 `lcm-types/` 与 `build/` 同级。
-
-### 客户端无法连接
-
-- 确认机器人端 `8765` 端口已监听。
-- 确认客户端信令地址使用机器人 IP，例如 `ws://192.168.1.134:8765`。
-- 确认机器人与客户端在同一网络或路由可达。
-
-### 视频延迟较高
-
-- 降低 `camera.width`、`camera.height` 或 `camera.fps`。
-- 降低 `webrtc.max_bitrate_kbps`。
-- 保持 `webrtc.low_latency` 为 `true`。
-
-## 停止服务
-
-前台运行时按 `Ctrl+C` 停止。若由 systemd 或其他守护进程托管，请使用对应服务管理命令停止。
+Press `Ctrl+C` in foreground mode. If managed by systemd or another supervisor, stop it with the corresponding service-management command.

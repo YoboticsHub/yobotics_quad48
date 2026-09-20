@@ -1,12 +1,14 @@
-# 四足机器人强化学习控制框架
+# Quadruped Robot Reinforcement Learning Control Framework
 
-> 四足机器人（quad48/Yobotics Quad）RL 控制仿真部署包，支持 MuJoCo 仿真模式实时运行。（运行环境：Ubuntu20.04以上，支持 x86_64 与 RK3588/aarch64 控制器分发包）
+> RL control, simulation, and deployment package for the quad48 / Yobotics Quad quadruped robot. It supports real-time MuJoCo simulation. Runtime environment: Ubuntu 20.04 or later, with x86_64 and RK3588/aarch64 controller distribution packages.
 
-版本信息见 [VERSION.txt](./VERSION.txt)。当前仓库面向 `quad48 / Yobotics Quad` 控制包交付与二次开发，包含主控制器二进制与依赖库、MuJoCo 仿真、LCM 消息类型、WebRTC 服务、外部算法框架，以及 `E15` SDK 示例。
+See [VERSION.txt](./VERSION.txt) for version information. This repository is intended for delivery and secondary development of the `quad48 / Yobotics Quad` control package. It includes controller binaries and runtime libraries, MuJoCo simulation, LCM message types, a WebRTC service, an external-algorithm framework, and `E15` SDK examples.
 
-## 能力概览
+Chinese documentation is preserved in [README.zh.md](./README.zh.md). The English manual source is in [docs_en/](./docs_en/) and can be built with [mkdocs.en.yml](./mkdocs.en.yml).
 
-当前控制模式如下：
+## Capability Overview
+
+Current control modes:
 
 - `DAMP`
 - `RECOVERY_STAND`
@@ -14,90 +16,91 @@
 - `RL_RUN`
 - `DEVELOPMENT`
 
-主要有两种运行方式：
+Main runtime paths:
 
-1. MuJoCo 仿真：使用 [config_sim.yaml](./config_sim.yaml) 和 [scripts/start_mujoco.sh](./scripts/start_mujoco.sh)
-2. 真机控制：使用 [config.yaml](./config.yaml) 和 [scripts/run_robot_controller.sh](./scripts/run_robot_controller.sh)
+1. MuJoCo simulation: use [config_sim.yaml](./config_sim.yaml) and [scripts/start_mujoco.sh](./scripts/start_mujoco.sh).
+2. Physical robot control: use [config.yaml](./config.yaml) and [scripts/run_robot_controller.sh](./scripts/run_robot_controller.sh).
 
-外部算法只在 `DEVELOPMENT` 模式下通过 LCM 接入，相关说明见 [external_algorithms/README.md](./external_algorithms/README.md)。
+External algorithms connect through LCM only in `DEVELOPMENT` mode. See [external_algorithms/README.md](./external_algorithms/README.md).
 
-## 快速开始
+## Quick Start
 
-推荐先走仿真链路确认环境和模型可用性。
-### 1. 环境配置
+Start with simulation to verify the environment and model files.
+
+### 1. Configure the Environment
 
 ```bash
-# 一键配置 conda 环境（Python + MuJoCo + LCM + ONNX Runtime）
+# One-step Conda environment setup: Python + MuJoCo + LCM + ONNX Runtime
 ./scripts/setup_conda_env.sh
 ```
 
-若一键配置遇环境依赖问题需手动安装：
+Manual setup, if needed:
 
 ```bash
-# 创建conda环境
+# Create a Conda environment
 conda create -n quad_controller python=3.8
 
-# 系统依赖
+# System dependencies
 sudo apt-get install -y liblcm-dev libeigen3-dev
 
-# Python 依赖
+# Python dependencies
 pip install numpy==1.24.4 mujoco==3.2.3 pyyaml onnxruntime pillow
 
-# LCM Python 绑定
+# LCM Python bindings
 ./scripts/install_python_lcm.sh
 
-# LCM 网络配置（如需要）
+# LCM network setup, if needed
 sudo ./scripts/setup_lcm_network.sh
 ```
 
-### 2. 启动仿真
+### 2. Start Simulation
 
 ```bash
-# 激活环境
+# Activate the environment
 conda activate quad_controller
 
-# 一键启动（仿真器 + 控制器）
+# Start simulator and controller together
 ./scripts/start_mujoco.sh
 
-# 启动控制脚本
+# Start the SDK control client
 ./yobotics_sdk/build/E15_sport_client
 ```
 
-按 `Ctrl+C` 停止所有进程。
+Press `Ctrl+C` to stop all processes.
 
-## 实机运行
+## Physical Robot Operation
 
-实机运行前建议先完成一次 MuJoCo 仿真验证，确认 Python 环境、模型文件和基础配置可用。机器人主机通常为 Ubuntu + RK3588/aarch64 环境，部署包内至少需要确认以下目录和文件完整：
+Before running on hardware, complete a MuJoCo verification pass to confirm that the Python environment, model files, and base configuration are usable. The robot host is usually Ubuntu on RK3588/aarch64. At minimum, confirm that these are complete in the deployment package:
 
-- `bin_rk3588/`：RK3588/aarch64 控制器入口
-- `lib_rk3588/`：RK3588/aarch64 运行时动态库
-- `config.yaml`：实机默认配置文件
-- `actor_model/`：`RL_WALK` 与 `RL_RUN` 使用的 ONNX 策略模型
-- `resources/`：URDF、XML、网格等机器人资源
+- `bin_rk3588/`: RK3588/aarch64 controller entry points
+- `lib_rk3588/`: RK3588/aarch64 runtime libraries
+- `config.yaml`: default hardware configuration
+- `actor_model/`: ONNX policy models used by `RL_WALK` and `RL_RUN`
+- `resources/`: robot URDF, XML, meshes, and related assets
 
-如果在 x86_64 主机上做本地验证，脚本会自动切换到 `bin/` 和 `lib/`。
+For local verification on x86_64, scripts automatically switch to `bin/` and `lib/`.
 
-### 1. 配置确认
+### 1. Configuration Check
 
-实机默认使用 [config.yaml](./config.yaml)。运行前重点确认以下配置：
+Hardware mode uses [config.yaml](./config.yaml). Before running, check:
 
-- `simulation.enable_mujoco: false`：关闭 MuJoCo 仿真，进入硬件控制链路
-- `motor_communication.type: spi_legacy`：使用当前实机 SPI 通信方式
-- `gamepad.device_type: hybrid`：支持本地遥控器与 LCM/WebRTC 控制输入
-- `safety_checker.enable_safety_check: True`：保持安全检查开启；不建议在真实机器人上关闭安全保护
+- `simulation.enable_mujoco: false`: disables MuJoCo and enters the hardware control path.
+- `motor_communication.type: spi_legacy`: uses the current hardware SPI communication path.
+- `gamepad.device_type: hybrid`: allows local remote-control input and LCM/WebRTC control input.
+- `safety_checker.enable_safety_check: True`: keep safety checks enabled. Disabling safety protection on a real robot is not recommended.
 
-#### 型号配置速查
+#### Model Configuration Quick Reference
 
-启动脚本会按 `uname -m` 自动选择 x86_64 或 RK3588/aarch64 对应的控制器目录，但机器人型号相关硬件配置仍需要在 `config.yaml` 中手动确认：
+The startup script selects the x86_64 or RK3588/aarch64 controller directory from `uname -m`, but robot-specific hardware configuration must still be confirmed manually in `config.yaml`.
 
-| 型号/平台 | `motor_communication.spi_type` | `motor_communication.spi_device0` | `motor_communication.spi_device1` | `imu.type` | `imu.port_base` | `imu.port_number` | `development.robot_id` | 开发模式 LCM 通道 |
+| Model / Platform | `motor_communication.spi_type` | `motor_communication.spi_device0` | `motor_communication.spi_device1` | `imu.type` | `imu.port_base` | `imu.port_number` | `development.robot_id` | Development-mode LCM channels |
 |-----------|--------------------------------|-----------------------------------|-----------------------------------|------------|-----------------|-------------------|------------------------|-------------------|
 | `y15 / x86_64` | `"Y15"` | `"/dev/spidev2.0"` | `"/dev/spidev2.1"` | `"lord"` | `"/dev/ttyUSB"` | `0` | `"Y15"` | `Y15_development_state` / `Y15_development_command` |
-| `E15 / ARM(RK3588/aarch64)` | `"E15"` | `"/dev/spidev3.0"` | `"/dev/spidev4.0"` | `"hipnuc"` | `"/dev/ttyS0"` | 保持注释或不配置 | `"E15"` | `E15_development_state` / `E15_development_command` |
+| `E15 / ARM(RK3588/aarch64)` | `"E15"` | `"/dev/spidev3.0"` | `"/dev/spidev4.0"` | `"hipnuc"` | `"/dev/ttyS0"` | keep commented out or unset | `"E15"` | `E15_development_state` / `E15_development_command` |
 
-Y15 使用 `lord` 时需要取消 `port_number` 前的注释，并按现场设备号修改；E15 使用 `hipnuc` 时 `port_base` 直接填写完整串口路径。
+When Y15 uses `lord`, uncomment `port_number` and set it according to the actual device number. When E15 uses `hipnuc`, set `port_base` to the full serial-device path.
 
-如果复制出多个型号配置文件，可以在启动时显式指定：
+If multiple model-specific configuration files are copied out, specify one explicitly at startup:
 
 ```bash
 bash scripts/run_robot_controller.sh --config config.yaml
@@ -105,94 +108,92 @@ bash scripts/run_robot_controller.sh --config config_y15.yaml
 bash scripts/run_robot_controller.sh --config config_e15.yaml
 ```
 
-如需调整遥控器、串口、SPI 或 LCM 通道，请优先修改 `config.yaml`，并保持 WebRTC 侧配置与主控配置一致。
+For remote-control, serial, SPI, or LCM channel changes, update `config.yaml` first and keep WebRTC configuration consistent with the main controller.
 
-### 2. 启动控制器
+### 2. Start the Controller
 
-在项目根目录运行：
+Run from the repository root:
 
 ```bash
 bash scripts/run_robot_controller.sh --config config.yaml
 ```
 
-该脚本会按 `uname -m` 自动选择控制器和动态库路径：
+The script selects controller and library paths from `uname -m`:
 
-- x86_64：使用 `bin/ybt_ctrl` 和 `lib/`
-- RK3588/aarch64：使用 `bin_rk3588/ybt_ctrl` 和 `lib_rk3588/`
+- x86_64: `bin/ybt_ctrl` and `lib/`
+- RK3588/aarch64: `bin_rk3588/ybt_ctrl` and `lib_rk3588/`
 
-脚本当前会使用 `eth1` 配置 LCM 多播网络。如果机器人实际网卡名不是 `eth1`，请先调整 [scripts/run_robot_controller.sh](./scripts/run_robot_controller.sh) 中的网卡配置，或按现场网络环境完成对应 LCM 多播配置。
+The script currently configures the LCM multicast network on `eth1`. If the robot uses another network interface, update [scripts/run_robot_controller.sh](./scripts/run_robot_controller.sh), or configure LCM multicast according to the site network.
 
-### 3. 可选：启动 WebRTC 远程控制/视频服务
+### 3. Optional: Start WebRTC Remote Control and Video
 
-如需启用 WebRTC 视频和远程控制，先确认 [WebRTC_server/config.json](./WebRTC_server/config.json) 中的控制/状态通道与 `config.yaml` 内以下配置一致：
+To enable WebRTC video and remote control, first make sure the control/state channels in [WebRTC_server/config.json](./WebRTC_server/config.json) match these `config.yaml` fields:
 
 - `gamepad.lcm_control_channel`
 - `gamepad.lcm_state_channel`
 
-然后在机器人部署包根目录运行：
+Then run from the robot deployment-package root:
 
 ```bash
 python3 WebRTC_server/control_publisher.py
 ```
 
-更多 WebRTC 配置、依赖和排查方式见 [WebRTC_server/README.md](./WebRTC_server/README.md)。
+See [WebRTC_server/README.md](./WebRTC_server/README.md) for WebRTC configuration, dependencies, and troubleshooting.
 
-### 4. 运行检查与停止
+### 4. Runtime Checks and Stop
 
-- 控制器日志默认写入 `log/robot_log.txt`，也会在终端输出关键状态
-- 如需检查 LCM 通道和消息频率，可使用 `bash scripts/monitor_lcm.sh` 或 `bash scripts/launch_lcm_spy.sh`
-- 如果控制器启动后没有机器人状态，优先检查电机/SPI/IMU 连接、LCM 网卡和 `config.yaml` 中的通信配置
-- 前台运行时按 `Ctrl+C` 停止控制器；WebRTC 服务前台运行时同样按 `Ctrl+C` 停止
+- Controller logs are written to `log/robot_log.txt` by default and key status is also printed in the terminal.
+- Use `bash scripts/monitor_lcm.sh` or `bash scripts/launch_lcm_spy.sh` to inspect LCM channels and message frequency.
+- If no robot state appears after controller startup, first check motor/SPI/IMU connections, the LCM interface, and communication settings in `config.yaml`.
+- Press `Ctrl+C` to stop the foreground controller. Use `Ctrl+C` the same way for a foreground WebRTC service.
 
-## 运行入口与目录
+## Entry Points and Directories
 
-- `bin/`：x86_64 分发包入口目录，`bin/ybt_ctrl` 是启动包装脚本，`bin/ybt_ctrl.bin` 是实际控制器二进制
-- `lib/`：x86_64 运行时依赖库，包括 ONNX Runtime 等共享库
-- `bin_rk3588/`：RK3588/aarch64 分发包入口目录，结构与 `bin/` 一致
-- `lib_rk3588/`：RK3588/aarch64 运行时依赖库
-- `config.yaml`：真机默认配置
-- `config_sim.yaml`：MuJoCo 仿真默认配置
-- `actor_model/`：`RL_WALK` 与 `RL_RUN` 使用的 ONNX 策略模型
-- `mujoco_sim/`：MuJoCo 仿真 Python 模块
-- `resources/`：机器人 XML、URDF 与网格资源
-- `scripts/`：环境配置、控制器启动、LCM 监控、网络配置等脚本
-- `external_algorithms/`：开发模式外部算法接入框架
-- `WebRTC_server/`：WebRTC 视频与远程控制服务
-- `yobotics_sdk_e15_sdk_260408/`：E15 SDK、示例程序与交叉编译辅助文件
-- `lcm-types/`：LCM 协议定义及 Python/C++/Java 生成代码
+- `bin/`: x86_64 distribution entry directory. `bin/ybt_ctrl` is the launcher script and `bin/ybt_ctrl.bin` is the actual controller binary.
+- `lib/`: x86_64 runtime libraries, including ONNX Runtime and other shared libraries.
+- `bin_rk3588/`: RK3588/aarch64 distribution entry directory, with the same structure as `bin/`.
+- `lib_rk3588/`: RK3588/aarch64 runtime libraries.
+- `config.yaml`: default hardware configuration.
+- `config_sim.yaml`: default MuJoCo simulation configuration.
+- `actor_model/`: ONNX policy models used by `RL_WALK` and `RL_RUN`.
+- `mujoco_sim/`: MuJoCo simulation Python module.
+- `resources/`: robot XML, URDF, and mesh assets.
+- `scripts/`: environment setup, controller startup, LCM monitoring, network setup, and related scripts.
+- `external_algorithms/`: external-algorithm integration framework for development mode.
+- `WebRTC_server/`: WebRTC video and remote-control service.
+- `yobotics_sdk/`: E15 SDK, example programs, and build/deployment helpers.
+- `lcm-types/`: LCM protocol definitions and generated Python/C++/Java code.
 
-### 各模式说明
+### Modes
 
-| 模式 | 描述 |
+| Mode | Description |
 |------|------|
-| `DAMP` | 关节锁定模式，保持当前位置 |
-| `RECOVERY_STAND` | 自动恢复到站立姿态 |
-| `RL_WALK` | RL 行走控制（支持摇杆/WebRTC 远程控制） |
-| `RL_RUN` | RL 跑步控制 |
-| `DEVELOPMENT` | 外部算法开发模式（通过 LCM 接口） |
+| `DAMP` | Joint-lock / damping mode that holds the current position. |
+| `RECOVERY_STAND` | Automatically recovers to a standing posture. |
+| `RL_WALK` | RL walking control, supporting joystick/WebRTC remote control. |
+| `RL_RUN` | RL running control. |
+| `DEVELOPMENT` | External algorithm development mode through the LCM interface. |
 
-### 配置文件
+### Configuration Files
 
-所有配置集中在 `config.yaml`，关键配置项：
+Important `config.yaml` fields:
 
-- `simulation.enable_mujoco` — 仿真/硬件模式切换
-- `simulation.mujoco.xml_path` — MuJoCo 场景文件路径
-- `motor_communication.type` — 通信方式（仿真用 `lcm`，硬件用 `spi_legacy`）
-- `motor_communication.spi_type` — 实机型号（`Y15` 或 `E15`）
-- `motor_communication.spi_device0` / `motor_communication.spi_device1` — SPI 设备路径，需与型号和系统设备节点一致
-- `imu.type` — IMU 驱动类型（E15 使用 `hipnuc`，Y15 使用 `lord`）
-- `imu.port_base` — IMU 串口路径或设备名前缀
-- `imu.port_number` — 仅 Y15/lord 使用，需取消注释后与 `port_base` 拼接成实际设备路径
-- `development.robot_id` — 开发模式机器人标识，用于生成或区分 LCM 消息标识
-- `development.state_channel` / `development.command_channel` — 开发模式状态与指令 LCM 通道
-- `gamepad.device_type` — 遥控器类型（`gamepad`/`at9s`/`lcm`）
-- `safety_checker` — 多层安全检查配置
+- `simulation.enable_mujoco`: simulation/hardware mode switch.
+- `simulation.mujoco.xml_path`: MuJoCo scene-file path.
+- `motor_communication.type`: communication mode, `lcm` for simulation and `spi_legacy` for hardware.
+- `motor_communication.spi_type`: hardware model, `Y15` or `E15`.
+- `motor_communication.spi_device0` / `motor_communication.spi_device1`: SPI device paths that must match the model and Linux device nodes.
+- `imu.type`: IMU driver type. E15 uses `hipnuc`; Y15 uses `lord`.
+- `imu.port_base`: IMU serial-device path or device-name prefix.
+- `imu.port_number`: used only by Y15/lord. Uncomment and combine with `port_base` to form the actual device path.
+- `development.robot_id`: development-mode robot identifier for matching LCM messages.
+- `development.state_channel` / `development.command_channel`: development-mode state and command LCM channels.
+- `gamepad.device_type`: remote-control type, such as `gamepad`, `at9s`, or `lcm`.
+- `safety_checker`: multi-layer safety-check configuration.
 
-## 开发入口
+## Development Entry Points
 
-如果要做二次开发，通常从下面几个位置开始：
-
-- [external_algorithms/README.md](./external_algorithms/README.md)：开发模式外部算法接入说明
-- `lcm-types/`：查看控制协议和消息字段
-- [scripts/monitor_lcm.py](./scripts/launch_lcm_spy.sh)：抓消息、看频率、排查通道配置
-- [yobotics_sdk/SDK使用说明.md](./yobotics_sdk/SDK使用说明.md)：客户侧集成 SDK 的说明
+- [external_algorithms/README.md](./external_algorithms/README.md): external-algorithm integration in development mode.
+- `lcm-types/`: control protocol and message fields.
+- [scripts/launch_lcm_spy.sh](./scripts/launch_lcm_spy.sh): inspect messages, frequencies, and channel configuration.
+- [yobotics_sdk/SDK_User_Guide.md](./yobotics_sdk/SDK_User_Guide.md): SDK integration guide for client-side applications.

@@ -1,146 +1,123 @@
-# Quad48 二次开发包脚本说明
+# Quad48 Secondary Development Package Scripts
 
-本目录是独立二次开发包中的 `scripts/` 目录说明。这里的脚本面向“已经打包好的
-`yobotics_quad48` 开发目录”，主要用于运行控制器、启动仿真、配置 LCM 网络、监控
-LCM 消息、准备 Python 环境，以及查看运行日志。
+This directory documents the `scripts/` folder in the standalone secondary-development package. The scripts target an already packaged `yobotics_quad48` development directory and are mainly used to run the controller, start simulation, configure LCM networking, monitor LCM messages, prepare the Python environment, and inspect runtime logs.
 
+Chinese source: [README.zh.md](./README.zh.md).
 
-## 使用前准备
+## Before Use
 
-建议在开发包根目录下执行命令，例如：
+Run commands from the development-package root when possible:
 
 ```bash
 cd yobotics_quad48
 ```
 
-开发包常见目录如下：
+Common package layout:
 
 ```text
 yobotics_quad48/
-├── bin/                  # x86_64 控制器可执行文件，例如 ybt_ctrl
-├── bin_rk3588/           # RK3588/aarch64 控制器可执行文件
-├── lib/                  # x86_64 运行所需动态库
-├── lib_rk3588/           # RK3588/aarch64 运行所需动态库
-├── log/                  # 运行日志、CSV 日志输出目录
-├── lcm-types/            # LCM 类型定义和生成结果
-├── mujoco_sim/           # MuJoCo 仿真相关代码
-├── resources/            # 机器人模型、资源文件
-├── scripts/              # 本说明文档描述的脚本
-├── config.yaml           # 控制器配置
-└── config_sim.yaml       # 仿真配置
+├── bin/                  # x86_64 controller executable, for example ybt_ctrl
+├── bin_rk3588/           # RK3588/aarch64 controller executable
+├── lib/                  # x86_64 runtime shared libraries
+├── lib_rk3588/           # RK3588/aarch64 runtime shared libraries
+├── log/                  # runtime logs and CSV log output
+├── lcm-types/            # LCM type definitions and generated files
+├── mujoco_sim/           # MuJoCo simulation code
+├── resources/            # robot models and assets
+├── scripts/              # scripts documented here
+├── config.yaml           # controller configuration
+└── config_sim.yaml       # simulation configuration
 ```
 
-推荐先确认脚本权限。如果脚本不可执行，可以运行：
+Confirm permissions first:
 
 ```bash
 chmod +x scripts/*.sh
 ```
 
-## 推荐工作流
+## Recommended Workflow
 
-### 1. 准备 Python 环境
-
-如果是第一次在当前机器上使用仿真、LCM 监控或日志查看工具，建议先准备 Python 环境：
+### 1. Prepare Python Environment
 
 ```bash
 bash scripts/setup_conda_env.sh
 ```
 
-如果只需要修复或安装 Python LCM 绑定，可以运行：
+Install or repair only Python LCM bindings:
 
 ```bash
 bash scripts/install_python_lcm.sh
 ```
 
-### 2. 配置 LCM 网络
+### 2. Configure LCM Networking
 
-如果 LCM 消息收不到、监控工具没有数据，或多机通信异常，先配置网络：
+If LCM messages are missing, monitoring tools show no data, or multi-machine communication fails:
 
 ```bash
 sudo bash scripts/setup_lcm_network.sh
 ```
 
-该脚本通常需要 `sudo`，因为它会修改网卡、多播路由等网络配置。
+This usually requires `sudo` because it modifies network-interface and multicast-route settings.
 
-### 3. 生成 LCM 类型
+### 3. Generate LCM Types
 
-如果修改过 `lcm-types/` 中的 `.lcm` 文件，或者 Python/C++ 类型文件缺失，可以重新生成：
+After modifying `.lcm` files under `lcm-types/`, or if generated Python/C++ files are missing:
 
 ```bash
 bash scripts/generate_lcm_types.sh
 ```
 
-### 4. 启动仿真和控制器
-
-常用方式是先启动 MuJoCo 仿真，再启动控制器：
+### 4. Start Simulation and Controller
 
 ```bash
 bash scripts/start_mujoco.sh --config config_sim.yaml
 bash scripts/run_robot_controller.sh
 ```
 
-如果只想后台或无界面运行仿真，可以使用：
+Headless simulation:
 
 ```bash
 bash scripts/start_mujoco.sh --headless
 ```
 
-如果需要把实物机器人反馈实时显示到 MuJoCo Viewer 中，可以使用：
+Display physical robot feedback in MuJoCo Viewer:
 
 ```bash
 bash scripts/start_hardware_viewer.sh
 ```
 
-### 5. 监控和分析数据
-
-监控 LCM：
+### 5. Monitor and Analyze Data
 
 ```bash
 bash scripts/monitor_lcm.sh
 bash scripts/monitor_lcm.sh --no-gui
-```
-
-查看 CSV 日志：
-
-```bash
 python3 scripts/data_viewer.py
 python3 scripts/motor_trace_viewer.py log/motor_trace.csv
 ```
 
-## 运行类脚本
+## Runtime Scripts
 
 ### `run_robot_controller.sh`
 
-用于启动开发包内的控制器程序。脚本会按 `uname -m` 自动选择 x86_64 或 RK3588/aarch64
-对应的 `bin*/` 和 `lib*/` 目录，避免控制器找不到当前架构的 `.so` 文件。
-
-常用命令：
+Starts the packaged controller. It selects x86_64 or RK3588/aarch64 `bin*/` and `lib*/` directories from `uname -m`.
 
 ```bash
 bash scripts/run_robot_controller.sh
 bash scripts/run_robot_controller.sh --config config.yaml
 ```
 
-适用场景：
+Use it to start the controller on hardware, verify `bin/ybt_ctrl` or `bin_rk3588/ybt_ctrl`, and debug controller parameters in `config.yaml`.
 
-- 在实物环境中启动控制器。
-- 验证打包后的 `bin/ybt_ctrl` 或 `bin_rk3588/ybt_ctrl` 是否可以独立运行。
-- 调试 `config.yaml` 中的控制器参数。
+Notes:
 
-注意事项：
-
-- 建议从开发包根目录运行。
-- 无参数运行时默认使用 `config.yaml`，并按系统架构选择控制器。
-- 如果提示动态库缺失，先确认当前架构对应的 `lib/` 或 `lib_rk3588/` 目录完整。
-- 如果控制器启动后没有机器人状态，通常需要同时检查仿真进程和 LCM 网络。
+- Run from the package root when possible.
+- With no arguments, it uses `config.yaml` and selects controller by architecture.
+- If shared libraries are missing, check the matching `lib/` or `lib_rk3588/` directory.
+- If no state appears after startup, check simulation and the LCM network.
 
 ### `start_mujoco.sh`
 
-用于启动 MuJoCo 仿真环境。默认读取开发包内的仿真配置，也可以通过参数指定配置文件。
-脚本会按系统架构自动选择控制器：x86_64 使用 `bin/` 和 `lib/`，RK3588/aarch64 使用
-`bin_rk3588/` 和 `lib_rk3588/`。
-
-常用命令：
+Starts MuJoCo simulation. It reads the packaged simulation configuration by default or accepts a custom config path. The script selects x86_64 `bin/` and `lib/`, or RK3588/aarch64 `bin_rk3588/` and `lib_rk3588/`.
 
 ```bash
 bash scripts/start_mujoco.sh
@@ -148,30 +125,17 @@ bash scripts/start_mujoco.sh --config config_sim.yaml
 bash scripts/start_mujoco.sh --headless
 ```
 
-适用场景：
-
-- 本机仿真调试控制器。
-- 验证模型、配置和资源文件是否完整。
-
-注意事项：
-
-- 如果启动失败，先检查 `resources/`、`mujoco_sim/` 和 `config_sim.yaml` 是否存在。
-- 如果图形界面无法打开，确认当前环境是否支持显示。
-- 如果控制器与仿真没有通信，优先检查 LCM URL、网卡和多播配置。
+Use it for local simulation debugging and verifying models, configuration, and assets.
 
 ### `start_hardware_viewer.sh`
 
-用于启动硬件实时可视化 MuJoCo Viewer。脚本会设置 `PYTHONPATH`，然后调用
-`hardware_mujoco_viewer.py` 接收实物机器人 LCM 反馈，并把关节角、机身姿态和高度显示到
-MuJoCo 模型中。
+Starts the hardware real-time MuJoCo Viewer. It sets `PYTHONPATH` and runs `hardware_mujoco_viewer.py`, which receives physical robot LCM feedback and displays joint angles, body attitude, and height.
 
-默认参数：
+Default parameters:
 
-- XML 模型：`resources/robots/quad48/scene_terrain.xml`
-- LCM URL：`udpm://239.255.76.67:7667?ttl=255`
-- Viewer 刷新率：`60 Hz`
-
-常用命令：
+- XML model: `resources/robots/quad48/scene_terrain.xml`
+- LCM URL: `udpm://239.255.76.67:7667?ttl=255`
+- Viewer refresh rate: `60 Hz`
 
 ```bash
 bash scripts/start_hardware_viewer.sh
@@ -181,24 +145,9 @@ bash scripts/start_hardware_viewer.sh --viewer-hz 30
 bash scripts/start_hardware_viewer.sh --help
 ```
 
-适用场景：
-
-- 实物机器人运行时，实时查看当前关节和机身姿态。
-- 排查控制器反馈、LCM 数据流或模型姿态显示是否正常。
-- 在不启动完整仿真闭环的情况下，用 MuJoCo Viewer 观察硬件状态。
-
-注意事项：
-
-- 建议优先使用该 shell 脚本启动，而不是直接运行 Python 文件。
-- 运行前需要可用的 Python LCM 绑定、`mujoco` Python 包和图形显示环境。
-- 如果 Viewer 中模型没有动作，先确认实物控制器正在发布 LCM 反馈，并检查 LCM URL 是否一致。
-
 ### `hardware_mujoco_viewer.py`
 
-Python 版硬件状态 MuJoCo Viewer，可以直接运行，也可以由 `start_hardware_viewer.sh` 调用。
-该工具只根据收到的硬件反馈刷新 MuJoCo 模型姿态，不推进物理仿真。
-
-常用命令：
+Python hardware-state MuJoCo Viewer. It can run directly or through `start_hardware_viewer.sh`. It refreshes the MuJoCo pose from received hardware feedback and does not advance physics simulation.
 
 ```bash
 python3 scripts/hardware_mujoco_viewer.py
@@ -208,333 +157,30 @@ python3 scripts/hardware_mujoco_viewer.py --joint-channel leg_control_data --rob
 python3 scripts/hardware_mujoco_viewer.py --height 0.45 --x 0.0 --y 0.0 --viewer-hz 60 --stale-timeout 2.0
 ```
 
-主要参数：
-
-- `--xml`：MuJoCo XML 路径，可以是绝对路径，也可以是相对开发包根目录的路径。
-- `--lcm-url`：接收硬件反馈使用的 LCM URL。
-- `--joint-channel`：关节反馈频道，默认 `leg_control_data`，消息类型为 `quad_joint_state_t`。
-- `--robot-state-channel`：机身状态频道，默认 `QUAD_ROBOT_STATE`，消息类型为 `sport_client_state_t`。
-- `--height`：没有收到有效机身高度时使用的默认悬浮基高度。
-- `--x`、`--y`：Viewer 中固定显示的世界坐标位置。
-- `--viewer-hz`：Viewer 刷新率，只限制画面刷新，不表示仿真步频。
-- `--stale-timeout`：超过该秒数未收到新消息时打印 stale 警告。
-
-适用场景：
-
-- 需要直接调试硬件 Viewer 的 Python 参数或 LCM 频道。
-- 临时切换模型 XML、LCM URL、刷新率或默认显示位置。
-- 检查 `leg_control_data` 和 `QUAD_ROBOT_STATE` 是否能正确驱动模型显示。
-
-注意事项：
-
-- 直接运行时需要自己保证 `PYTHONPATH` 能找到开发包根目录和 `lcm-types/python`。
-- 如果提示 `import lcm` 或 `import mujoco` 失败，先准备 Python 环境或安装对应依赖。
-- 如果长时间提示等待 `leg_control_data` 或 `QUAD_ROBOT_STATE`，检查控制器是否已启动以及 LCM 网络是否配置正确。
-
-## LCM 相关脚本
-
-### `generate_lcm_types.sh`
-
-用于根据 `lcm-types/` 下的 `.lcm` 文件生成 C++ 和 Python 类型文件。
-
-常用命令：
-
-```bash
-bash scripts/generate_lcm_types.sh
-```
-
-适用场景：
-
-- 新增或修改 LCM 消息定义后，重新生成类型文件。
-- Python 监控工具提示找不到某些 LCM 类型。
-- C++ 或 Python 通信结构体与 `.lcm` 文件不一致。
-
-注意事项：
-
-- 生成前需要系统中安装 `lcm-gen`。
-- 修改 `.lcm` 文件后，通信两端应使用同一版本的类型定义。
-
-### `monitor_lcm.sh`
-
-LCM 监控启动脚本。它会做一些运行前检查，然后调用 `monitor_lcm.py`。
-
-常用命令：
-
-```bash
-bash scripts/monitor_lcm.sh
-bash scripts/monitor_lcm.sh --no-gui
-bash scripts/monitor_lcm.sh --lcm-url "udpm://239.255.76.67:7667?ttl=1"
-```
-
-适用场景：
-
-- 查看控制器、仿真或外部算法发布的 LCM 消息。
-- 排查 LCM 无数据、消息频率异常、字段值异常等问题。
-- 在无 GUI 环境下用文本模式确认通信是否正常。
-
-注意事项：
-
-- GUI 模式通常依赖 Python 图形库和显示环境。
-- 如果没有数据，先尝试 `--no-gui`，再检查网络和 LCM URL。
-- 如果提示 Python LCM 缺失，运行 `install_python_lcm.sh`。
-
-### `monitor_lcm.py`
-
-Python 版 LCM 监控程序，可以直接运行，也可以由 `monitor_lcm.sh` 调用。
-
-常用命令：
-
-```bash
-python3 scripts/monitor_lcm.py
-python3 scripts/monitor_lcm.py --no-gui
-python3 scripts/monitor_lcm.py --lcm-url "udpm://239.255.76.67:7667?ttl=1"
-```
-
-适用场景：
-
-- 需要直接调试 Python 监控程序。
-- 已经确认依赖齐全，不需要 shell 脚本做前置检查。
-- 在开发过程中修改或扩展监控逻辑。
-
-### `launch_lcm_spy.sh`
-
-用于启动系统中的 `lcm-spy` 工具。
-
-常用命令：
-
-```bash
-bash scripts/launch_lcm_spy.sh
-```
-
-适用场景：
-
-- 使用 LCM 官方工具快速查看当前网络上的频道。
-- 对比自带监控工具和 `lcm-spy` 的接收结果。
-
-注意事项：
-
-- 需要系统中已经安装 `lcm-spy`。
-- 如果命令不存在，请先安装 LCM 工具链。
-
-### `setup_lcm_network.sh`
-
-用于配置 LCM 多播网络，通常会设置网卡、多播路由或相关网络参数。
-
-常用命令：
-
-```bash
-sudo bash scripts/setup_lcm_network.sh
-```
-
-适用场景：
-
-- LCM 监控收不到数据。
-- 控制器和仿真在不同进程或不同机器上通信异常。
-- 多网卡机器上 LCM 走错网卡。
-
-注意事项：
-
-- 该脚本通常需要管理员权限。
-- 执行前建议确认当前机器的目标网卡。
-- 修改网络配置可能影响当前终端的网络连接，远程机器上使用时要格外小心。
-
-### `show_network_bandwidth.sh`
-
-用于实时查看指定网卡的接收、发送和总网络带宽占用情况。
-
-常用命令：
-
-```bash
-bash scripts/show_network_bandwidth.sh
-bash scripts/show_network_bandwidth.sh eth0 1
-```
-
-参数说明：
-
-- 第 1 个参数：网卡名称，例如 `eth0`、`enp3s0`、`wlan0`。不传时脚本会尝试使用默认路由网卡。
-- 第 2 个参数：刷新间隔，单位为秒，默认是 `1`。
-
-适用场景：
-
-- 排查 LCM 消息量过大导致的网络占用问题。
-- 检查控制器、仿真、WebRTC 或外部算法运行时的网络流量。
-- 多机调试时确认目标网卡是否真的有数据收发。
-
-注意事项：
-
-- 脚本会读取 `/sys/class/net/<网卡>/statistics/` 下的收发字节数。
-- 如果系统安装了 `ethtool`，脚本会尝试读取网卡最大速率并显示占用率。
-- 如果提示网卡不存在，先用 `ip link` 查看当前机器的网卡名称。
-
-## Python 环境脚本
-
-### `setup_conda_env.sh`
-
-用于创建或配置开发包所需的 Conda/Python 环境。
-
-常用命令：
-
-```bash
-bash scripts/setup_conda_env.sh
-```
-
-适用场景：
-
-- 第一次使用仿真、监控或可视化工具。
-- Python 依赖缺失，例如 matplotlib、numpy、lcm 等。
-- 希望使用统一环境运行开发包内的 Python 工具。
-
-注意事项：
-
-- 需要本机已经安装 Conda 或 Miniconda。
-- 如果系统没有 Conda，可手动安装依赖，或根据脚本内容迁移到已有 Python 环境。
-
-### `install_python_lcm.sh`
-
-用于安装或修复 Python LCM 绑定。
-
-常用命令：
-
-```bash
-bash scripts/install_python_lcm.sh
-```
-
-适用场景：
-
-- `monitor_lcm.py` 提示 `import lcm` 失败。
-- Python 环境已存在，但缺少 LCM Python 包。
-- 更新系统 LCM 后需要重新安装 Python 绑定。
-
-### `remove_conda_env.sh`
-
-用于删除脚本创建的 Conda 环境。
-
-常用命令：
-
-```bash
-bash scripts/remove_conda_env.sh
-```
-
-适用场景：
-
-- 需要清理开发环境。
-- 环境依赖混乱，准备重新创建。
-- 切换到其他 Python 环境管理方式。
-
-注意事项：
-
-- 删除前确认环境中没有需要保留的个人文件。
-- 删除后如果还要使用 Python 工具，需要重新运行 `setup_conda_env.sh` 或手动准备依赖。
-
-## 数据查看脚本
-
-### `data_viewer.py`
-
-用于查看控制器输出的普通 CSV 日志，例如强化学习运行日志。
-
-常用命令：
-
-```bash
-python3 scripts/data_viewer.py
-python3 scripts/data_viewer.py log/log_RL_data.csv
-```
-
-适用场景：
-
-- 查看控制器运行过程中记录的 CSV 曲线。
-- 对比不同运行阶段的数据变化。
-- 快速定位状态量、控制量或观测量异常。
-
-注意事项：
-
-- 如果不指定文件，脚本会尝试从默认日志路径查找 CSV。
-- 如果 GUI 无法打开，检查 Python 图形库和显示环境。
-- 如果 CSV 字段不符合预期，确认日志文件是否由当前版本控制器生成。
-
-### `motor_trace_viewer.py`
-
-用于查看电机跟踪日志，通常面向 `motor_trace.csv` 这类文件，展示关节期望位置、实际位置、
-期望力矩、实际力矩等曲线。
-
-常用命令：
-
-```bash
-python3 scripts/motor_trace_viewer.py
-python3 scripts/motor_trace_viewer.py log/motor_trace.csv
-```
-
-适用场景：
-
-- 分析单个关节的跟踪效果。
-- 对比期望值和实际值之间的偏差。
-- 排查抖动、延迟、力矩异常或某条腿动作不一致的问题。
-
-注意事项：
-
-- 需要先在配置中打开电机跟踪日志输出。
-- 日志文件较大时，打开和绘图可能需要一些时间。
-- 如果字段缺失，确认控制器版本和日志格式是否匹配。
-
-
-## 常见问题
-
-### 控制器提示找不到动态库
-
-先确认是否在开发包根目录执行命令，并确认 `lib/` 目录存在。建议使用：
-
-```bash
-bash scripts/run_robot_controller.sh
-```
-
-不要直接运行 `bin/ybt_ctrl`，否则可能没有正确设置动态库路径。
-
-### LCM 监控没有任何消息
-
-建议按顺序检查：
-
-```bash
-sudo bash scripts/setup_lcm_network.sh
-bash scripts/monitor_lcm.sh --no-gui
-```
-
-同时确认控制器或仿真进程已经启动，并且它们使用的是同一个 LCM URL。
-
-### Python 脚本提示缺少 lcm、numpy 或 matplotlib
-
-先准备 Python 环境：
-
-```bash
-bash scripts/setup_conda_env.sh
-```
-
-如果只缺少 LCM 绑定：
-
-```bash
-bash scripts/install_python_lcm.sh
-```
-
-### 图形界面打不开
-
-可能原因包括：
-
-- 当前机器没有显示环境。
-- SSH 没有开启 X11 转发。
-- Python 图形库未安装完整。
-- 正在无头服务器或机器人主机上运行。
-
-可以优先使用文本模式：
-
-```bash
-bash scripts/monitor_lcm.sh --no-gui
-bash scripts/start_mujoco.sh --headless
-```
-
-### 修改 `.lcm` 文件后 Python 工具报字段错误
-
-重新生成 LCM 类型：
-
-```bash
-bash scripts/generate_lcm_types.sh
-```
-
-并确认通信两端使用同一份 `.lcm` 定义。
+Main parameters:
+
+- `--xml`: MuJoCo XML path, absolute or relative to the package root.
+- `--lcm-url`: LCM URL for hardware feedback.
+- `--joint-channel`: joint-feedback channel, default `leg_control_data`, message type `quad_joint_state_t`.
+- `--robot-state-channel`: body-state channel, default `QUAD_ROBOT_STATE`, message type `sport_client_state_t`.
+- `--height`: default floating-base height when no valid body height is received.
+- `--x`, `--y`: fixed world-coordinate position in Viewer.
+- `--viewer-hz`: Viewer refresh rate only.
+- `--stale-timeout`: seconds without new messages before printing a stale warning.
+
+## Other Common Scripts
+
+- `monitor_lcm.sh`: launch LCM monitor; use `--no-gui` in text-only environments.
+- `launch_lcm_spy.sh`: launch the official LCM spy tool.
+- `setup_lcm_network.sh`: configure multicast routes and network-interface settings.
+- `generate_lcm_types.sh`: regenerate bindings from `.lcm` files.
+- `data_viewer.py`: plot normal CSV or RL data logs.
+- `motor_trace_viewer.py`: plot motor target, actual position, velocity, and torque traces.
+- `check_cmake_make_gcc.sh`: check CMake, Make, GCC, and G++.
+
+## Safety Notes
+
+- Use `config_sim.yaml` for simulation and `config.yaml` for hardware.
+- Keep controller, SDK, WebRTC, simulation, and external algorithms on the same LCM URL and channel set.
+- For hardware, confirm robot model, SPI devices, IMU port, emergency stop, and safety area before commands.
+- Stop external algorithms and switch the robot to a safe mode before terminating the controller.
