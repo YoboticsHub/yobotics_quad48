@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>4.5 SDK 控制仿真例子 - Quad48 四足机器人控制框架使用说明书</title>
+    <title>4.5 SDK Simulation Example - Quad48 Quadruped Robot Control Framework User Manual</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "4.5 SDK \u63a7\u5236\u4eff\u771f\u4f8b\u5b50";
-        var mkdocs_page_input_path = "part-4-sdk/5.simulation-example.md";
+        var mkdocs_page_name = "4.5 SDK Simulation Example";
+        var mkdocs_page_input_path = "en/part-4-sdk/5.simulation-example.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -35,108 +35,108 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+          <a href="../index.html" class="icon icon-home"> Quad48 Quadruped Robot Control Framework User Manual
         </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <p class="caption"><span class="caption-text">Part 1 Environment Setup and Quick Start</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Software Framework</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 System Requirements</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Package Directory</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 First Run Workflow</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <p class="caption"><span class="caption-text">Part 2 MuJoCo Simulation and Development Verification</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 Purpose of MuJoCo Simulation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 启动仿真</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 Start Simulation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 验证预部署模型</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 Verify Predeployed Models</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 仿真调试</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 Simulation Debugging</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
+              <p class="caption"><span class="caption-text">Part 3 Hardware Deployment, Operation, and Debugging</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 实物部署原理</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 Hardware Deployment Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 修改 config</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 Update config.yaml</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 实物机器人部署运行</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 Deploy and Run on a Physical Robot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 Runtime Checks and Safe Stop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 Logging and Plotting</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <p class="caption"><span class="caption-text">Part 4 SDK High-Level Development</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="1.overview.html">4.1 SDK 代码目录与功能</a>
+                  <li class="toctree-l1"><a class="reference internal" href="1.overview.html">4.1 SDK Directory and Features</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="2.build.html">4.2 SDK 编译流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="2.build.html">4.2 Build the SDK</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="3.motion-control.html">4.3 SDK Motion Control Workflow</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="4.state-read.html">4.4 SDK State Reading Workflow</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4.5 SDK 控制仿真例子</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4.5 SDK Simulation Example</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">前提</a>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">操作步骤</a>
+    <li class="toctree-l2"><a class="reference internal" href="#steps">Steps</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#1-1">1. 启动仿真（终端窗口1）</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1-start-simulation-in-terminal-1">1. Start Simulation in Terminal 1</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#2-lcm2">2. 监控 LCM（终端窗口2）</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2-monitor-lcm-in-terminal-2">2. Monitor LCM in Terminal 2</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#3-sdk-3">3. 运行 SDK 运动控制（终端窗口3）</a>
+    <li class="toctree-l3"><a class="reference internal" href="#3-run-sdk-motion-control-in-terminal-3">3. Run SDK Motion Control in Terminal 3</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#4-sdk-4">4. 运行 SDK 状态读取（终端窗口4）</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4-run-sdk-state-reading-in-terminal-4">4. Run SDK State Reading in Terminal 4</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">成功标志</a>
+    <li class="toctree-l2"><a class="reference internal" href="#success-criteria">Success Criteria</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_5">常见问题</a>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_6">安全提示</a>
+    <li class="toctree-l2"><a class="reference internal" href="#safety-note">Safety Note</a>
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="6.hardware-example.html">4.6 SDK 控制实物例子</a>
+                  <li class="toctree-l1"><a class="reference internal" href="6.hardware-example.html">4.6 SDK Hardware Example</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="7.http-demo.html">4.7 SDK HTTP 控制服务</a>
+                  <li class="toctree-l1"><a class="reference internal" href="7.http-demo.html">4.7 SDK HTTP Control Service</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  <li class="toctree-l1"><a class="reference internal" href="8.demo-usage.html">4.8 SDK Demo Usage</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <p class="caption"><span class="caption-text">Part 5 LCM Low-Level Development and Custom Algorithms</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 LCM 结构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 LCM Structure</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 LCM 消息定义</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 LCM Message Definitions</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 开发包示例</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 Development Package Examples</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 开发者模式</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 Development Mode</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm Joint-Control Template</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX Simulation Deployment</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 Deploy Custom Algorithms on Hardware</a>
                   </li>
               </ul>
       </div>
@@ -146,15 +146,15 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+          <a href="../index.html">Quad48 Quadruped Robot Control Framework User Manual</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">第四部分 SDK 高层二次开发</li>
-      <li class="breadcrumb-item active">4.5 SDK 控制仿真例子</li>
+          <li class="breadcrumb-item">Part 4 SDK High-Level Development</li>
+      <li class="breadcrumb-item active">4.5 SDK Simulation Example</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -163,78 +163,77 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <div><h1 id="45-sdk">4.5 SDK 控制仿真例子<a class="headerlink" href="#45-sdk" title="Permanent link">¶</a></h1>
-<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<p>本节说明如何用 SDK 控制 MuJoCo 仿真，适合作为高层二次开发的第一步验证。</p>
-<h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+                <div><h1 id="45-sdk-simulation-example">4.5 SDK Simulation Example<a class="headerlink" href="#45-sdk-simulation-example" title="Permanent link">¶</a></h1>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">¶</a></h2>
+<p>This section explains how to control MuJoCo simulation with the SDK. It is a good first verification step for high-level secondary development.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h2>
 <ul>
-<li>MuJoCo 仿真可启动。</li>
-<li>SDK 已编译完成。</li>
-<li>SDK 与仿真器、控制器使用同一个 LCM URL。</li>
+<li>MuJoCo simulation can start.</li>
+<li>The SDK has been built.</li>
+<li>SDK, simulator, and controller use the same LCM URL.</li>
 </ul>
-<h2 id="_3">操作步骤<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
-<h3 id="1-1">1. 启动仿真（终端窗口1）<a class="headerlink" href="#1-1" title="Permanent link">¶</a></h3>
-<pre><code class="language-bash"># 如果mujoco安装在conda环境下,先从base切到conda环境,再执行下方脚本
-conda env list 
+<h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">¶</a></h2>
+<h3 id="1-start-simulation-in-terminal-1">1. Start Simulation in Terminal 1<a class="headerlink" href="#1-start-simulation-in-terminal-1" title="Permanent link">¶</a></h3>
+<pre><code class="language-bash"># If MuJoCo is installed in a Conda environment, switch from base to that environment first
+conda env list
 conda activate robot_controller
 </code></pre>
 <pre><code class="language-bash">bash scripts/start_mujoco.sh --config config_sim.yaml
 </code></pre>
-<h3 id="2-lcm2">2. 监控 LCM（终端窗口2）<a class="headerlink" href="#2-lcm2" title="Permanent link">¶</a></h3>
+<h3 id="2-monitor-lcm-in-terminal-2">2. Monitor LCM in Terminal 2<a class="headerlink" href="#2-monitor-lcm-in-terminal-2" title="Permanent link">¶</a></h3>
 <pre><code class="language-bash">bash scripts/monitor_lcm.sh --no-gui
 </code></pre>
-<pre><code class="language-bash"># 如果lcm安装在conda环境下,先从base切到conda环境,再执行上方脚本
-conda env list 
+<pre><code class="language-bash"># If LCM is installed in a Conda environment, switch from base to that environment first
+conda env list
 conda activate robot_controller
 </code></pre>
-<h3 id="3-sdk-3">3. 运行 SDK 运动控制（终端窗口3）<a class="headerlink" href="#3-sdk-3" title="Permanent link">¶</a></h3>
+<h3 id="3-run-sdk-motion-control-in-terminal-3">3. Run SDK Motion Control in Terminal 3<a class="headerlink" href="#3-run-sdk-motion-control-in-terminal-3" title="Permanent link">¶</a></h3>
 <pre><code class="language-bash">cd yobotics_sdk/build
 ./yobot_sport_client
 </code></pre>
 <p><img alt="" src="image/res_2.png"></p>
-<h3 id="4-sdk-4">4. 运行 SDK 状态读取（终端窗口4）<a class="headerlink" href="#4-sdk-4" title="Permanent link">¶</a></h3>
-<p>另开一个终端：</p>
+<h3 id="4-run-sdk-state-reading-in-terminal-4">4. Run SDK State Reading in Terminal 4<a class="headerlink" href="#4-run-sdk-state-reading-in-terminal-4" title="Permanent link">¶</a></h3>
 <pre><code class="language-bash">cd yobotics_sdk/build
 ./yobot_robot_state_client
 </code></pre>
 <p><img alt="" src="image/res_3.png"></p>
-<h2 id="_4">成功标志<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h2 id="success-criteria">Success Criteria<a class="headerlink" href="#success-criteria" title="Permanent link">¶</a></h2>
 <ul>
-<li>MuJoCo Viewer 中机器人对 SDK 命令有响应，如能从趴/阻尼到站立再走动。</li>
-<li><code>monitor_lcm.sh</code> 能看到 <code>QUAD_ROBOT_CONTROL</code> 和 <code>QUAD_ROBOT_STATE</code>。</li>
-<li>状态读取示例输出随控制命令变化。</li>
+<li>The robot in MuJoCo Viewer responds to SDK commands, for example moving from prone/damping to standing and walking.</li>
+<li><code>monitor_lcm.sh</code> shows <code>QUAD_ROBOT_CONTROL</code> and <code>QUAD_ROBOT_STATE</code>.</li>
+<li>State-reading output changes with control commands.</li>
 </ul>
-<h2 id="_5">常见问题<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
-<th>现象</th>
-<th>处理</th>
+<th>Symptom</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>SDK 命令无响应</td>
-<td>确认控制器已进入可接收高层命令的模式</td>
+<td>SDK commands have no response</td>
+<td>Confirm that the controller is in a mode that accepts high-level commands</td>
 </tr>
 <tr>
-<td>状态读取为空</td>
-<td>确认 LCM URL 和状态通道一致</td>
+<td>State reading is empty</td>
+<td>Confirm that LCM URL and state channel match</td>
 </tr>
 <tr>
-<td>仿真摔倒</td>
-<td>降低速度命令并检查模型、PD 参数和动作限幅</td>
+<td>Simulation falls</td>
+<td>Reduce velocity commands and check model, PD parameters, and action limits</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_6">安全提示<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
-<p>虽然仿真不会损坏实物，但仿真中的异常动作通常代表配置或模型存在问题。不要跳过问题直接上实物。</p></div>
+<h2 id="safety-note">Safety Note<a class="headerlink" href="#safety-note" title="Permanent link">¶</a></h2>
+<p>Simulation does not damage hardware, but abnormal simulation motion usually indicates a configuration or model problem. Do not skip the problem and move directly to hardware.</p></div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="4.state-read.html" class="btn btn-neutral float-left" title="4.4 SDK 状态读取控制流程"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="6.hardware-example.html" class="btn btn-neutral float-right" title="4.6 SDK 控制实物例子">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="4.state-read.html" class="btn btn-neutral float-left" title="4.4 SDK State Reading Workflow"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="6.hardware-example.html" class="btn btn-neutral float-right" title="4.6 SDK Hardware Example">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -269,6 +268,7 @@ conda activate robot_controller
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
       <script src="../js/copy-code.js"></script>
+      <script src="../js/language-switcher.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);

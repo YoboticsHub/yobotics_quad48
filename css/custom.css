@@ -65,3 +65,36 @@
   border-color: #1a7f37;
   background: #f0fff4;
 }
+
+/* Language switcher */
+.language-switcher {
+  margin: 10px 14px 0;
+  text-align: center;
+}
+
+.language-switcher__link {
+  display: inline-block;
+  min-width: 88px;
+  padding: 5px 12px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.language-switcher__link:hover,
+.language-switcher__link:focus {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.22);
+  text-decoration: none;
+  outline: none;
+}
+
+@media screen and (max-width: 768px) {
+  .language-switcher {
+    margin-bottom: 10px;
+  }
+}

@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="山东优宝特智能机器人有限公司" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>2.2 启动仿真 - Quad48 四足机器人控制框架使用说明书</title>
+    <title>2.2 Start Simulation - Quad48 Quadruped Robot Control Framework User Manual</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "2.2 \u542f\u52a8\u4eff\u771f";
-        var mkdocs_page_input_path = "part-2-mujoco/2.start.md";
+        var mkdocs_page_name = "2.2 Start Simulation";
+        var mkdocs_page_input_path = "en/part-2-mujoco/2.start.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -35,98 +35,98 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../index.html" class="icon icon-home"> Quad48 四足机器人控制框架使用说明书
+          <a href="../index.html" class="icon icon-home"> Quad48 Quadruped Robot Control Framework User Manual
         </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../index.html">首页</a>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">第一部分 环境配置与快速开始</span></p>
+              <p class="caption"><span class="caption-text">Part 1 Environment Setup and Quick Start</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 软件框架介绍</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Software Framework</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 系统要求</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 System Requirements</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 软件包目录</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Package Directory</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 初次使用流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 First Run Workflow</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">第二部分 MuJoCo 仿真与开发验证</span></p>
+              <p class="caption"><span class="caption-text">Part 2 MuJoCo Simulation and Development Verification</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="1.purpose.html">2.1 MuJoCo 仿真的作用</a>
+                  <li class="toctree-l1"><a class="reference internal" href="1.purpose.html">2.1 Purpose of MuJoCo Simulation</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2.2 启动仿真</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2.2 Start Simulation</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">用途</a>
+    <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">前提</a>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">操作步骤</a>
+    <li class="toctree-l2"><a class="reference internal" href="#steps">Steps</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">脚本行为</a>
+    <li class="toctree-l2"><a class="reference internal" href="#script-behavior">Script Behavior</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_5">成功标志</a>
+    <li class="toctree-l2"><a class="reference internal" href="#success-criteria">Success Criteria</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_6">常见问题</a>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="3.verify-model.html">2.3 验证预部署模型</a>
+                  <li class="toctree-l1"><a class="reference internal" href="3.verify-model.html">2.3 Verify Predeployed Models</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="4.debug.html">2.4 仿真调试</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">第三部分 实物部署、运行、调试</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 实物部署原理</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 修改 config</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 实物机器人部署运行</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 实物运行检查与安全停止</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 实物日志开关方式和绘图方式</a>
+                  <li class="toctree-l1"><a class="reference internal" href="4.debug.html">2.4 Simulation Debugging</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">第四部分 SDK 高层二次开发</span></p>
+              <p class="caption"><span class="caption-text">Part 3 Hardware Deployment, Operation, and Debugging</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK 代码目录与功能</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 Hardware Deployment Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 SDK 编译流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 Update config.yaml</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK 运动控制使用流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 Deploy and Run on a Physical Robot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK 状态读取控制流程</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 Runtime Checks and Safe Stop</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK 控制仿真例子</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK 控制实物例子</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP 控制服务</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo 使用</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 Logging and Plotting</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">第五部分 LCM 底层开发与自研算法包接入</span></p>
+              <p class="caption"><span class="caption-text">Part 4 SDK High-Level Development</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 LCM 结构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK Directory and Features</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 LCM 消息定义</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 Build the SDK</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 开发包示例</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK Motion Control Workflow</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 开发者模式</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK State Reading Workflow</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm 关节状态控制模板</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK Simulation Example</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX 仿真部署</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK Hardware Example</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 自研算法实物部署</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP Control Service</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo Usage</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Part 5 LCM Low-Level Development and Custom Algorithms</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 LCM Structure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 LCM Message Definitions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 Development Package Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 Development Mode</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm Joint-Control Template</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX Simulation Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 Deploy Custom Algorithms on Hardware</a>
                   </li>
               </ul>
       </div>
@@ -136,15 +136,15 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Quad48 四足机器人控制框架使用说明书</a>
+          <a href="../index.html">Quad48 Quadruped Robot Control Framework User Manual</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">第二部分 MuJoCo 仿真与开发验证</li>
-      <li class="breadcrumb-item active">2.2 启动仿真</li>
+          <li class="breadcrumb-item">Part 2 MuJoCo Simulation and Development Verification</li>
+      <li class="breadcrumb-item active">2.2 Start Simulation</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -153,74 +153,76 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <div><h1 id="22">2.2 启动仿真<a class="headerlink" href="#22" title="Permanent link">¶</a></h1>
-<h2 id="_1">用途<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<p>本节说明如何启动 MuJoCo 仿真器和控制器，确认基础环境、模型资源和 LCM 通信可用。</p>
-<h2 id="_2">前提<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+                <div><h1 id="22-start-simulation">2.2 Start Simulation<a class="headerlink" href="#22-start-simulation" title="Permanent link">¶</a></h1>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">¶</a></h2>
+<p>This section explains how to start the MuJoCo simulator and controller and verify that the base environment, model assets, and LCM communication are available.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h2>
 <ul>
-<li>已激活 Python 环境，例如 <code>conda activate robot_controller</code>（环境配置见1.2章节）。</li>
-<li><code>config_sim.yaml</code> 存在，并且 <code>simulation.enable_mujoco: true</code>。</li>
-<li><code>resources/</code>、<code>mujoco_sim/</code> 和控制器可执行文件存在。</li>
-<li>仿真必须用 config_sim.yaml，不要用 config.yaml。</li>
+<li>A Python environment is activated, for example <code>conda activate robot_controller</code>.</li>
+<li><code>config_sim.yaml</code> exists and contains <code>simulation.enable_mujoco: true</code>.</li>
+<li><code>resources/</code>, <code>mujoco_sim/</code>, and the controller executable exist.</li>
+<li>Simulation must use <code>config_sim.yaml</code>; do not use <code>config.yaml</code>.</li>
 </ul>
-<h2 id="_3">操作步骤<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
-<p>在项目根目录运行：</p>
+<h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">¶</a></h2>
+<p>Run from the project root:</p>
 <pre><code class="language-bash">bash scripts/start_mujoco.sh --config config_sim.yaml
 </code></pre>
-<p>MuJoCo 仿真启动界面
-<img alt="MuJoCo 仿真启动界面" src="images/2.2.png"></p>
-<p>查看脚本参数：</p>
+<p>MuJoCo simulation startup screen:</p>
+<p><img alt="MuJoCo simulation startup screen" src="images/2.2.png"></p>
+<p>View script parameters:</p>
 <pre><code class="language-bash">bash scripts/start_mujoco.sh --help
 </code></pre>
-<p><img alt="描述" src="images/3.png"></p>
-<h2 id="_4">脚本行为<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<p><code>scripts/start_mujoco.sh</code> 会完成以下操作：</p>
+<p><img alt="Description" src="images/3.png"></p>
+<h2 id="script-behavior">Script Behavior<a class="headerlink" href="#script-behavior" title="Permanent link">¶</a></h2>
+<p><code>scripts/start_mujoco.sh</code> performs these actions:</p>
 <ol>
-<li>检查配置文件是否存在。</li>
-<li>检查 <code>simulation.enable_mujoco</code> 是否为 <code>true</code>。</li>
-<li>设置 <code>PYTHONPATH</code> 和 <code>YBT_CONFIG_FILE</code>。</li>
-<li>启动 <code>python3 -m mujoco_sim.mujoco_simulator</code>。</li>
-<li>查找并启动控制器。</li>
-<li>按 <code>Ctrl+C</code> 时清理仿真器和控制器进程。</li>
+<li>Checks whether the configuration file exists.</li>
+<li>Checks whether <code>simulation.enable_mujoco</code> is <code>true</code>.</li>
+<li>Sets <code>PYTHONPATH</code> and <code>YBT_CONFIG_FILE</code>.</li>
+<li>Starts <code>python3 -m mujoco_sim.mujoco_simulator</code>.</li>
+<li>Finds and starts the controller.</li>
+<li>Cleans up simulator and controller processes when <code>Ctrl+C</code> is pressed.</li>
 </ol>
-<h2 id="_5">成功标志<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<h2 id="success-criteria">Success Criteria<a class="headerlink" href="#success-criteria" title="Permanent link">¶</a></h2>
 <ul>
-<li>终端显示 MuJoCo 仿真器和控制器启动信息。</li>
-<li>Viewer 正常打开，无启动错误。</li>
-<li>控制器持续运行，没有资源缺失、库缺失或 Python 导入失败。
-<img alt="描述" src="images/2.png"></li>
-<li><code>bash scripts/monitor_lcm.sh --no-gui</code> 能看到 LCM 消息。</li>
+<li>The terminal shows MuJoCo simulator and controller startup information.</li>
+<li>Viewer opens normally without startup errors.</li>
+<li>The controller keeps running without missing assets, missing libraries, or Python import failures.</li>
 </ul>
-<p><img alt="描述" src="images/1.png"></p>
-<h2 id="_6">常见问题<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p><img alt="Description" src="images/2.png"></p>
+<ul>
+<li><code>bash scripts/monitor_lcm.sh --no-gui</code> shows LCM messages.</li>
+</ul>
+<p><img alt="Description" src="images/1.png"></p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
-<th>现象</th>
-<th>常见原因</th>
-<th>处理</th>
+<th>Symptom</th>
+<th>Common cause</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>提示 MuJoCo 未启用</td>
-<td>配置文件不是仿真配置</td>
-<td>使用 <code>config_sim.yaml</code> 并确认 <code>simulation.enable_mujoco: true</code></td>
+<td>MuJoCo not enabled</td>
+<td>The configuration file is not the simulation configuration</td>
+<td>Use <code>config_sim.yaml</code> and confirm <code>simulation.enable_mujoco: true</code></td>
 </tr>
 <tr>
-<td>Viewer 打不开</td>
-<td>无图形环境或 OpenGL 异常</td>
-<td>请使用桌面端</td>
+<td>Viewer cannot open</td>
+<td>No graphical environment or OpenGL issue</td>
+<td>Use a desktop environment</td>
 </tr>
 <tr>
-<td>找不到控制器</td>
-<td>未编译或分发包不完整</td>
-<td>检查 <code>build/user/YBT_Controller/ybt_ctrl</code>、<code>bin/ybt_ctrl</code></td>
+<td>Controller not found</td>
+<td>Not built or distribution package is incomplete</td>
+<td>Check <code>build/user/YBT_Controller/ybt_ctrl</code> and <code>bin/ybt_ctrl</code></td>
 </tr>
 <tr>
-<td>没有 LCM 消息</td>
-<td>LCM 网络或 Python LCM 异常</td>
-<td>运行 <code>bash scripts/monitor_lcm.sh --no-gui</code> 排查</td>
+<td>No LCM messages</td>
+<td>LCM network or Python LCM problem</td>
+<td>Run <code>bash scripts/monitor_lcm.sh --no-gui</code></td>
 </tr>
 </tbody>
 </table></div>
@@ -228,8 +230,8 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="1.purpose.html" class="btn btn-neutral float-left" title="2.1 MuJoCo 仿真的作用"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="3.verify-model.html" class="btn btn-neutral float-right" title="2.3 验证预部署模型">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="1.purpose.html" class="btn btn-neutral float-left" title="2.1 Purpose of MuJoCo Simulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="3.verify-model.html" class="btn btn-neutral float-right" title="2.3 Verify Predeployed Models">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -264,6 +266,7 @@
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
       <script src="../js/copy-code.js"></script>
+      <script src="../js/language-switcher.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
