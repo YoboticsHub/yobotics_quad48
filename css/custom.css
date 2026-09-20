@@ -75,11 +75,11 @@
 .language-switcher__link {
   display: block;
   padding: 8px 12px;
-  color: #ffffff;
-  background: #007acc;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: #1f2937;
+  background: #fff7cc;
+  border: 1px solid #f2b705;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
@@ -89,9 +89,9 @@
 
 .language-switcher__link:hover,
 .language-switcher__link:focus {
-  color: #ffffff;
-  background: #005f99;
-  border-color: #ffffff;
+  color: #111827;
+  background: #ffe680;
+  border-color: #ffcc00;
   text-decoration: none;
   outline: none;
 }
