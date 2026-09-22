@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="./README.md">🌎 English</a> | 🇨🇳 中文 | <a href="./README.ru.md">🇷🇺 Русский</a>
+</p>
+
 # wave_algorithm
 
 本算法通过调整四足机器人每条腿的 thigh 和 calf 关节位置，使机器人躯干产生上下波动。

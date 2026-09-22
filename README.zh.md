@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="./README.md">🌎 English</a> | 🇨🇳 中文
+  <a href="./README.md">🌎 English</a> | 🇨🇳 中文 | <a href="./README.ru.md">🇷🇺 Русский</a>
 </p>
 
 # 四足机器人强化学习控制框架
 
-[📖 在线文档](https://yoboticshub.github.io/yobotics_quad48)
+[📖 在线文档](https://yoboticshub.github.io/yobotics_quad48/zh/index.html)
 
 > 四足机器人（quad48/Yobotics Quad）RL 控制仿真部署包，支持 MuJoCo 仿真模式实时运行。（运行环境：Ubuntu20.04以上，支持 x86_64 与 RK3588/aarch64 控制器分发包）
 

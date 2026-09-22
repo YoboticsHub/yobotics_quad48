@@ -1,6 +1,12 @@
 (function () {
+  var languages = [
+    { locale: "en", label: "English", title: "Switch to English", prefix: "" },
+    { locale: "zh", label: "中文", title: "切换到中文", prefix: "zh/" },
+    { locale: "ru", label: "Русский", title: "Переключиться на русский", prefix: "ru/" },
+  ];
+
   function stripLanguage(inputPath) {
-    return (inputPath || "").replace(/^(zh|en)\//, "");
+    return (inputPath || "").replace(/^(zh|en|ru)\//, "");
   }
 
   function htmlPathFromInput(inputPath) {
@@ -11,12 +17,11 @@
     return path.replace(/\.md$/, ".html");
   }
 
-  function currentOutputPath(isChinese, htmlPath) {
-    return (isChinese ? "zh/" : "") + htmlPath;
-  }
-
-  function targetOutputPath(isChinese, htmlPath) {
-    return (isChinese ? "" : "zh/") + htmlPath;
+  function outputPath(locale, htmlPath) {
+    var language = languages.filter(function (item) {
+      return item.locale === locale;
+    })[0];
+    return (language ? language.prefix : "") + htmlPath;
   }
 
   function relativePath(fromFile, toFile) {
@@ -42,25 +47,31 @@
 
   function languageState() {
     var inputPath = window.mkdocs_page_input_path || "";
-    var isChinese = inputPath.indexOf("zh/") === 0;
+    var locale = "en";
+
+    languages.forEach(function (language) {
+      if (inputPath.indexOf(language.prefix) === 0 && language.prefix) {
+        locale = language.locale;
+      }
+    });
 
     if (!inputPath) {
-      isChinese = window.location.pathname.indexOf("/zh/") !== -1;
+      languages.forEach(function (language) {
+        if (language.prefix && window.location.pathname.indexOf("/" + language.prefix) !== -1) {
+          locale = language.locale;
+        }
+      });
     }
 
     return {
-      isChinese: isChinese,
+      locale: locale,
       htmlPath: htmlPathFromInput(inputPath),
     };
   }
 
   function insertSwitcher() {
     var state = languageState();
-    var fromFile = currentOutputPath(state.isChinese, state.htmlPath);
-    var toFile = targetOutputPath(state.isChinese, state.htmlPath);
-    var href = relativePath(fromFile, toFile);
-    var label = state.isChinese ? "English" : "中文";
-    var title = state.isChinese ? "Switch to English" : "切换到中文";
+    var fromFile = outputPath(state.locale, state.htmlPath);
     var search = document.querySelector(".wy-side-nav-search");
 
     if (!search || search.querySelector(".language-switcher")) {
@@ -70,14 +81,25 @@
     var wrapper = document.createElement("div");
     wrapper.className = "language-switcher";
 
-    var link = document.createElement("a");
-    link.className = "language-switcher__link";
-    link.href = href;
-    link.textContent = label;
-    link.setAttribute("aria-label", title);
-    link.setAttribute("title", title);
+    languages
+      .filter(function (language) {
+        return language.locale !== state.locale;
+      })
+      .forEach(function (language, index) {
+        var link = document.createElement("a");
+        link.className = "language-switcher__link";
+        link.href = relativePath(fromFile, outputPath(language.locale, state.htmlPath));
+        link.textContent = language.label;
+        link.setAttribute("aria-label", language.title);
+        link.setAttribute("title", language.title);
 
-    wrapper.appendChild(link);
+        if (index > 0) {
+          wrapper.appendChild(document.createTextNode(" | "));
+        }
+
+        wrapper.appendChild(link);
+      });
+
     search.appendChild(wrapper);
   }
 

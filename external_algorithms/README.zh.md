@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="./README.md">🌎 English</a> | 🇨🇳 中文 | <a href="./README.ru.md">🇷🇺 Русский</a>
+</p>
+
 # 外部算法开发 Demo
 
 本目录用于存放通过 LCM 接入机器人开发模式的外部算法 demo。每个算法 demo 独立放在一个子目录中，通常包含 `config.yaml` 和 `run_algorithm.py`，通过 `AlgorithmBase` 和 `LCMInterface` 完成状态接收、策略推理或规则计算、关节命令发布等流程。

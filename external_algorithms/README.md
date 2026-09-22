@@ -1,3 +1,7 @@
+<p align="center">
+  🌎 English | <a href="./README.zh.md">🇨🇳 中文</a> | <a href="./README.ru.md">🇷🇺 Русский</a>
+</p>
+
 # External Algorithm Development Demos
 
 This directory contains external algorithm demos that connect to robot development mode through LCM. Each demo lives in its own subdirectory and usually contains `config.yaml` and `run_algorithm.py`. The demos use `AlgorithmBase` and `LCMInterface` to receive state, run policy inference or rule-based computation, and publish joint commands.

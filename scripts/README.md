@@ -1,3 +1,7 @@
+<p align="center">
+  🌎 English | <a href="./README.zh.md">🇨🇳 中文</a> | <a href="./README.ru.md">🇷🇺 Русский</a>
+</p>
+
 # Quad48 Secondary Development Package Scripts
 
 This directory documents the `scripts/` folder in the standalone secondary-development package. The scripts target an already packaged `yobotics_quad48` development directory and are mainly used to run the controller, start simulation, configure LCM networking, monitor LCM messages, prepare the Python environment, and inspect runtime logs.

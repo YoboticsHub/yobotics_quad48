@@ -52,6 +52,49 @@ plugins:
                 - 5.5 wave_algorithm 关节状态控制模板: part-5-lcm-dev/5.wave-template.md
                 - 5.6 walk_algorithm ONNX 仿真部署: part-5-lcm-dev/6.walk-onnx-sim.md
                 - 5.7 自研算法实物部署: part-5-lcm-dev/7.hardware-deploy.md
+        - locale: ru
+          name: Русский
+          build: true
+          site_name: Руководство пользователя фреймворка управления четвероногим роботом Quad48
+          site_description: Документация по настройке окружения, проверке симуляции, развертыванию на роботе, интеграции SDK и разработке через LCM для фреймворка управления четвероногим роботом Quad48
+          site_author: Shandong Yobotics Intelligent Robot Co., Ltd.
+          theme:
+            language: ru
+          nav:
+            - Главная: index.md
+            - Часть 1. Настройка окружения и быстрый старт:
+                - 1.1 Программная архитектура: part-1-quick-start/1.framework.md
+                - 1.2 Системные требования: part-1-quick-start/2.system-requirements.md
+                - 1.3 Структура пакета: part-1-quick-start/3.package-directory.md
+                - 1.4 Первый запуск: part-1-quick-start/4.first-run.md
+            - Часть 2. Симуляция MuJoCo и проверка разработки:
+                - 2.1 Назначение симуляции MuJoCo: part-2-mujoco/1.purpose.md
+                - 2.2 Запуск симуляции: part-2-mujoco/2.start.md
+                - 2.3 Проверка предустановленной модели: part-2-mujoco/3.verify-model.md
+                - 2.4 Отладка симуляции: part-2-mujoco/4.debug.md
+            - Часть 3. Развертывание, запуск и отладка на роботе:
+                - 3.1 Принципы развертывания на роботе: part-3-hardware/1.principle.md
+                - 3.2 Изменение config.yaml: part-3-hardware/2.config.md
+                - 3.3 Развертывание и запуск физического робота: part-3-hardware/3.deploy-run.md
+                - 3.4 Проверки во время работы и безопасная остановка: part-3-hardware/4.runtime-checks.md
+                - 3.5 Управление журналами и построение графиков: part-3-hardware/5.logs-and-plots.md
+            - Часть 4. Высокоуровневая разработка с SDK:
+                - 4.1 Каталог SDK и функции: part-4-sdk/1.overview.md
+                - 4.2 Сборка SDK: part-4-sdk/2.build.md
+                - 4.3 Процесс управления движением через SDK: part-4-sdk/3.motion-control.md
+                - 4.4 Процесс чтения состояния через SDK: part-4-sdk/4.state-read.md
+                - 4.5 Пример управления симуляцией через SDK: part-4-sdk/5.simulation-example.md
+                - 4.6 Пример управления физическим роботом через SDK: part-4-sdk/6.hardware-example.md
+                - 4.7 HTTP-сервис управления SDK: part-4-sdk/7.http-demo.md
+                - 4.8 Использование демо SDK: part-4-sdk/8.demo-usage.md
+            - Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов:
+                - 5.1 Структура LCM: part-5-lcm-dev/1.lcm-structure.md
+                - 5.2 Определения сообщений LCM: part-5-lcm-dev/2.messages.md
+                - 5.3 Примеры пакетов разработки: part-5-lcm-dev/3.dev-package-examples.md
+                - 5.4 Режим разработки: part-5-lcm-dev/4.development-mode.md
+                - 5.5 Шаблон управления суставами wave_algorithm: part-5-lcm-dev/5.wave-template.md
+                - 5.6 Развертывание walk_algorithm ONNX в симуляции: part-5-lcm-dev/6.walk-onnx-sim.md
+                - 5.7 Развертывание собственных алгоритмов на роботе: part-5-lcm-dev/7.hardware-deploy.md
         - locale: en
           default: true
           name: English

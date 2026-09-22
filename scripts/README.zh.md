@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="./README.md">🌎 English</a> | 🇨🇳 中文 | <a href="./README.ru.md">🇷🇺 Русский</a>
+</p>
+
 # Quad48 二次开发包脚本说明
 
 本目录是独立二次开发包中的 `scripts/` 目录说明。这里的脚本面向“已经打包好的
