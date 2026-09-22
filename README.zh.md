@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="./README.md">English</a> | 中文 | <a href="./README.ru.md">Русский</a>
+  🌎 English | <a href="./README.zh.md">🇨🇳 中文</a> | <a href="./README.ru.md">🇷🇺 Русский</a>
 </p>
 
 # Quad48 说明书
