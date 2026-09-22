@@ -4,7 +4,7 @@
 
 # Quadruped Robot Reinforcement Learning Control Framework
 
-[📖 Online documentation](https://yoboticshub.github.io/yobotics_quad48/en/index.html)
+[📖 Online documentation](https://yoboticshub.github.io/yobotics_quad48/index.html)
 
 > RL control, simulation, and deployment package for the quad48 / Yobotics Quad quadruped robot. It supports real-time MuJoCo simulation. Runtime environment: Ubuntu 20.04 or later, with x86_64 and RK3588/aarch64 controller distribution packages.
 
