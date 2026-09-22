@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4.4 Процесс чтения состояния через SDK - Руководство пользователя фреймворка управления четвероногим роботом Quad48</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4.4 \u041f\u0440\u043e\u0446\u0435\u0441\u0441 \u0447\u0442\u0435\u043d\u0438\u044f \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f \u0447\u0435\u0440\u0435\u0437 SDK";
+        var mkdocs_page_input_path = "ru/part-4-sdk/4.state-read.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Руководство пользователя фреймворка управления четвероногим роботом Quad48
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Навигационное меню">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 1. Настройка окружения и быстрый старт</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Программная архитектура</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 Системные требования</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Структура пакета</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 Первый запуск</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 2. Симуляция MuJoCo и проверка разработки</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 Назначение симуляции MuJoCo</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 Запуск симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 Проверка предустановленной модели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 Отладка симуляции</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 3. Развертывание, запуск и отладка на роботе</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 Принципы развертывания на роботе</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 Изменение config.yaml</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 Развертывание и запуск физического робота</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 Проверки во время работы и безопасная остановка</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 Управление журналами и построение графиков</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 4. Высокоуровневая разработка с SDK</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.overview.html">4.1 Каталог SDK и функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.build.html">4.2 Сборка SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.motion-control.html">4.3 Процесс управления движением через SDK</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4.4 Процесс чтения состояния через SDK</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Назначение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Предварительные условия</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Пример программы</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Запуск</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Доступное для чтения состояние</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">Критерии успешного выполнения</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">Устранение неполадок</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.simulation-example.html">4.5 Пример управления симуляцией через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="6.hardware-example.html">4.6 Пример управления физическим роботом через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="7.http-demo.html">4.7 HTTP-сервис управления SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="8.demo-usage.html">4.8 Использование демо SDK</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 Структура LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 Определения сообщений LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 Примеры пакетов разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 Режим разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 Шаблон управления суставами wave_algorithm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 Развертывание walk_algorithm ONNX в симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 Развертывание собственных алгоритмов на роботе</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Мобильная версия навигации">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Руководство пользователя фреймворка управления четвероногим роботом Quad48</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Документация"></a></li>
+          <li class="breadcrumb-item">Часть 4. Высокоуровневая разработка с SDK</li>
+      <li class="breadcrumb-item active">4.4 Процесс чтения состояния через SDK</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="44-sdk">4.4 Процесс чтения состояния через SDK<a class="headerlink" href="#44-sdk" title="Permanent link">¶</a></h1>
+<h2 id="_1">Назначение<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>Этот раздел объясняет, как читать состояние робота через SDK для отображения на верхнем компьютере, бизнес-логики и отладки суставов.</p>
+<h2 id="_2">Предварительные условия<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>Контроллер запущен.</li>
+<li>SDK собран.</li>
+<li>Канал <code>QUAD_ROBOT_STATE</code> соответствует конфигурации контроллера.</li>
+</ul>
+<h2 id="_3">Пример программы<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p>Исходный файл примера чтения состояния:</p>
+<pre><code class="language-text">yobotics_sdk/example/robot_state_client.cpp
+</code></pre>
+<p>Собранная программа:</p>
+<pre><code class="language-text">yobotics_sdk/build/yobot_robot_state_client
+</code></pre>
+<h2 id="_4">Запуск<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<pre><code class="language-bash">cd yobotics_sdk/build
+./yobot_robot_state_client
+</code></pre>
+<p>Указать URL LCM:</p>
+<pre><code class="language-bash">export YOBOTICS_LCM_URL="udpm://239.255.76.67:7667?ttl=255"
+./yobot_robot_state_client
+</code></pre>
+<p><img alt="" src="image/res_3.png"></p>
+<h2 id="_5">Доступное для чтения состояние<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Состояние</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Текущий режим управления</td>
+<td>Определить, находится ли робот в DAMP, RECOVERY, RL или DEVELOPMENT</td>
+</tr>
+<tr>
+<td>Скорость и ориентация</td>
+<td>Отображение на верхнем компьютере и оценка состояния движения</td>
+</tr>
+<tr>
+<td>Обратная связь управления</td>
+<td>Подтвердить, получает ли контроллер команды SDK</td>
+</tr>
+<tr>
+<td>Канал состояния суставов</td>
+<td>Отладка низкоуровневого положения, скорости и момента суставов</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">Критерии успешного выполнения<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<ul>
+<li>Программа непрерывно выводит состояние.</li>
+<li>Режим, скорость, ориентация и другие поля меняются вместе с состоянием контроллера.</li>
+<li><code>QUAD_ROBOT_STATE</code> виден в мониторинге LCM.</li>
+</ul>
+<h2 id="_7">Устранение неполадок<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Симптом</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Нет вывода</td>
+<td>Проверьте, запущен ли контроллер и совпадает ли URL LCM</td>
+</tr>
+<tr>
+<td>Частота состояния очень низкая</td>
+<td>Проверьте сеть и загрузку CPU</td>
+</tr>
+<tr>
+<td>Значения полей не меняются</td>
+<td>Проверьте, выполнена ли подписка на правильный канал</td>
+</tr>
+</tbody>
+</table></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Навигация по странице">
+        <a href="3.motion-control.html" class="btn btn-neutral float-left" title="4.3 Процесс управления движением через SDK"><span class="icon icon-circle-arrow-left"></span> Назад</a>
+        <a href="5.simulation-example.html" class="btn btn-neutral float-right" title="4.5 Пример управления симуляцией через SDK">Вперед <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Собрано в <a href="https://www.mkdocs.org/">MkDocs</a> с использованием <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы</a> от <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Версии">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="3.motion-control.html" style="color: #fcfcfc">&laquo; Назад</a></span>
+    
+    
+      <span><a href="5.simulation-example.html" style="color: #fcfcfc">Вперед &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-code.js"></script>
+      <script src="../../js/language-switcher.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

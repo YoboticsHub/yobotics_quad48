@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>5.2 Определения сообщений LCM - Руководство пользователя фреймворка управления четвероногим роботом Quad48</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.2 \u041e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439 LCM";
+        var mkdocs_page_input_path = "ru/part-5-lcm-dev/2.messages.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Руководство пользователя фреймворка управления четвероногим роботом Quad48
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Навигационное меню">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 1. Настройка окружения и быстрый старт</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Программная архитектура</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 Системные требования</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Структура пакета</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 Первый запуск</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 2. Симуляция MuJoCo и проверка разработки</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 Назначение симуляции MuJoCo</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 Запуск симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 Проверка предустановленной модели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 Отладка симуляции</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 3. Развертывание, запуск и отладка на роботе</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 Принципы развертывания на роботе</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 Изменение config.yaml</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 Развертывание и запуск физического робота</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 Проверки во время работы и безопасная остановка</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 Управление журналами и построение графиков</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 4. Высокоуровневая разработка с SDK</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 Каталог SDK и функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 Сборка SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 Процесс управления движением через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 Процесс чтения состояния через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 Пример управления симуляцией через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 Пример управления физическим роботом через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 HTTP-сервис управления SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 Использование демо SDK</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.lcm-structure.html">5.1 Структура LCM</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.2 Определения сообщений LCM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Назначение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Расположение файлов</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Команда режима разработки</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Состояние режима разработки</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Генерация типов</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">Примечание по безопасности</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.dev-package-examples.html">5.3 Примеры пакетов разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.development-mode.html">5.4 Режим разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.wave-template.html">5.5 Шаблон управления суставами wave_algorithm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="6.walk-onnx-sim.html">5.6 Развертывание walk_algorithm ONNX в симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="7.hardware-deploy.html">5.7 Развертывание собственных алгоритмов на роботе</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Мобильная версия навигации">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Руководство пользователя фреймворка управления четвероногим роботом Quad48</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Документация"></a></li>
+          <li class="breadcrumb-item">Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов</li>
+      <li class="breadcrumb-item active">5.2 Определения сообщений LCM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="52-lcm">5.2 Определения сообщений LCM<a class="headerlink" href="#52-lcm" title="Permanent link">¶</a></h1>
+<h2 id="_1">Назначение<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>Этот раздел кратко описывает основные LCM-сообщения, используемые собственными алгоритмами, SDK и контроллером.</p>
+<h2 id="_2">Расположение файлов<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>Файлы определений LCM находятся здесь:</p>
+<pre><code class="language-text">lcm-types/
+</code></pre>
+<p>Основные файлы:</p>
+<pre><code class="language-text">development_command_t.lcm
+development_state_t.lcm
+sport_client_cmd_t.lcm
+sport_client_state_t.lcm
+quad_joint_command.lcm
+quad_joint_state.lcm
+</code></pre>
+<h2 id="_3">Команда режима разработки<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p><code>development_command_t</code> используется внешними алгоритмами для отправки 12-мерных команд управления суставами в контроллер.</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>robot_id</code></td>
+<td>Идентификатор целевого робота</td>
+</tr>
+<tr>
+<td><code>enable_development_mode</code></td>
+<td><code>1</code> запускает режим разработки; <code>0</code> завершает режим разработки</td>
+</tr>
+<tr>
+<td><code>joint_des_q[12]</code></td>
+<td>Желаемый угол сустава</td>
+</tr>
+<tr>
+<td><code>joint_des_qd[12]</code></td>
+<td>Желаемая скорость сустава</td>
+</tr>
+<tr>
+<td><code>joint_des_tau[12]</code></td>
+<td>Желаемый момент сустава</td>
+</tr>
+<tr>
+<td><code>joint_des_kp[12]</code></td>
+<td>Kp сустава</td>
+</tr>
+<tr>
+<td><code>joint_des_kd[12]</code></td>
+<td>Kd сустава</td>
+</tr>
+</tbody>
+</table>
+<p>Порядок суставов: <code>LF(hip, thigh, calf) -&gt; RF -&gt; LR -&gt; RR</code>.</p>
+<h2 id="_4">Состояние режима разработки<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p><code>development_state_t</code> рассылается контроллером внешним алгоритмам.</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>robot_id</code></td>
+<td>Идентификатор робота</td>
+</tr>
+<tr>
+<td><code>joint_q[12]</code></td>
+<td>Угол сустава</td>
+</tr>
+<tr>
+<td><code>joint_qd[12]</code></td>
+<td>Скорость сустава</td>
+</tr>
+<tr>
+<td><code>joint_tau[12]</code></td>
+<td>Момент сустава</td>
+</tr>
+<tr>
+<td><code>quat[4]</code></td>
+<td>IMU quaternion</td>
+</tr>
+<tr>
+<td><code>rpy[3]</code></td>
+<td>roll, pitch, yaw</td>
+</tr>
+<tr>
+<td><code>omega[3]</code></td>
+<td>Угловая скорость</td>
+</tr>
+<tr>
+<td><code>acc[3]</code></td>
+<td>Ускорение</td>
+</tr>
+<tr>
+<td><code>v_des[3]</code></td>
+<td>Желаемая скорость</td>
+</tr>
+<tr>
+<td><code>omega_des[3]</code></td>
+<td>Желаемая угловая скорость</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>Текущий режим управления</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">Генерация типов<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>После изменения файлов <code>.lcm</code> выполните:</p>
+<pre><code class="language-bash">bash scripts/generate_lcm_types.sh
+</code></pre>
+<h2 id="_6">Примечание по безопасности<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>Размерности полей сообщений, порядок суставов и единицы измерения должны оставаться согласованными. Команды внешних алгоритмов с неверными размерностями или неверным порядком суставов могут вызвать опасное движение физического робота.</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Навигация по странице">
+        <a href="1.lcm-structure.html" class="btn btn-neutral float-left" title="5.1 Структура LCM"><span class="icon icon-circle-arrow-left"></span> Назад</a>
+        <a href="3.dev-package-examples.html" class="btn btn-neutral float-right" title="5.3 Примеры пакетов разработки">Вперед <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Собрано в <a href="https://www.mkdocs.org/">MkDocs</a> с использованием <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы</a> от <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Версии">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="1.lcm-structure.html" style="color: #fcfcfc">&laquo; Назад</a></span>
+    
+    
+      <span><a href="3.dev-package-examples.html" style="color: #fcfcfc">Вперед &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-code.js"></script>
+      <script src="../../js/language-switcher.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

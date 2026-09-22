@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2.3 Проверка предустановленной модели - Руководство пользователя фреймворка управления четвероногим роботом Quad48</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2.3 \u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0440\u0435\u0434\u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u043e\u0439 \u043c\u043e\u0434\u0435\u043b\u0438";
+        var mkdocs_page_input_path = "ru/part-2-mujoco/3.verify-model.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Руководство пользователя фреймворка управления четвероногим роботом Quad48
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Навигационное меню">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 1. Настройка окружения и быстрый старт</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Программная архитектура</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 Системные требования</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Структура пакета</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 Первый запуск</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 2. Симуляция MuJoCo и проверка разработки</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.purpose.html">2.1 Назначение симуляции MuJoCo</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.start.html">2.2 Запуск симуляции</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2.3 Проверка предустановленной модели</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Назначение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Предварительные условия</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Проверяемые пункты</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Шаги</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Критерии успешного выполнения</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">Примечание по безопасности</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.debug.html">2.4 Отладка симуляции</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 3. Развертывание, запуск и отладка на роботе</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 Принципы развертывания на роботе</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 Изменение config.yaml</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 Развертывание и запуск физического робота</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 Проверки во время работы и безопасная остановка</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 Управление журналами и построение графиков</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 4. Высокоуровневая разработка с SDK</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 Каталог SDK и функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 Сборка SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 Процесс управления движением через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 Процесс чтения состояния через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 Пример управления симуляцией через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 Пример управления физическим роботом через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 HTTP-сервис управления SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 Использование демо SDK</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 Структура LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 Определения сообщений LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 Примеры пакетов разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 Режим разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 Шаблон управления суставами wave_algorithm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 Развертывание walk_algorithm ONNX в симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 Развертывание собственных алгоритмов на роботе</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Мобильная версия навигации">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Руководство пользователя фреймворка управления четвероногим роботом Quad48</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Документация"></a></li>
+          <li class="breadcrumb-item">Часть 2. Симуляция MuJoCo и проверка разработки</li>
+      <li class="breadcrumb-item active">2.3 Проверка предустановленной модели</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="23">2.3 Проверка предустановленных моделей<a class="headerlink" href="#23" title="Permanent link">¶</a></h1>
+<h2 id="_1">Назначение<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>Этот раздел объясняет, как проверить встроенные предустановленные модели, такие как <code>RL_WALK</code> и <code>RL_RUN</code>, в MuJoCo.</p>
+<h2 id="_2">Предварительные условия<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>Симуляция MuJoCo запущена командой <code>bash scripts/start_mujoco.sh --config config_sim.yaml</code>.</li>
+<li>Файлы ONNX-моделей в <code>actor_model/</code> присутствуют полностью.</li>
+<li>Пути моделей <code>rl_walk</code> и <code>rl_run</code>, размерности наблюдений, размерности суставов и параметры управления в <code>config_sim.yaml</code> соответствуют моделям.</li>
+</ul>
+<h2 id="_3">Проверяемые пункты<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Пункт</th>
+<th>Расположение</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Путь модели</td>
+<td><code>rl_walk.model_path</code>, <code>rl_run.model_path</code> в <code>config_sim.yaml</code></td>
+<td>Указывает на ONNX-файлы в <code>actor_model/</code></td>
+</tr>
+<tr>
+<td>Размерность наблюдения</td>
+<td><code>obs_dim</code></td>
+<td>Должна соответствовать входу модели</td>
+</tr>
+<tr>
+<td>Размерность суставов</td>
+<td><code>dof_dim</code></td>
+<td>Текущий четвероногий робот использует 12</td>
+</tr>
+<tr>
+<td>Масштаб действия</td>
+<td><code>action_scale</code></td>
+<td>Влияет на амплитуду выхода политики, преобразуемую в целевые положения суставов</td>
+</tr>
+<tr>
+<td>PD-параметры</td>
+<td><code>dof_kp</code>, <code>dof_kd</code></td>
+<td>Влияют на жесткость и демпфирование отслеживания</td>
+</tr>
+<tr>
+<td>Ограничение момента</td>
+<td><code>tau_limit</code></td>
+<td>Предотвращает чрезмерный выход</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">Шаги<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<ol>
+<li>Запустите симуляцию:</li>
+</ol>
+<pre><code class="language-bash">bash scripts/start_mujoco.sh --config config_sim.yaml
+</code></pre>
+<ol start="2">
+<li>Используйте SDK или точку входа управления, чтобы переключиться в <code>RECOVERY_STAND</code>, затем войдите в <code>RL_WALK</code> или <code>RL_RUN</code>.</li>
+</ol>
+<p><img alt="" src="images/2.3.png"></p>
+<ol start="3">
+<li>Наблюдайте позу, походку и устойчивость робота в MuJoCo Viewer.</li>
+<li>Одновременно запустите мониторинг LCM:</li>
+</ol>
+<pre><code class="language-bash">bash scripts/monitor_lcm.sh --no-gui
+</code></pre>
+<ol start="5">
+<li>Чтобы записать RL-данные, временно включите соответствующий переключатель логирования и запустите снова.</li>
+</ol>
+<h2 id="_5">Критерии успешного выполнения<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ul>
+<li>Модель загружается без ошибок.</li>
+<li>Робот может войти в соответствующий RL-режим из безопасной позы.</li>
+<li>Положение, скорость и момент суставов не показывают аномальных всплесков.</li>
+<li>Каналы LCM продолжают публиковать данные, а журналы контроллера не показывают NaN, Inf или ошибок размерности входа/выхода модели.</li>
+</ul>
+<p><img alt="Описание" src="images/3.1.png"></p>
+<h2 id="_6">Примечание по безопасности<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>Если в симуляции появляются тряска, падение, чрезмерное движение или ошибки журнала, не развертывайте эту модель на физическом роботе. Сначала проверьте путь модели, построение наблюдений, порядок суставов, масштаб действия, углы суставов по умолчанию и PD-параметры.</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Навигация по странице">
+        <a href="2.start.html" class="btn btn-neutral float-left" title="2.2 Запуск симуляции"><span class="icon icon-circle-arrow-left"></span> Назад</a>
+        <a href="4.debug.html" class="btn btn-neutral float-right" title="2.4 Отладка симуляции">Вперед <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Собрано в <a href="https://www.mkdocs.org/">MkDocs</a> с использованием <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы</a> от <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Версии">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="2.start.html" style="color: #fcfcfc">&laquo; Назад</a></span>
+    
+    
+      <span><a href="4.debug.html" style="color: #fcfcfc">Вперед &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-code.js"></script>
+      <script src="../../js/language-switcher.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>3.2 Изменение config.yaml - Руководство пользователя фреймворка управления четвероногим роботом Quad48</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.2 \u0418\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0435 config.yaml";
+        var mkdocs_page_input_path = "ru/part-3-hardware/2.config.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Руководство пользователя фреймворка управления четвероногим роботом Quad48
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Навигационное меню">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 1. Настройка окружения и быстрый старт</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Программная архитектура</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 Системные требования</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Структура пакета</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 Первый запуск</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 2. Симуляция MuJoCo и проверка разработки</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 Назначение симуляции MuJoCo</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 Запуск симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 Проверка предустановленной модели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 Отладка симуляции</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 3. Развертывание, запуск и отладка на роботе</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.principle.html">3.1 Принципы развертывания на роботе</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.2 Изменение config.yaml</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Назначение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Предварительные условия</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Основная конфигурация</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Переключатель симуляции</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">Связь с моторами</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#imu">IMU</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lcm">LCM и удаленное управление</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">Проверки безопасности</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#-">Чек-лист конфигурации</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">Критерии успешного выполнения</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">Устранение неполадок</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.deploy-run.html">3.3 Развертывание и запуск физического робота</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.runtime-checks.html">3.4 Проверки во время работы и безопасная остановка</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.logs-and-plots.html">3.5 Управление журналами и построение графиков</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 4. Высокоуровневая разработка с SDK</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 Каталог SDK и функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 Сборка SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 Процесс управления движением через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 Процесс чтения состояния через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 Пример управления симуляцией через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 Пример управления физическим роботом через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 HTTP-сервис управления SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 Использование демо SDK</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 Структура LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 Определения сообщений LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 Примеры пакетов разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 Режим разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 Шаблон управления суставами wave_algorithm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 Развертывание walk_algorithm ONNX в симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 Развертывание собственных алгоритмов на роботе</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Мобильная версия навигации">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Руководство пользователя фреймворка управления четвероногим роботом Quad48</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Документация"></a></li>
+          <li class="breadcrumb-item">Часть 3. Развертывание, запуск и отладка на роботе</li>
+      <li class="breadcrumb-item active">3.2 Изменение config.yaml</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="32-configyaml">3.2 Изменение config.yaml<a class="headerlink" href="#32-configyaml" title="Permanent link">¶</a></h1>
+<h2 id="_1">Назначение<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>Этот раздел объясняет параметры <code>config.yaml</code>, которые нужно проверить и изменить перед работой с физическим роботом, особенно SPI-конфигурацию Y15/E15 и конфигурацию чтения IMU.</p>
+<h2 id="_2">Предварительные условия<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>Текущая цель — реальный робот.</li>
+<li>Проверка в симуляции MuJoCo завершена.</li>
+<li>Известны модель робота на площадке, архитектура системы, SPI-устройства и тип IMU.</li>
+</ul>
+<h2 id="_3">Основная конфигурация<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="_4">Переключатель симуляции<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<pre><code class="language-yaml">simulation:
+  enable_mujoco: false
+</code></pre>
+<p>При работе с физическим роботом MuJoCo должен быть отключен. Симуляция использует <code>config_sim.yaml</code> и LCM; физический робот использует <code>config.yaml</code> и читает состояние моторов из реальных SPI-устройств.</p>
+<h3 id="_5">Связь с моторами<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>Пример аппаратной конфигурации в корне проекта:</p>
+<pre><code class="language-yaml">motor_communication:
+  type: "spi_legacy"
+  spi_type: "E15"
+  spi_device0: "/dev/spidev3.0"
+  spi_device1: "/dev/spidev4.0"
+</code></pre>
+<p><code>motor_communication.type</code> выбирает реализацию связи с моторами. <code>spi_type</code> может быть только <code>E15</code> или <code>Y15</code> и проверяется <code>FSM_ConfigLoader</code>. Он влияет на скорость SPI, raw-структуру данных, направление суставов и нулевые смещения. Это не тип IMU и он не выбирает драйвер IMU автоматически.</p>
+<h4 id="spi-">Настройка номера SPI-устройства<a class="headerlink" href="#spi-" title="Permanent link">¶</a></h4>
+<p>Сначала подтвердите фактические узлы устройств на целевом роботе:</p>
+<pre><code class="language-bash">ls -l /dev/spidev*
+</code></pre>
+<p>Затем запишите два существующих узла в <code>spi_device0</code> и <code>spi_device1</code>, а по журналам запуска контроллера подтвердите сопоставление board0/board1.</p>
+<h4 id="spi-y15-e15">Различия SPI между Y15 и E15<a class="headerlink" href="#spi-y15-e15" title="Permanent link">¶</a></h4>
+<p>При переключении на Y15 как минимум проверьте:</p>
+<pre><code class="language-yaml">motor_communication:
+  type: "spi_legacy"
+  spi_type: "Y15"
+  spi_device0: "/dev/site_confirmed_device0"
+  spi_device1: "/dev/site_confirmed_device1"
+</code></pre>
+<h3 id="imu">IMU<a class="headerlink" href="#imu" title="Permanent link">¶</a></h3>
+<p>Y15 и E15 используют разных производителей IMU, потому что аппаратные платформы используют разные датчики: Y15 использует MicroStrain, а E15 использует HipNuc. Программа читает их через драйверы Lord и HipNuc соответственно.</p>
+<p>Конфигурация IMU независима от <code>spi_type</code> Y15/E15:</p>
+<table>
+<thead>
+<tr>
+<th>Типичная комбинация</th>
+<th>Конфигурация IMU</th>
+<th>Пример порта</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E15 + HipNuc</td>
+<td>hipnuc</td>
+<td>/dev/ttyS0</td>
+</tr>
+<tr>
+<td>Y15 + MicroStrain</td>
+<td>lord</td>
+<td>port_base=/dev/ttyUSB, port_number=0</td>
+</tr>
+</tbody>
+</table>
+<p>Рекомендуемые поля:</p>
+<pre><code class="language-yaml">imu:
+  type: "hipnuc"
+  port_base: "/dev/ttyS0"
+  port_number: 0
+  baud_rate: 460800
+</code></pre>
+<p>Не смешивайте три стиля драйверов. HipNuc использует полный путь; Lord обычно использует префикс устройства плюс <code>port_number</code>.</p>
+<p>Подтвердите фактические порты по списку устройств:</p>
+<pre><code class="language-bash">ls -l /dev/ttyS* /dev/ttyUSB* /dev/ttyACM*
+</code></pre>
+<p>Не задавайте <code>port_base</code> как полный порт и одновременно <code>port_number</code> так, чтобы путь дублировался.</p>
+<h3 id="lcm">LCM и удаленное управление<a class="headerlink" href="#lcm" title="Permanent link">¶</a></h3>
+<pre><code class="language-yaml">gamepad:
+  device_type: "hybrid"
+  lcm_control_channel: "QUAD_ROBOT_CONTROL"
+  lcm_state_channel: "QUAD_ROBOT_STATE"
+</code></pre>
+<p>SDK, WebRTC и контроллер должны использовать один и тот же URL LCM, канал управления и канал состояния.</p>
+<h3 id="_6">Проверки безопасности<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<pre><code class="language-yaml">safety_checker:
+  enable_safety_check: true
+</code></pre>
+<p>Не отключайте проверки безопасности на реальном роботе. Не увеличивайте ограничения ориентации, скорости, момента или положения без проверки.</p>
+<h2 id="-">Чек-лист конфигурации<a class="headerlink" href="#-" title="Permanent link">¶</a></h2>
+<ol>
+<li>Подтвердите <code>simulation.enable_mujoco: false</code>.</li>
+<li>Подтвердите, что <code>motor_communication.type</code> соответствует целевой SPI-реализации.</li>
+<li>Подтвердите, что <code>spi_type</code> соответствует реальной плате связи.</li>
+<li>Используйте <code>ls -l /dev/spidev*</code>, чтобы подтвердить наличие обоих SPI-узлов.</li>
+<li>Подтвердите, что тип IMU, порт, номер порта и baud rate соответствуют драйверу.</li>
+<li>Запустите контроллер и проверьте журналы инициализации SPI/IMU.</li>
+<li>Наблюдайте состояние суставов, ориентацию, угловую скорость и состояние проверок безопасности.</li>
+<li>При любой аномалии сначала остановитесь и вернитесь к проверке конфигурации, устройств и симуляции.</li>
+</ol>
+<h2 id="_7">Критерии успешного выполнения<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ul>
+<li><code>config.yaml</code> явно является аппаратной конфигурацией.</li>
+<li>Тип SPI и оба узла устройств соответствуют оборудованию площадки.</li>
+<li>Тип IMU, порт и baud rate соответствуют оборудованию площадки.</li>
+<li>Каналы SDK / WebRTC / внешних алгоритмов совпадают с контроллером.</li>
+<li>Журналы контроллера показывают корректный тип SPI, сопоставление устройств и инициализацию IMU.</li>
+<li>Углы суставов, угловая скорость, ориентация и timestamp IMU обновляются непрерывно.</li>
+<li>Проверки безопасности остаются включенными.</li>
+</ul>
+<h2 id="_8">Устранение неполадок<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Симптом</th>
+<th>Типичная причина</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPI не открывается</td>
+<td>Неверное имя устройства или проблема прав доступа</td>
+<td>Проверьте <code>/dev/spidev*</code> и права пользователя</td>
+</tr>
+<tr>
+<td>Недопустимый <code>spi_type</code></td>
+<td>Опечатка или неподдерживаемое имя модели</td>
+<td>Используйте только <code>E15</code> или <code>Y15</code></td>
+</tr>
+<tr>
+<td>SPI открывается, но направление суставов аномальное</td>
+<td>Неверный тип SPI, порядок узлов, смещения или сопоставление суставов</td>
+<td>Остановитесь и проверьте <code>spi_type</code>, оба узла и нулевые точки</td>
+</tr>
+<tr>
+<td>IMU не открывается</td>
+<td>Неверный тип, serial-порт, номер порта или baud rate</td>
+<td>Проверьте <code>imu.type</code>, <code>port_base</code>, <code>port_number</code>, <code>baud_rate</code> и <code>/dev/tty*</code></td>
+</tr>
+<tr>
+<td>Данные IMU не меняются</td>
+<td>Проблема serial-конфигурации, старый драйвер или отключенный датчик</td>
+<td>Проверьте журналы потери IMU от проверок безопасности</td>
+</tr>
+<tr>
+<td>Кватернион/ориентация аномальны</td>
+<td>Несовпадение типа IMU или порядка данных драйвера</td>
+<td>Проверьте тип драйвера, журналы запуска и вывод ориентации</td>
+</tr>
+<tr>
+<td>Дублированный путь порта</td>
+<td><code>port_base</code> уже является полным путем, а к нему добавляется номер</td>
+<td>Используйте полный путь для HipNuc; префикс плюс номер для Lord/AHRS</td>
+</tr>
+<tr>
+<td>Робот аномально трясется</td>
+<td>Неверная модель, порядок суставов или PD-параметры</td>
+<td>Немедленно остановитесь и вернитесь к проверке в симуляции</td>
+</tr>
+</tbody>
+</table></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Навигация по странице">
+        <a href="1.principle.html" class="btn btn-neutral float-left" title="3.1 Принципы развертывания на роботе"><span class="icon icon-circle-arrow-left"></span> Назад</a>
+        <a href="3.deploy-run.html" class="btn btn-neutral float-right" title="3.3 Развертывание и запуск физического робота">Вперед <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Собрано в <a href="https://www.mkdocs.org/">MkDocs</a> с использованием <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы</a> от <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Версии">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="1.principle.html" style="color: #fcfcfc">&laquo; Назад</a></span>
+    
+    
+      <span><a href="3.deploy-run.html" style="color: #fcfcfc">Вперед &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-code.js"></script>
+      <script src="../../js/language-switcher.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

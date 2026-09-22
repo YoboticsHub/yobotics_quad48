@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>5.5 Шаблон управления суставами wave_algorithm - Руководство пользователя фреймворка управления четвероногим роботом Quad48</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.5 \u0428\u0430\u0431\u043b\u043e\u043d \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f \u0441\u0443\u0441\u0442\u0430\u0432\u0430\u043c\u0438 wave_algorithm";
+        var mkdocs_page_input_path = "ru/part-5-lcm-dev/5.wave-template.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Руководство пользователя фреймворка управления четвероногим роботом Quad48
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Навигационное меню">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Главная</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 1. Настройка окружения и быстрый старт</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Программная архитектура</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 Системные требования</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Структура пакета</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 Первый запуск</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 2. Симуляция MuJoCo и проверка разработки</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 Назначение симуляции MuJoCo</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 Запуск симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 Проверка предустановленной модели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 Отладка симуляции</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 3. Развертывание, запуск и отладка на роботе</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 Принципы развертывания на роботе</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 Изменение config.yaml</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 Развертывание и запуск физического робота</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 Проверки во время работы и безопасная остановка</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 Управление журналами и построение графиков</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 4. Высокоуровневая разработка с SDK</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 Каталог SDK и функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 Сборка SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 Процесс управления движением через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 Процесс чтения состояния через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 Пример управления симуляцией через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 Пример управления физическим роботом через SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 HTTP-сервис управления SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 Использование демо SDK</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.lcm-structure.html">5.1 Структура LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.messages.html">5.2 Определения сообщений LCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="3.dev-package-examples.html">5.3 Примеры пакетов разработки</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.development-mode.html">5.4 Режим разработки</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.5 Шаблон управления суставами wave_algorithm</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Назначение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Предварительные условия</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Проектирование</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Запуск</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Критерии успешного выполнения</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">Значение конфигурации и действий</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">Процесс настройки параметров для начинающих</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">Устранение неполадок</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">Примечание по безопасности</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="6.walk-onnx-sim.html">5.6 Развертывание walk_algorithm ONNX в симуляции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="7.hardware-deploy.html">5.7 Развертывание собственных алгоритмов на роботе</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Мобильная версия навигации">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Руководство пользователя фреймворка управления четвероногим роботом Quad48</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Документация"></a></li>
+          <li class="breadcrumb-item">Часть 5. Низкоуровневая разработка LCM и подключение собственных алгоритмов</li>
+      <li class="breadcrumb-item active">5.5 Шаблон управления суставами wave_algorithm</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="55-wave_algorithm">5.5 wave_algorithm как шаблон управления состоянием суставов<a class="headerlink" href="#55-wave_algorithm" title="Permanent link">¶</a></h1>
+<h2 id="_1">Назначение<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p><code>wave_algorithm</code> — это правиловый шаблон управления суставами. Он полезен для изучения чтения состояния режима разработки, генерации 12-мерных целевых значений суставов и публикации PD-команд.</p>
+<h2 id="_2">Предварительные условия<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>Контроллер вошел в режим <code>DEVELOPMENT</code>.</li>
+<li>Конфигурация каналов LCM согласована.</li>
+<li>Симуляция MuJoCo запущена.</li>
+</ul>
+<h2 id="_3">Проектирование<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p><code>wave_algorithm</code> не загружает ONNX-модель. Он генерирует действия из синусоиды:</p>
+<ol>
+<li>Наследоваться от <code>AlgorithmBase</code>.</li>
+<li>Переопределить <code>_load_policy()</code> и пропустить загрузку политики.</li>
+<li>Генерировать периодический сигнал по времени в <code>_run_inference()</code>.</li>
+<li>Оставлять hip-суставы в положениях по умолчанию.</li>
+<li>Смещать thigh / calf-суставы синусоидой.</li>
+<li>Генерировать <code>joint_des_q</code>, <code>joint_des_qd</code>, <code>joint_des_tau</code>, <code>joint_des_kp</code> и <code>joint_des_kd</code> в <code>process_action()</code>.</li>
+</ol>
+<h2 id="_4">Запуск<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<pre><code class="language-bash">python3 external_algorithms/wave_algorithm/run_algorithm.py --config external_algorithms/wave_algorithm/config.yaml
+</code></pre>
+<p>Или сначала перейдите в каталог:</p>
+<pre><code class="language-bash">cd external_algorithms/wave_algorithm
+python3 run_algorithm.py --config config.yaml
+</code></pre>
+<h2 id="_5">Критерии успешного выполнения<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ul>
+<li>После запуска программа получает состояние режима разработки.</li>
+<li>Мониторинг LCM показывает <code>Y15_development_command</code>.</li>
+<li>Суставы робота в симуляции периодически движутся ожидаемым образом.</li>
+<li>После выхода алгоритма не остается активной команды.</li>
+</ul>
+<h2 id="_6">Значение конфигурации и действий<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p><code>wave_algorithm</code> использует <code>policy.type: none</code>, то есть ONNX-модель не загружается. Базовый класс все равно запускает прием состояния, цикл инференса и отправку LCM в едином жизненном цикле, а <code>_load_policy()</code> напрямую задает <code>policy=None</code>.</p>
+<p>Текущая конфигурация использует <code>motion.frequency</code> = 0.1 Hz и <code>motion.amplitude</code> = 0.5. В каждой ноге порядок суставов: hip, thigh, calf. Hip сохраняет угол по умолчанию; thigh использует <code>amplitude * sin(phase)</code>; calf использует <code>-2 * amplitude * sin(phase)</code>.</p>
+<p><code>process_action()</code> в итоге генерирует пять 12-мерных массивов:</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Текущее поведение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>joint_des_q</code></td>
+<td><code>default_joint_pos + action</code></td>
+</tr>
+<tr>
+<td><code>joint_des_qd</code></td>
+<td>все 0</td>
+</tr>
+<tr>
+<td><code>joint_des_tau</code></td>
+<td>все 0</td>
+</tr>
+<tr>
+<td><code>joint_des_kp</code></td>
+<td>использует <code>joint_stiffness</code>, сейчас 60</td>
+</tr>
+<tr>
+<td><code>joint_des_kd</code></td>
+<td>использует <code>joint_damping</code>, сейчас 2.0</td>
+</tr>
+</tbody>
+</table>
+<p>Поэтому <code>action</code> — это смещение положения суставов, а не момент. Углы по умолчанию <code>[0.0, -0.8, 1.6]</code> повторяются для четырех ног. При изменениях сохраняйте 12 размерностей и правильный порядок суставов.</p>
+<h2 id="_7">Процесс настройки параметров для начинающих<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ol>
+<li>Оставьте <code>policy.type</code> равным <code>none</code>.</li>
+<li>Перед первым запуском уменьшите <code>motion.amplitude</code> до 0.05-0.10; не используйте сразу 0.5.</li>
+<li>Оставьте <code>motion.frequency</code> равным 0.1 и подтвердите направление движения в MuJoCo.</li>
+<li>Перед повторным запуском меняйте только один параметр; не меняйте амплитуду, частоту и PD одновременно.</li>
+<li>Используйте <code>monitor_lcm.sh --no-gui</code>, чтобы проверить непрерывность 12-мерных целей в <code>Y15_development_command</code>.</li>
+<li>Увеличивайте амплитуду постепенно только после стабильной симуляции.</li>
+</ol>
+<h2 id="_8">Устранение неполадок<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Симптом</th>
+<th>Возможная причина</th>
+<th>Проверка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Направление сустава обратное</td>
+<td>Неверно понят угол по умолчанию или направление сустава</td>
+<td>Дайте одному суставу очень малое смещение и наблюдайте сустав за суставом</td>
+</tr>
+<tr>
+<td>Робот трясется</td>
+<td>Амплитуда, частота, Kp или Kd слишком велики</td>
+<td>Сначала уменьшите амплитуду и Kp</td>
+</tr>
+<tr>
+<td>Hip тоже движется</td>
+<td>Неверный индекс действия</td>
+<td>Проверьте индекс <code>leg_id * 3 + joint</code></td>
+</tr>
+<tr>
+<td>Нет команды</td>
+<td>Не включен DEVELOPMENT или нет состояния</td>
+<td>Мониторьте каналы состояния и команд вместе</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">Примечание по безопасности<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<p>Перед аппаратными тестами уменьшите амплитуду действия и подтвердите направление каждого сустава, угол по умолчанию, Kp, Kd и период движения. Правиловые алгоритмы не имеют защиты на уровне модели; неверные параметры напрямую отражаются в командах суставов.</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Навигация по странице">
+        <a href="4.development-mode.html" class="btn btn-neutral float-left" title="5.4 Режим разработки"><span class="icon icon-circle-arrow-left"></span> Назад</a>
+        <a href="6.walk-onnx-sim.html" class="btn btn-neutral float-right" title="5.6 Развертывание walk_algorithm ONNX в симуляции">Вперед <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Собрано в <a href="https://www.mkdocs.org/">MkDocs</a> с использованием <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы</a> от <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Версии">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="4.development-mode.html" style="color: #fcfcfc">&laquo; Назад</a></span>
+    
+    
+      <span><a href="6.walk-onnx-sim.html" style="color: #fcfcfc">Вперед &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-code.js"></script>
+      <script src="../../js/language-switcher.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
