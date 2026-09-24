@@ -52,6 +52,12 @@ plugins:
                 - 5.5 wave_algorithm 关节状态控制模板: part-5-lcm-dev/5.wave-template.md
                 - 5.6 walk_algorithm ONNX 仿真部署: part-5-lcm-dev/6.walk-onnx-sim.md
                 - 5.7 自研算法实物部署: part-5-lcm-dev/7.hardware-deploy.md
+            - 第六部分 ROS 2 SDK 开发:
+                - 6.1 ROS 2 SDK 概览: part-6-ros2-sdk/1.overview.md
+                - 6.2 环境准备与构建: part-6-ros2-sdk/2.build.md
+                - 6.3 启动节点与连接检查: part-6-ros2-sdk/3.start-and-check.md
+                - 6.4 control_command 模式与运动示例: part-6-ros2-sdk/4.control-command.md
+                - 6.5 排错与安全操作: part-6-ros2-sdk/5.troubleshooting-safety.md
         - locale: ru
           name: Русский
           build: true
@@ -95,6 +101,12 @@ plugins:
                 - 5.5 Шаблон управления суставами wave_algorithm: part-5-lcm-dev/5.wave-template.md
                 - 5.6 Развертывание walk_algorithm ONNX в симуляции: part-5-lcm-dev/6.walk-onnx-sim.md
                 - 5.7 Развертывание собственных алгоритмов на роботе: part-5-lcm-dev/7.hardware-deploy.md
+            - Часть 6. Разработка ROS 2 SDK:
+                - 6.1 Обзор ROS 2 SDK: part-6-ros2-sdk/1.overview.md
+                - 6.2 Подготовка окружения и сборка: part-6-ros2-sdk/2.build.md
+                - 6.3 Запуск узла и проверка подключения: part-6-ros2-sdk/3.start-and-check.md
+                - 6.4 Режимы control_command и примеры движения: part-6-ros2-sdk/4.control-command.md
+                - 6.5 Устранение неполадок и безопасность: part-6-ros2-sdk/5.troubleshooting-safety.md
         - locale: en
           default: true
           name: English
@@ -139,6 +151,12 @@ plugins:
                 - 5.5 wave_algorithm Joint-Control Template: part-5-lcm-dev/5.wave-template.md
                 - 5.6 walk_algorithm ONNX Simulation Deployment: part-5-lcm-dev/6.walk-onnx-sim.md
                 - 5.7 Deploy Custom Algorithms on Hardware: part-5-lcm-dev/7.hardware-deploy.md
+            - Part 6 ROS 2 SDK Development:
+                - 6.1 ROS 2 SDK Overview: part-6-ros2-sdk/1.overview.md
+                - 6.2 Environment Setup and Build: part-6-ros2-sdk/2.build.md
+                - 6.3 Start the Node and Check the Connection: part-6-ros2-sdk/3.start-and-check.md
+                - 6.4 control_command Modes and Motion Examples: part-6-ros2-sdk/4.control-command.md
+                - 6.5 Troubleshooting and Safety: part-6-ros2-sdk/5.troubleshooting-safety.md
 
 extra_css:
   - css/custom.css
@@ -201,3 +219,9 @@ nav:
       - 5.5 wave_algorithm Joint-Control Template: part-5-lcm-dev/5.wave-template.md
       - 5.6 walk_algorithm ONNX Simulation Deployment: part-5-lcm-dev/6.walk-onnx-sim.md
       - 5.7 Deploy Custom Algorithms on Hardware: part-5-lcm-dev/7.hardware-deploy.md
+  - Part 6 ROS 2 SDK Development:
+      - 6.1 ROS 2 SDK Overview: part-6-ros2-sdk/1.overview.md
+      - 6.2 Environment Setup and Build: part-6-ros2-sdk/2.build.md
+      - 6.3 Start the Node and Check the Connection: part-6-ros2-sdk/3.start-and-check.md
+      - 6.4 control_command Modes and Motion Examples: part-6-ros2-sdk/4.control-command.md
+      - 6.5 Troubleshooting and Safety: part-6-ros2-sdk/5.troubleshooting-safety.md

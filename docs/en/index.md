@@ -27,6 +27,7 @@ This manual guides users through installation, configuration, startup, debugging
 | First-time user | Part 1 -> Part 2 | Finish environment setup and run MuJoCo simulation |
 | Field delivery engineer | Part 1 -> Part 2 -> Part 3 | Move from simulation verification to hardware deployment |
 | SDK integrator | Part 1 -> Part 4 | Read state, send motion commands, or control through HTTP |
+| ROS 2 integrator | Part 1 -> Part 4 -> Part 6 | Build the ROS 2 SDK and send motion commands through a standard topic |
 | Algorithm developer | Part 2 -> Part 5 -> Part 3 | Verify a custom algorithm in simulation before hardware deployment |
 
 ## Operating Principles
