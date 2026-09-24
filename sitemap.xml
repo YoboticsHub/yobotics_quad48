@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>Noneindex.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/index.html"/>
@@ -10,7 +10,7 @@
     </url>
     <url>
         <loc>Nonepart-1-quick-start/1.framework.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/1.framework.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/1.framework.html"/>
@@ -18,7 +18,7 @@
     </url>
     <url>
         <loc>Nonepart-1-quick-start/2.system-requirements.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/2.system-requirements.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/2.system-requirements.html"/>
@@ -26,7 +26,7 @@
     </url>
     <url>
         <loc>Nonepart-1-quick-start/3.package-directory.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/3.package-directory.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/3.package-directory.html"/>
@@ -34,7 +34,7 @@
     </url>
     <url>
         <loc>Nonepart-1-quick-start/4.first-run.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/4.first-run.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/4.first-run.html"/>
@@ -42,7 +42,7 @@
     </url>
     <url>
         <loc>Nonepart-2-mujoco/1.purpose.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/1.purpose.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/1.purpose.html"/>
@@ -50,7 +50,7 @@
     </url>
     <url>
         <loc>Nonepart-2-mujoco/2.start.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/2.start.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/2.start.html"/>
@@ -58,7 +58,7 @@
     </url>
     <url>
         <loc>Nonepart-2-mujoco/3.verify-model.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/3.verify-model.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/3.verify-model.html"/>
@@ -66,7 +66,7 @@
     </url>
     <url>
         <loc>Nonepart-2-mujoco/4.debug.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/4.debug.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/4.debug.html"/>
@@ -74,7 +74,7 @@
     </url>
     <url>
         <loc>Nonepart-3-hardware/1.principle.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/1.principle.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/1.principle.html"/>
@@ -82,7 +82,7 @@
     </url>
     <url>
         <loc>Nonepart-3-hardware/2.config.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/2.config.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/2.config.html"/>
@@ -90,7 +90,7 @@
     </url>
     <url>
         <loc>Nonepart-3-hardware/3.deploy-run.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/3.deploy-run.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/3.deploy-run.html"/>
@@ -98,7 +98,7 @@
     </url>
     <url>
         <loc>Nonepart-3-hardware/4.runtime-checks.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/4.runtime-checks.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/4.runtime-checks.html"/>
@@ -106,7 +106,7 @@
     </url>
     <url>
         <loc>Nonepart-3-hardware/5.logs-and-plots.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/5.logs-and-plots.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/5.logs-and-plots.html"/>
@@ -114,7 +114,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/1.overview.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/1.overview.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/1.overview.html"/>
@@ -122,7 +122,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/2.build.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/2.build.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/2.build.html"/>
@@ -130,7 +130,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/3.motion-control.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/3.motion-control.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/3.motion-control.html"/>
@@ -138,7 +138,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/4.state-read.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/4.state-read.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/4.state-read.html"/>
@@ -146,7 +146,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/5.simulation-example.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/5.simulation-example.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/5.simulation-example.html"/>
@@ -154,7 +154,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/6.hardware-example.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/6.hardware-example.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/6.hardware-example.html"/>
@@ -162,7 +162,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/7.http-demo.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/7.http-demo.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/7.http-demo.html"/>
@@ -170,7 +170,7 @@
     </url>
     <url>
         <loc>Nonepart-4-sdk/8.demo-usage.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/8.demo-usage.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/8.demo-usage.html"/>
@@ -178,7 +178,7 @@
     </url>
     <url>
         <loc>Nonepart-5-lcm-dev/1.lcm-structure.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/1.lcm-structure.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/1.lcm-structure.html"/>
@@ -186,7 +186,7 @@
     </url>
     <url>
         <loc>Nonepart-5-lcm-dev/2.messages.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/2.messages.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/2.messages.html"/>
@@ -194,7 +194,7 @@
     </url>
     <url>
         <loc>Nonepart-5-lcm-dev/3.dev-package-examples.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/3.dev-package-examples.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/3.dev-package-examples.html"/>
@@ -202,7 +202,7 @@
     </url>
     <url>
         <loc>Nonepart-5-lcm-dev/4.development-mode.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/4.development-mode.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/4.development-mode.html"/>
@@ -210,7 +210,7 @@
     </url>
     <url>
         <loc>Nonepart-5-lcm-dev/5.wave-template.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/5.wave-template.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/5.wave-template.html"/>
@@ -218,7 +218,7 @@
     </url>
     <url>
         <loc>Nonepart-5-lcm-dev/6.walk-onnx-sim.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/6.walk-onnx-sim.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/6.walk-onnx-sim.html"/>
@@ -226,15 +226,55 @@
     </url>
     <url>
         <loc>Nonepart-5-lcm-dev/7.hardware-deploy.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/7.hardware-deploy.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/7.hardware-deploy.html"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/7.hardware-deploy.html"/>
     </url>
     <url>
+        <loc>Nonepart-6-ros2-sdk/1.overview.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/1.overview.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/1.overview.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/1.overview.html"/>
+    </url>
+    <url>
+        <loc>Nonepart-6-ros2-sdk/2.build.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/2.build.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/2.build.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/2.build.html"/>
+    </url>
+    <url>
+        <loc>Nonepart-6-ros2-sdk/3.start-and-check.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/3.start-and-check.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/3.start-and-check.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/3.start-and-check.html"/>
+    </url>
+    <url>
+        <loc>Nonepart-6-ros2-sdk/4.control-command.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/4.control-command.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/4.control-command.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/4.control-command.html"/>
+    </url>
+    <url>
+        <loc>Nonepart-6-ros2-sdk/5.troubleshooting-safety.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/5.troubleshooting-safety.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/5.troubleshooting-safety.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/5.troubleshooting-safety.html"/>
+    </url>
+    <url>
         <loc>Nonezh/index.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/index.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
@@ -242,7 +282,7 @@
     </url>
     <url>
         <loc>Nonezh/part-1-quick-start/1.framework.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-1-quick-start/1.framework.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/1.framework.html"/>
@@ -250,7 +290,7 @@
     </url>
     <url>
         <loc>Nonezh/part-1-quick-start/2.system-requirements.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-1-quick-start/2.system-requirements.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/2.system-requirements.html"/>
@@ -258,7 +298,7 @@
     </url>
     <url>
         <loc>Nonezh/part-1-quick-start/3.package-directory.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-1-quick-start/3.package-directory.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/3.package-directory.html"/>
@@ -266,7 +306,7 @@
     </url>
     <url>
         <loc>Nonezh/part-1-quick-start/4.first-run.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-1-quick-start/4.first-run.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/4.first-run.html"/>
@@ -274,7 +314,7 @@
     </url>
     <url>
         <loc>Nonezh/part-2-mujoco/1.purpose.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-2-mujoco/1.purpose.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/1.purpose.html"/>
@@ -282,7 +322,7 @@
     </url>
     <url>
         <loc>Nonezh/part-2-mujoco/2.start.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-2-mujoco/2.start.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/2.start.html"/>
@@ -290,7 +330,7 @@
     </url>
     <url>
         <loc>Nonezh/part-2-mujoco/3.verify-model.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-2-mujoco/3.verify-model.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/3.verify-model.html"/>
@@ -298,7 +338,7 @@
     </url>
     <url>
         <loc>Nonezh/part-2-mujoco/4.debug.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-2-mujoco/4.debug.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/4.debug.html"/>
@@ -306,7 +346,7 @@
     </url>
     <url>
         <loc>Nonezh/part-3-hardware/1.principle.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-3-hardware/1.principle.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/1.principle.html"/>
@@ -314,7 +354,7 @@
     </url>
     <url>
         <loc>Nonezh/part-3-hardware/2.config.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-3-hardware/2.config.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/2.config.html"/>
@@ -322,7 +362,7 @@
     </url>
     <url>
         <loc>Nonezh/part-3-hardware/3.deploy-run.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-3-hardware/3.deploy-run.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/3.deploy-run.html"/>
@@ -330,7 +370,7 @@
     </url>
     <url>
         <loc>Nonezh/part-3-hardware/4.runtime-checks.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-3-hardware/4.runtime-checks.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/4.runtime-checks.html"/>
@@ -338,7 +378,7 @@
     </url>
     <url>
         <loc>Nonezh/part-3-hardware/5.logs-and-plots.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-3-hardware/5.logs-and-plots.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/5.logs-and-plots.html"/>
@@ -346,7 +386,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/1.overview.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/1.overview.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/1.overview.html"/>
@@ -354,7 +394,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/2.build.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/2.build.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/2.build.html"/>
@@ -362,7 +402,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/3.motion-control.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/3.motion-control.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/3.motion-control.html"/>
@@ -370,7 +410,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/4.state-read.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/4.state-read.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/4.state-read.html"/>
@@ -378,7 +418,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/5.simulation-example.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/5.simulation-example.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/5.simulation-example.html"/>
@@ -386,7 +426,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/6.hardware-example.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/6.hardware-example.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/6.hardware-example.html"/>
@@ -394,7 +434,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/7.http-demo.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/7.http-demo.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/7.http-demo.html"/>
@@ -402,7 +442,7 @@
     </url>
     <url>
         <loc>Nonezh/part-4-sdk/8.demo-usage.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-4-sdk/8.demo-usage.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/8.demo-usage.html"/>
@@ -410,7 +450,7 @@
     </url>
     <url>
         <loc>Nonezh/part-5-lcm-dev/1.lcm-structure.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/1.lcm-structure.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/1.lcm-structure.html"/>
@@ -418,7 +458,7 @@
     </url>
     <url>
         <loc>Nonezh/part-5-lcm-dev/2.messages.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/2.messages.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/2.messages.html"/>
@@ -426,7 +466,7 @@
     </url>
     <url>
         <loc>Nonezh/part-5-lcm-dev/3.dev-package-examples.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/3.dev-package-examples.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/3.dev-package-examples.html"/>
@@ -434,7 +474,7 @@
     </url>
     <url>
         <loc>Nonezh/part-5-lcm-dev/4.development-mode.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/4.development-mode.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/4.development-mode.html"/>
@@ -442,7 +482,7 @@
     </url>
     <url>
         <loc>Nonezh/part-5-lcm-dev/5.wave-template.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/5.wave-template.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/5.wave-template.html"/>
@@ -450,7 +490,7 @@
     </url>
     <url>
         <loc>Nonezh/part-5-lcm-dev/6.walk-onnx-sim.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/6.walk-onnx-sim.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/6.walk-onnx-sim.html"/>
@@ -458,15 +498,55 @@
     </url>
     <url>
         <loc>Nonezh/part-5-lcm-dev/7.hardware-deploy.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/7.hardware-deploy.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/7.hardware-deploy.html"/>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/7.hardware-deploy.html"/>
     </url>
     <url>
+        <loc>Nonezh/part-6-ros2-sdk/1.overview.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/1.overview.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/1.overview.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/1.overview.html"/>
+    </url>
+    <url>
+        <loc>Nonezh/part-6-ros2-sdk/2.build.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/2.build.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/2.build.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/2.build.html"/>
+    </url>
+    <url>
+        <loc>Nonezh/part-6-ros2-sdk/3.start-and-check.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/3.start-and-check.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/3.start-and-check.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/3.start-and-check.html"/>
+    </url>
+    <url>
+        <loc>Nonezh/part-6-ros2-sdk/4.control-command.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/4.control-command.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/4.control-command.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/4.control-command.html"/>
+    </url>
+    <url>
+        <loc>Nonezh/part-6-ros2-sdk/5.troubleshooting-safety.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/5.troubleshooting-safety.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/5.troubleshooting-safety.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/5.troubleshooting-safety.html"/>
+    </url>
+    <url>
         <loc>Noneru/index.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/index.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
@@ -474,7 +554,7 @@
     </url>
     <url>
         <loc>Noneru/part-1-quick-start/1.framework.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/1.framework.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/1.framework.html"/>
@@ -482,7 +562,7 @@
     </url>
     <url>
         <loc>Noneru/part-1-quick-start/2.system-requirements.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/2.system-requirements.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/2.system-requirements.html"/>
@@ -490,7 +570,7 @@
     </url>
     <url>
         <loc>Noneru/part-1-quick-start/3.package-directory.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/3.package-directory.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/3.package-directory.html"/>
@@ -498,7 +578,7 @@
     </url>
     <url>
         <loc>Noneru/part-1-quick-start/4.first-run.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-1-quick-start/4.first-run.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-1-quick-start/4.first-run.html"/>
@@ -506,7 +586,7 @@
     </url>
     <url>
         <loc>Noneru/part-2-mujoco/1.purpose.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/1.purpose.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/1.purpose.html"/>
@@ -514,7 +594,7 @@
     </url>
     <url>
         <loc>Noneru/part-2-mujoco/2.start.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/2.start.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/2.start.html"/>
@@ -522,7 +602,7 @@
     </url>
     <url>
         <loc>Noneru/part-2-mujoco/3.verify-model.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/3.verify-model.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/3.verify-model.html"/>
@@ -530,7 +610,7 @@
     </url>
     <url>
         <loc>Noneru/part-2-mujoco/4.debug.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-2-mujoco/4.debug.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-2-mujoco/4.debug.html"/>
@@ -538,7 +618,7 @@
     </url>
     <url>
         <loc>Noneru/part-3-hardware/1.principle.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/1.principle.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/1.principle.html"/>
@@ -546,7 +626,7 @@
     </url>
     <url>
         <loc>Noneru/part-3-hardware/2.config.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/2.config.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/2.config.html"/>
@@ -554,7 +634,7 @@
     </url>
     <url>
         <loc>Noneru/part-3-hardware/3.deploy-run.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/3.deploy-run.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/3.deploy-run.html"/>
@@ -562,7 +642,7 @@
     </url>
     <url>
         <loc>Noneru/part-3-hardware/4.runtime-checks.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/4.runtime-checks.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/4.runtime-checks.html"/>
@@ -570,7 +650,7 @@
     </url>
     <url>
         <loc>Noneru/part-3-hardware/5.logs-and-plots.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-3-hardware/5.logs-and-plots.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-3-hardware/5.logs-and-plots.html"/>
@@ -578,7 +658,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/1.overview.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/1.overview.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/1.overview.html"/>
@@ -586,7 +666,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/2.build.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/2.build.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/2.build.html"/>
@@ -594,7 +674,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/3.motion-control.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/3.motion-control.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/3.motion-control.html"/>
@@ -602,7 +682,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/4.state-read.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/4.state-read.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/4.state-read.html"/>
@@ -610,7 +690,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/5.simulation-example.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/5.simulation-example.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/5.simulation-example.html"/>
@@ -618,7 +698,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/6.hardware-example.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/6.hardware-example.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/6.hardware-example.html"/>
@@ -626,7 +706,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/7.http-demo.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/7.http-demo.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/7.http-demo.html"/>
@@ -634,7 +714,7 @@
     </url>
     <url>
         <loc>Noneru/part-4-sdk/8.demo-usage.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-4-sdk/8.demo-usage.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-4-sdk/8.demo-usage.html"/>
@@ -642,7 +722,7 @@
     </url>
     <url>
         <loc>Noneru/part-5-lcm-dev/1.lcm-structure.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/1.lcm-structure.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/1.lcm-structure.html"/>
@@ -650,7 +730,7 @@
     </url>
     <url>
         <loc>Noneru/part-5-lcm-dev/2.messages.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/2.messages.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/2.messages.html"/>
@@ -658,7 +738,7 @@
     </url>
     <url>
         <loc>Noneru/part-5-lcm-dev/3.dev-package-examples.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/3.dev-package-examples.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/3.dev-package-examples.html"/>
@@ -666,7 +746,7 @@
     </url>
     <url>
         <loc>Noneru/part-5-lcm-dev/4.development-mode.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/4.development-mode.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/4.development-mode.html"/>
@@ -674,7 +754,7 @@
     </url>
     <url>
         <loc>Noneru/part-5-lcm-dev/5.wave-template.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/5.wave-template.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/5.wave-template.html"/>
@@ -682,7 +762,7 @@
     </url>
     <url>
         <loc>Noneru/part-5-lcm-dev/6.walk-onnx-sim.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/6.walk-onnx-sim.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/6.walk-onnx-sim.html"/>
@@ -690,10 +770,50 @@
     </url>
     <url>
         <loc>Noneru/part-5-lcm-dev/7.hardware-deploy.html</loc>
-        <lastmod>2026-09-22</lastmod>
+        <lastmod>2026-09-24</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-5-lcm-dev/7.hardware-deploy.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonepart-5-lcm-dev/7.hardware-deploy.html"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-5-lcm-dev/7.hardware-deploy.html"/>
+    </url>
+    <url>
+        <loc>Noneru/part-6-ros2-sdk/1.overview.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/1.overview.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/1.overview.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/1.overview.html"/>
+    </url>
+    <url>
+        <loc>Noneru/part-6-ros2-sdk/2.build.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/2.build.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/2.build.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/2.build.html"/>
+    </url>
+    <url>
+        <loc>Noneru/part-6-ros2-sdk/3.start-and-check.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/3.start-and-check.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/3.start-and-check.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/3.start-and-check.html"/>
+    </url>
+    <url>
+        <loc>Noneru/part-6-ros2-sdk/4.control-command.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/4.control-command.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/4.control-command.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/4.control-command.html"/>
+    </url>
+    <url>
+        <loc>Noneru/part-6-ros2-sdk/5.troubleshooting-safety.html</loc>
+        <lastmod>2026-09-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ru" href="Noneru/part-6-ros2-sdk/5.troubleshooting-safety.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonepart-6-ros2-sdk/5.troubleshooting-safety.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/part-6-ros2-sdk/5.troubleshooting-safety.html"/>
     </url>
 </urlset>

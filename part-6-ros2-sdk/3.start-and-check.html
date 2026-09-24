@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Shandong Yobotics Intelligent Robot Co., Ltd." />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>6.3 Start the Node and Check the Connection - Quad48 Quadruped Robot Control Framework User Manual</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "6.3 Start the Node and Check the Connection";
+        var mkdocs_page_input_path = "en/part-6-ros2-sdk/3.start-and-check.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> Quad48 Quadruped Robot Control Framework User Manual
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Part 1 Environment Setup and Quick Start</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/1.framework.html">1.1 Software Framework</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/2.system-requirements.html">1.2 System Requirements</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/3.package-directory.html">1.3 Package Directory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-1-quick-start/4.first-run.html">1.4 First Run Workflow</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Part 2 MuJoCo Simulation and Development Verification</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/1.purpose.html">2.1 Purpose of MuJoCo Simulation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/2.start.html">2.2 Start Simulation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/3.verify-model.html">2.3 Verify Predeployed Models</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-2-mujoco/4.debug.html">2.4 Simulation Debugging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Part 3 Hardware Deployment, Operation, and Debugging</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/1.principle.html">3.1 Hardware Deployment Principles</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/2.config.html">3.2 Update config.yaml</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/3.deploy-run.html">3.3 Deploy and Run on a Physical Robot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/4.runtime-checks.html">3.4 Runtime Checks and Safe Stop</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-3-hardware/5.logs-and-plots.html">3.5 Logging and Plotting</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Part 4 SDK High-Level Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/1.overview.html">4.1 SDK Directory and Features</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/2.build.html">4.2 Build the SDK</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/3.motion-control.html">4.3 SDK Motion Control Workflow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/4.state-read.html">4.4 SDK State Reading Workflow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/5.simulation-example.html">4.5 SDK Simulation Example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/6.hardware-example.html">4.6 SDK Hardware Example</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/7.http-demo.html">4.7 SDK HTTP Control Service</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-4-sdk/8.demo-usage.html">4.8 SDK Demo Usage</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Part 5 LCM Low-Level Development and Custom Algorithms</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/1.lcm-structure.html">5.1 LCM Structure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/2.messages.html">5.2 LCM Message Definitions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/3.dev-package-examples.html">5.3 Development Package Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/4.development-mode.html">5.4 Development Mode</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/5.wave-template.html">5.5 wave_algorithm Joint-Control Template</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/6.walk-onnx-sim.html">5.6 walk_algorithm ONNX Simulation Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part-5-lcm-dev/7.hardware-deploy.html">5.7 Deploy Custom Algorithms on Hardware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Part 6 ROS 2 SDK Development</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="1.overview.html">6.1 ROS 2 SDK Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="2.build.html">6.2 Environment Setup and Build</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">6.3 Start the Node and Check the Connection</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#terminal-1-start-the-node">Terminal 1: Start the Node</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#terminal-2-load-the-control-environment">Terminal 2: Load the Control Environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#startup-order">Startup Order</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="4.control-command.html">6.4 control_command Modes and Motion Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="5.troubleshooting-safety.html">6.5 Troubleshooting and Safety</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quad48 Quadruped Robot Control Framework User Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Part 6 ROS 2 SDK Development</li>
+      <li class="breadcrumb-item active">6.3 Start the Node and Check the Connection</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="63-start-the-node-and-check-the-connection">6.3 Start the Node and Check the Connection<a class="headerlink" href="#63-start-the-node-and-check-the-connection" title="Permanent link">¶</a></h1>
+<h2 id="terminal-1-start-the-node">Terminal 1: Start the Node<a class="headerlink" href="#terminal-1-start-the-node" title="Permanent link">¶</a></h2>
+<pre><code class="language-bash">cd ~/yobotics_quad48/yobotics_sdk_ros2
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+
+export YOBOTICS_LCM_URL='udpm://239.255.76.67:7667?ttl=255'
+ros2 launch sdk_ros2 yobotics_sdk.launch.py
+</code></pre>
+<p>A normal startup prints a message similar to:</p>
+<pre><code class="language-text">Yobotics SDK ROS2 node started at 20 Hz
+</code></pre>
+<p>Keep this terminal running. The node starts in <code>damp</code> mode.</p>
+<h2 id="terminal-2-load-the-control-environment">Terminal 2: Load the Control Environment<a class="headerlink" href="#terminal-2-load-the-control-environment" title="Permanent link">¶</a></h2>
+<pre><code class="language-bash">cd ~/yobotics_quad48/yobotics_sdk_ros2
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+</code></pre>
+<p>Check the node:</p>
+<pre><code class="language-bash">ros2 node list
+</code></pre>
+<p>The output should include:</p>
+<pre><code class="language-text">/yobotics_sdk_node
+</code></pre>
+<p>Check the control topic:</p>
+<pre><code class="language-bash">ros2 topic info /control_command
+</code></pre>
+<p>When the node is running, the subscription count should be at least 1. The
+message type should be:</p>
+<pre><code class="language-text">sdk_ros2/msg/ControlCommand
+</code></pre>
+<h2 id="startup-order">Startup Order<a class="headerlink" href="#startup-order" title="Permanent link">¶</a></h2>
+<ol>
+<li>Prepare the simulator or place the physical robot on a safety stand.</li>
+<li>Start the robot controller.</li>
+<li>Start <code>yobotics_sdk_node</code>.</li>
+<li>Confirm that <code>/control_command</code> has a subscriber.</li>
+<li>Send the mode and velocity commands from Section 6.4.</li>
+</ol>
+<p>Do not repeatedly send motion commands when node startup has failed or the
+subscription count is zero.</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="2.build.html" class="btn btn-neutral float-left" title="6.2 Environment Setup and Build"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="4.control-command.html" class="btn btn-neutral float-right" title="6.4 control_command Modes and Motion Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="2.build.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="4.control-command.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../js/copy-code.js"></script>
+      <script src="../js/language-switcher.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
